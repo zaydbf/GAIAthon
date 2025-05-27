@@ -15,7 +15,6 @@ function Vision() {
             </p>
             <div className="button">
               <button className="btn primary-btn" onClick={handleClick}>Get Started</button>
-                  jjjjjkkkggggg
             </div>
           </div>
         </div>
