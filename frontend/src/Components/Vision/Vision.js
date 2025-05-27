@@ -15,10 +15,10 @@ function Vision() {
             </p>
             <div className="button">
               <button className="btn primary-btn" onClick={handleClick}>Get Started</button>
-              gregergeg
             </div>
           </div>
         </div>
+        
   );
 }
 
