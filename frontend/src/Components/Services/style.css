@@ -1,0 +1,131 @@
+/* style.css */
+
+.services-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 90vh;
+  padding: 2rem;
+  background: white;
+  font-family: 'Segoe UI', sans-serif;
+}
+
+.service-selection {
+  display: flex;
+  gap: 2rem;
+  flex-wrap: wrap;
+  justify-content: center;
+  animation: fadeIn 0.6s ease-in-out;
+}
+
+
+.service-card {
+  width: 300px;
+  padding: 2rem;
+  border-radius: 20px;
+  text-align: center;
+  background: linear-gradient(to right bottom, #add8cb, #ffffff);
+  box-shadow: 0 12px 24px rgba(0, 0, 0, 0.1);
+  transform: scale(1);
+ 
+  transition: all 0.3s ease-in-out;
+  cursor: pointer;
+  opacity: 0;
+  animation: fadeInUp 1s ease forwards;
+}
+
+.service-card h2 {
+  font-size: 2.5rem;
+  color: #028e58;
+  margin-bottom: 1rem;
+  font-weight: bold;
+}
+.service-card:hover {
+  transform: translateY(-5px);
+}
+.service-card p {
+  font-size: 1.2rem;
+  color: #444;
+  margin-bottom: 2rem;
+  line-height: 1.6;
+}
+
+.primary-btn {
+  background-color: #00796b;
+  color: white;
+  padding: 0.75rem 1.5rem;
+  border-radius: 30px;
+  text-decoration: none;
+  font-weight: 600;
+  transition: background-color 0.3s ease;
+}
+
+.primary-btn:hover {
+  background-color: #004d40;
+}
+
+
+/* Specific service styles */
+.dashboard {
+  background: linear-gradient(135deg, #15803d, #1e3a1a);
+}
+
+.ai {
+  background: linear-gradient(135deg, #166534, #0f5132);
+}
+
+.chatbot {
+  background: linear-gradient(135deg, #14532d, #064e3b);
+}
+
+.service-card h2 {
+  font-size: 1.5rem;
+  margin-bottom: 1rem;
+}
+
+.service-card p {
+  font-size: 1rem;
+  margin-bottom: 1.5rem;
+}
+
+.service-card button {
+  padding: 0.6rem 1.2rem;
+  border: none;
+  border-radius: 12px;
+  background-color: #fff;
+  color: #14532d;
+  font-weight: bold;
+  transition: background-color 0.3s, transform 0.2s;
+}
+
+
+.service-content {
+  padding: 2rem;
+  animation: fadeIn 0.5s ease;
+}
+
+.back-button {
+  background: none;
+  border: none;
+  color: #14532d;
+  font-size: 1.1rem;
+  font-weight: bold;
+  cursor: pointer;
+  margin-bottom: 1rem;
+  transition: color 0.3s ease;
+}
+
+.back-button:hover {
+  color: #0f5132;
+}
+
+/* Animations */
+@keyframes fadeIn {
+  from { opacity: 0 }
+  to { opacity: 1 }
+}
+
+@keyframes fadeInUp {
+  from { opacity: 0; transform: translateY(20px); }
+  to { opacity: 1; transform: translateY(0); }
+}

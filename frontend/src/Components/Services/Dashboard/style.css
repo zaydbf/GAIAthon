@@ -1,0 +1,12 @@
+@import url("../style.css");
+.dashboard-service {
+  background: #fff;
+  padding: 2rem;
+  border-radius: 20px;
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
+  transition: transform 0.3s;
+}
+
+.fade-in {
+  animation: fadeIn 1s ease-in;
+}

@@ -7,8 +7,8 @@ function Home() {
   return (
   <div>
     <Navbar />
-    <div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center', height: '100vh' }}>
-      <div style={{ flex: 1, padding: '2rem' }}>
+    <div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center', height: '100vh', gap: '2rem'}}>
+      <div style={{ flex: 1, padding: '2rem'}}>
         <Vision />
       </div>
       <div style={{ flex: 1, padding: '2rem' }}>

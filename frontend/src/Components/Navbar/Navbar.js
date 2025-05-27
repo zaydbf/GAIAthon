@@ -12,6 +12,13 @@ function Navbar() {
       navigate('/');
     }
   };
+  const handleServiceClick = () => {
+    if (location.pathname === '/Services') {
+      window.scrollTo({ top:0, behavior: 'smooth'})
+    } else {
+      navigate('/Services')
+    }
+  }
   return (
 <section className="navbar-area navbar-nine">
     <div className="container">
@@ -31,14 +38,10 @@ function Navbar() {
             <div className="collapse navbar-collapse sub-menu-bar" id="navbarNine">
               <ul className="navbar-nav me-auto">
                 <li className="nav-item">
-                  <a className="page-scroll active" href="#home">Home</a>
+                  <a className="page-scroll active" href="#home" onClick={handleLogoClick}>Home</a>
                 </li>
                 <li className="nav-item">
-                  <a className="page-scroll" href="#services">Services</a>
-                </li>
-
-                <li className="nav-item">
-                  <a className="page-scroll" href="#pricing">Pricing</a>
+                  <a className="page-scroll" href="#services" onClick={handleServiceClick}>Services</a>
                 </li>
                 <li className="nav-item">
                   <a className="page-scroll" href="#contact">Contact</a>
