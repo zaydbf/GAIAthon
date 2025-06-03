@@ -12,7 +12,7 @@ const Navbar: React.FC = () => {
   const navigate = useNavigate();
 
   useEffect(() => {
-    // Read username from localStorage if signed in
+
     const storedUsername = localStorage.getItem('username');
     if (storedUsername) setUsername(storedUsername);
 
@@ -33,7 +33,7 @@ const Navbar: React.FC = () => {
     localStorage.removeItem('refreshToken');
     localStorage.removeItem('username');
     setUsername(null);
-    navigate('/'); // redirect to home or login page
+    navigate('/'); 
   };
 
   return (

@@ -1,4 +1,6 @@
 import React, { useState } from 'react';
+import { useNavigate } from 'react-router-dom'
+import { Link } from 'react-router-dom';
 
 const Signup: React.FC = () => {
   const [username, setUsername] = useState('');
@@ -6,10 +8,11 @@ const Signup: React.FC = () => {
   const [password, setPassword] = useState('');
   const [confirmPassword, setConfirmPassword] = useState('');
   const [message, setMessage] = useState('');
+  const navigate = useNavigate();
 
   const onSignupSuccess = (username: string) => {
     console.log('Signup successful for:', username);
-    // Optional: redirect here
+    navigate('/Signin', { state: { success: 'Account created successfully. Please log in.' } });
   };
 
   const signup = async (e: React.FormEvent) => {
@@ -118,9 +121,9 @@ const Signup: React.FC = () => {
 
         <p className="text-sm text-center text-gray-600 dark:text-gray-400 mt-6">
           Already have an account?{' '}
-          <a href="/Signin" className="text-emerald-600 dark:text-emerald-400 hover:underline">
+          <Link to="/Signin" className="text-emerald-600 dark:text-emerald-400 hover:underline">
             Sign in
-          </a>
+          </Link>
         </p>
       </div>
     </section>

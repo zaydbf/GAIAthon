@@ -1,11 +1,29 @@
-import React, { useState } from 'react';
-import { useNavigate } from 'react-router-dom';
+import React, { useState, useEffect } from 'react';
+import { useLocation, useNavigate } from 'react-router-dom';
 
 const SignIn: React.FC = () => {
   const [username, setUsername] = useState('');  
   const [password, setPassword] = useState('');
-  const [message, setMessage] = useState('');
   const navigate = useNavigate();
+  const location = useLocation();
+  const [message, setMessage] = useState(location.state?.success || '');
+  const [isError, setIsError] = useState(false);
+  const [isFading, setIsFading] = useState(false);
+ useEffect(() => {
+  if (location.state?.success) {
+    const fadeTimer = setTimeout(() => setIsFading(true), 4000); 
+    const clearTimer = setTimeout(() => {
+      setMessage('');
+      setIsFading(false);
+      navigate(location.pathname, { replace: true });
+    }, 5000); 
+
+    return () => {
+      clearTimeout(fadeTimer);
+      clearTimeout(clearTimer);
+    };
+  }
+}, [location.state, navigate, location.pathname]);
 
   const onLoginSuccess = () => {
     console.log('Login successful');
@@ -24,12 +42,16 @@ const SignIn: React.FC = () => {
     });
 
     if (res.ok) {
+      setIsError(false);     
+      setMessage('');
       const data = await res.json();
       localStorage.setItem('accessToken', data.access);
       localStorage.setItem('refreshToken', data.refresh);
+      
       onLoginSuccess();
     } else {
       const errorData = await res.json();
+      setIsError(true)
       setMessage(errorData.detail || 'Invalid username or password');
     }
   };
@@ -46,7 +68,13 @@ const SignIn: React.FC = () => {
 
         {message && (
           <div
-            className="mb-4 rounded-lg border-l-4 border-red-600 bg-red-100 px-4 py-3 text-red-800 dark:bg-red-900 dark:text-red-200"
+            className={`mb-4 rounded-lg border-l-4 px-4 py-3 transition-opacity duration-500 ${
+              isFading ? 'opacity-0' : 'opacity-100'
+            } ${
+              isError
+                ? 'border-red-600 bg-red-100 text-red-800 dark:bg-red-900 dark:text-red-200'
+                : 'border-green-600 bg-green-100 text-green-800 dark:bg-green-900 dark:text-green-200'
+            }`}
             role="alert"
           >
             {message}
