@@ -2,23 +2,25 @@ import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 
 const SignIn: React.FC = () => {
-  const [email, setEmail] = useState('');
+  const [username, setUsername] = useState('');  
   const [password, setPassword] = useState('');
   const [message, setMessage] = useState('');
   const navigate = useNavigate();
 
   const onLoginSuccess = () => {
     console.log('Login successful');
-    navigate('/dashboard'); // redirect after login
+    localStorage.setItem('username', username);
+    navigate('/'); 
+    window.location.reload();
   };
 
   const login = async (e: React.FormEvent) => {
     e.preventDefault();
 
-    const res = await fetch('http://localhost:8000/API/token/', {
+    const res = await fetch('http://localhost:8000/api/token/', {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({ username : email, password }),
+      body: JSON.stringify({ username, password }), 
     });
 
     if (res.ok) {
@@ -28,7 +30,7 @@ const SignIn: React.FC = () => {
       onLoginSuccess();
     } else {
       const errorData = await res.json();
-      setMessage(errorData.detail || 'Invalid email or password');
+      setMessage(errorData.detail || 'Invalid username or password');
     }
   };
 
@@ -54,18 +56,18 @@ const SignIn: React.FC = () => {
         <form className="space-y-6" onSubmit={login}>
           <div>
             <label
-              htmlFor="email"
+              htmlFor="username"
               className="block text-sm font-medium text-gray-700 dark:text-gray-300"
             >
-              Email
+              Username
             </label>
             <input
-              type="email"
-              id="email"
-              value={email}
-              onChange={(e) => setEmail(e.target.value)}
+              type="text"  // changed from email to text
+              id="username"
+              value={username}
+              onChange={(e) => setUsername(e.target.value)}
               className="mt-1 w-full px-4 py-2 bg-white dark:bg-gray-700 border border-gray-300 dark:border-gray-600 rounded-lg text-gray-900 dark:text-white focus:ring-2 focus:ring-emerald-500 focus:outline-none"
-              placeholder="you@example.com"
+              placeholder="Username"
               required
             />
           </div>

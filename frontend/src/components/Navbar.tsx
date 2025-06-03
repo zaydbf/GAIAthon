@@ -2,30 +2,39 @@ import React, { useState, useEffect } from 'react';
 import { Menu, X, Moon, Sun } from 'lucide-react';
 import Logo from './Logo';
 import { useTheme } from '../context/ThemeContext';
+import { useNavigate } from 'react-router-dom';
 
 const Navbar: React.FC = () => {
   const [isOpen, setIsOpen] = useState(false);
   const [isScrolled, setIsScrolled] = useState(false);
   const { isDarkMode, toggleTheme } = useTheme();
-  
+  const [username, setUsername] = useState<string | null>(null);
+  const navigate = useNavigate();
+
+  useEffect(() => {
+    // Read username from localStorage if signed in
+    const storedUsername = localStorage.getItem('username');
+    if (storedUsername) setUsername(storedUsername);
+
+    const handleScroll = () => {
+      setIsScrolled(window.scrollY > 10);
+    };
+
+    window.addEventListener('scroll', handleScroll);
+    return () => window.removeEventListener('scroll', handleScroll);
+  }, []);
+
   const toggleMenu = () => {
     setIsOpen(!isOpen);
   };
 
-  useEffect(() => {
-    const handleScroll = () => {
-      if (window.scrollY > 10) {
-        setIsScrolled(true);
-      } else {
-        setIsScrolled(false);
-      }
-    };
-
-    window.addEventListener('scroll', handleScroll);
-    return () => {
-      window.removeEventListener('scroll', handleScroll);
-    };
-  }, []);
+  const logout = () => {
+    localStorage.removeItem('accessToken');
+    localStorage.removeItem('refreshToken');
+    localStorage.removeItem('username');
+    setUsername(null);
+    navigate('/'); // redirect to home or login page
+  };
 
   return (
     <nav
@@ -46,54 +55,70 @@ const Navbar: React.FC = () => {
                 </span>
               </a>
             </div>
+            {username && (
+              <span className="ml-6 text-gray-700 dark:text-gray-300 font-medium">
+                Signed as: <strong>{username}</strong>
+              </span>
+            )}
           </div>
-          <div className="hidden md:block">
-            <div className="ml-10 flex items-center space-x-4">
-              <a
-                href="/#home"
-                className="px-3 py-2 rounded-md text-sm font-medium text-gray-700 hover:text-emerald-600 dark:text-gray-300 dark:hover:text-emerald-400 transition-colors"
-              >
-                Home
-              </a>
-              <a
-                href="/#services"
-                className="px-3 py-2 rounded-md text-sm font-medium text-gray-700 hover:text-emerald-600 dark:text-gray-300 dark:hover:text-emerald-400 transition-colors"
-              >
-                Services
-              </a>
-              <a
-                href="/#about"
-                className="px-3 py-2 rounded-md text-sm font-medium text-gray-700 hover:text-emerald-600 dark:text-gray-300 dark:hover:text-emerald-400 transition-colors"
-              >
-                About
-              </a>
-              <a
-                href="/#team"
-                className="px-3 py-2 rounded-md text-sm font-medium text-gray-700 hover:text-emerald-600 dark:text-gray-300 dark:hover:text-emerald-400 transition-colors"
-              >
-                Team
-              </a>
-              <a
-                href="/#contact"
-                className="px-3 py-2 rounded-md text-sm font-medium text-gray-700 hover:text-emerald-600 dark:text-gray-300 dark:hover:text-emerald-400 transition-colors"
-              >
-                Contact
-              </a>
+
+          <div className="hidden md:flex items-center space-x-4">
+            <a
+              href="/#home"
+              className="px-3 py-2 rounded-md text-sm font-medium text-gray-700 hover:text-emerald-600 dark:text-gray-300 dark:hover:text-emerald-400 transition-colors"
+            >
+              Home
+            </a>
+            <a
+              href="/#services"
+              className="px-3 py-2 rounded-md text-sm font-medium text-gray-700 hover:text-emerald-600 dark:text-gray-300 dark:hover:text-emerald-400 transition-colors"
+            >
+              Services
+            </a>
+            <a
+              href="/#about"
+              className="px-3 py-2 rounded-md text-sm font-medium text-gray-700 hover:text-emerald-600 dark:text-gray-300 dark:hover:text-emerald-400 transition-colors"
+            >
+              About
+            </a>
+            <a
+              href="/#team"
+              className="px-3 py-2 rounded-md text-sm font-medium text-gray-700 hover:text-emerald-600 dark:text-gray-300 dark:hover:text-emerald-400 transition-colors"
+            >
+              Team
+            </a>
+            <a
+              href="/#contact"
+              className="px-3 py-2 rounded-md text-sm font-medium text-gray-700 hover:text-emerald-600 dark:text-gray-300 dark:hover:text-emerald-400 transition-colors"
+            >
+              Contact
+            </a>
+
+            {!username ? (
               <a
                 href="/Signup"
                 className="px-3 py-2 rounded-md text-sm font-medium text-gray-700 hover:text-emerald-600 dark:text-gray-300 dark:hover:text-emerald-400 transition-colors"
               >
                 Sign Up
               </a>
+            ) : (
               <button
-                onClick={toggleTheme}
-                className="p-2 rounded-full text-gray-700 hover:bg-gray-100 dark:text-gray-300 dark:hover:bg-gray-800 transition-colors"
-                aria-label="Toggle theme"
+                onClick={logout}
+                className="px-3 py-2 rounded-md text-sm font-medium text-gray-700 hover:text-red-600 dark:text-red-400 dark:hover:text-red-600 transition-colors"
               >
-                {isDarkMode ? <Sun size={20} /> : <Moon size={20} />}
+                Logout
               </button>
-            </div>
+            )}
+
+            <button
+              onClick={toggleTheme}
+              className="p-2 rounded-full text-gray-700 hover:bg-gray-100 dark:text-gray-300 dark:hover:bg-gray-800 transition-colors"
+              aria-label="Toggle theme"
+            >
+              {isDarkMode ? <Sun size={20} /> : <Moon size={20} />}
+            </button>
           </div>
+
           <div className="flex md:hidden">
             <button
               onClick={toggleTheme}
@@ -156,6 +181,26 @@ const Navbar: React.FC = () => {
           >
             Contact
           </a>
+          {!username && (
+            <a
+              href="/Signup"
+              className="block px-3 py-2 rounded-md text-base font-medium text-gray-700 hover:text-emerald-600 dark:text-gray-300 dark:hover:text-emerald-400"
+              onClick={toggleMenu}
+            >
+              Sign Up
+            </a>
+          )}
+          {username && (
+            <button
+              onClick={() => {
+                logout();
+                toggleMenu();
+              }}
+              className="block w-full text-left px-3 py-2 rounded-md text-base font-medium text-gray-700 hover:text-red-600 dark:text-red-400 dark:hover:text-red-600"
+            >
+              Logout
+            </button>
+          )}
         </div>
       </div>
     </nav>
