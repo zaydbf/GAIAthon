@@ -1,4 +1,4 @@
-1  - Install dependencies : 
+1  - Install dependencies : \n
     cd frontend
     npm install
     cd ../backend
