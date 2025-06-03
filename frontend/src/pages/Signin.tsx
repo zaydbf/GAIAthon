@@ -72,7 +72,7 @@ const SignIn: React.FC = () => {
               isFading ? 'opacity-0' : 'opacity-100'
             } ${
               isError
-                ? 'border-red-600 bg-red-100 text-red-800 dark:bg-red-900 dark:text-red-200'
+                ? 'border-red-600 bg-red-100 text-red-800 dark:bg-red-900 dark:text-red-200 ' 
                 : 'border-green-600 bg-green-100 text-green-800 dark:bg-green-900 dark:text-green-200'
             }`}
             role="alert"
