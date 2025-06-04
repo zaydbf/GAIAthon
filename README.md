@@ -26,6 +26,7 @@ npm run dev
 in another termianl
 ```bash
 cd backend
+pip install django-cors-headers
 python manage.py runserver
 
 
