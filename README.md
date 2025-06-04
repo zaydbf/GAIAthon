@@ -1,5 +1,5 @@
 # Setup Instructions
-
+install node.js if you don't have it
 ## 1. Install Dependencies
 ### frontend dependencies
 ```bash
