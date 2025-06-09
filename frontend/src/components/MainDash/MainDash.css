@@ -44,4 +44,7 @@
   border-radius: 1rem;
   overflow: hidden;
   border: none;
+  margin: 0;
+  width: 1200px;
+  height: 600px;
 }
