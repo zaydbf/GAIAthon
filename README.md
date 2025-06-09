@@ -1,34 +1,58 @@
-# Setup Instructions
+# Project Setup and Run Guide
 
-## 1. Install Dependencies
-install node.js if you don't have it
-### frontend dependencies
+This guide explains how to run the project using **Docker Compose** or **manual setup** (with `requirements.txt` and `npm install`).
+
+---
+
+##  Run with  the existing Docker Compose 
+
+### 1. Build the Docker Images
+
+```bash
+docker-compose build
+```
+### 2. Start the Containers
+```bash
+docker-compose up
+```
+the frontend will be available at http://localhost:5173
+the backend will run at http://localhost:8000
+
+of course you can change the Dockerfiles and docker-compose.yml for your likings
+
+---
+
+##  Manual Setup (Without Docker)
+
+### 1. Backend Setup
+```bash
+cd backend
+```
+```bash
+pip install -r requirements.txt
+```
+
+### 2. Frontend Setup
 ```bash
 cd frontend
+```
+```bash
 npm install
 ```
-if you don't have django installed
-```bash
-pip install django
-```
-### backend dependencies :
+##  Running the App Manually
+### Terminal 1 – Start Backend
 ```bash
 cd backend
-pip install djangorestframework-simplejwt
 ```
-
-
-## 2.Run WebApp
 ```bash
-cd frontend
+python manage.py runserver
+```
+### Terminal 2 – Start frontend
+```bash
+cd frotend
+```
+```bash
 npm run dev
 ```
-in another termianl
-```bash
-cd backend
-pip install django-cors-headers
-python manage.py runserver
-
-
 
 
