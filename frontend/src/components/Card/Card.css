@@ -1,0 +1,124 @@
+.CompactCard {
+  display: flex;
+  flex: 1;
+  height: 10rem !important;       /* Increased height */
+  border-radius: 1rem;            /* Slightly rounder corners */
+  color: white;
+  padding: 2rem;                  /* More internal spacing */
+  position: relative;
+  cursor: pointer;
+  font-size: 1.2rem;              /* Optional: increase text size */
+}
+
+.CompactCard:hover {
+  box-shadow: none !important;
+}
+
+/* radial bar */
+.radialBar {
+  flex: 1 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  gap: 1rem;
+}
+.CircularProgressbar {
+  width: 4rem !important;
+  overflow: visible;
+}
+.CircularProgressbar-path {
+  stroke: white !important;
+  stroke-width: 12px !important;
+  filter: drop-shadow(2px 4px 6px white);
+}
+.CircularProgressbar-trail {
+  display: none;
+}
+.CircularProgressbar-text {
+  fill: white !important;
+}
+
+.radialBar > span {
+  font-size: 17px;
+  font-weight: bold;
+}
+
+/* sideDetail*/
+.detail {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  justify-content: space-between;
+}
+
+.detail > span:nth-child(2) {
+  font-size: 22px;
+  font-weight: bold;
+}
+.detail > span:nth-child(3) {
+  font-size: 12px;
+}
+
+/* ExpandedCard */
+.ExpandedCard {
+  position: absolute;
+  width: 60%;
+  height: 70vh;
+  z-index: 9;
+  left: 13rem;
+  border-radius: 1rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-around;
+  padding: 1rem;
+  
+}
+.ExpandedCard > span:nth-of-type(1) {
+  color: white;
+  font-size: 26px;
+  font-weight: bold;
+  text-shadow: 0px 0px 15px white;
+}
+.ExpandedCard > span:nth-of-type(2) {
+  color: rgb(236, 236, 236);
+  font-size: 15px;
+}
+
+.chartContainer {
+  width: 70%;
+}
+
+@media screen and (max-width: 1200px) {
+  .ExpandedCard {
+    top: 2rem;
+    height: 45vh;
+    left: 6rem;
+  }
+}
+
+@media screen and (max-width: 768px) {
+  .ExpandedCard {
+    top: 8rem;
+    height: 50%;
+    left: 25px;
+    width: 80%;
+  }
+}
+.custom-tooltip {
+  background: #fff !important;
+  color: #000 !important;
+  font-size: 1rem;
+  border-radius: 8px;
+  /* Add any other custom styles you want */
+}
+/* ApexCharts toolbar text color */
+.apexcharts-toolbar {
+  color: #000 !important;
+}
+
+.apexcharts-menu {
+  color: #000 !important;
+  background: #fff !important; /* Optional: white background for menu */
+}
