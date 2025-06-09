@@ -1,5 +1,5 @@
-import React from 'react';
-import { Mail, MapPin, Phone } from 'lucide-react';
+import React from "react";
+import { Mail, MapPin, Phone } from "lucide-react";
 
 const Contact: React.FC = () => {
   return (
@@ -11,17 +11,18 @@ const Contact: React.FC = () => {
           </h2>
           <div className="mt-2 h-1 w-20 bg-emerald-500 mx-auto"></div>
           <p className="mt-6 text-xl text-gray-600 dark:text-gray-300 max-w-3xl mx-auto">
-            Have questions about CARBONSENS? We'd love to hear from you. Reach out to our team using the contact information below.
+            Have questions about CARBONSENS? We'd love to hear from you. Reach
+            out to our team using the contact information below.
           </p>
         </div>
-        
+
         <div className="grid md:grid-cols-2 gap-12">
           <div>
             <div className="bg-gray-50 dark:bg-gray-700 rounded-xl p-8 h-full">
               <h3 className="text-2xl font-bold text-gray-900 dark:text-white mb-6">
                 Get In Touch
               </h3>
-              
+
               <div className="space-y-6">
                 <div className="flex items-start">
                   <div className="flex-shrink-0">
@@ -32,13 +33,15 @@ const Contact: React.FC = () => {
                       Our Location
                     </h4>
                     <p className="mt-1 text-gray-600 dark:text-gray-300">
-                      123 Green Tech Park<br />
-                      San Francisco, CA 94105<br />
-                      United States
+                      Sup'Com
+                      <br />
+                      Raoued, El ghazela
+                      <br />
+                      Ariana, Tunis
                     </p>
                   </div>
                 </div>
-                
+
                 <div className="flex items-start">
                   <div className="flex-shrink-0">
                     <Mail className="h-6 w-6 text-emerald-600 dark:text-emerald-400" />
@@ -48,18 +51,24 @@ const Contact: React.FC = () => {
                       Email Us
                     </h4>
                     <p className="mt-1 text-gray-600 dark:text-gray-300">
-                      <a href="mailto:info@carbonsens.com" className="hover:text-emerald-600 dark:hover:text-emerald-400">
-                        info@carbonsens.com
+                      <a
+                        href="mailto:info@carbonsens.com"
+                        className="hover:text-emerald-600 dark:hover:text-emerald-400"
+                      >
+                        mohamed.mdhaffar@supcom.tn
                       </a>
                     </p>
                     <p className="mt-1 text-gray-600 dark:text-gray-300">
-                      <a href="mailto:support@carbonsens.com" className="hover:text-emerald-600 dark:hover:text-emerald-400">
+                      <a
+                        href="mailto:support@carbonsens.com"
+                        className="hover:text-emerald-600 dark:hover:text-emerald-400"
+                      >
                         support@carbonsens.com
                       </a>
                     </p>
                   </div>
                 </div>
-                
+
                 <div className="flex items-start">
                   <div className="flex-shrink-0">
                     <Phone className="h-6 w-6 text-emerald-600 dark:text-emerald-400" />
@@ -69,8 +78,11 @@ const Contact: React.FC = () => {
                       Call Us
                     </h4>
                     <p className="mt-1 text-gray-600 dark:text-gray-300">
-                      <a href="tel:+15551234567" className="hover:text-emerald-600 dark:hover:text-emerald-400">
-                        +1 (555) 123-4567
+                      <a
+                        href="tel:+15551234567"
+                        className="hover:text-emerald-600 dark:hover:text-emerald-400"
+                      >
+                        +216 99 655 775
                       </a>
                     </p>
                   </div>
@@ -78,12 +90,15 @@ const Contact: React.FC = () => {
               </div>
             </div>
           </div>
-          
+
           <div>
             <form className="bg-white dark:bg-gray-800 rounded-xl shadow-lg p-8">
               <div className="grid grid-cols-2 gap-6 mb-6">
                 <div>
-                  <label htmlFor="name" className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1">
+                  <label
+                    htmlFor="name"
+                    className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1"
+                  >
                     Name
                   </label>
                   <input
@@ -95,7 +110,10 @@ const Contact: React.FC = () => {
                   />
                 </div>
                 <div>
-                  <label htmlFor="email" className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1">
+                  <label
+                    htmlFor="email"
+                    className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1"
+                  >
                     Email
                   </label>
                   <input
@@ -107,9 +125,12 @@ const Contact: React.FC = () => {
                   />
                 </div>
               </div>
-              
+
               <div className="mb-6">
-                <label htmlFor="subject" className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1">
+                <label
+                  htmlFor="subject"
+                  className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1"
+                >
                   Subject
                 </label>
                 <input
@@ -120,9 +141,12 @@ const Contact: React.FC = () => {
                   placeholder="How can we help?"
                 />
               </div>
-              
+
               <div className="mb-6">
-                <label htmlFor="message" className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1">
+                <label
+                  htmlFor="message"
+                  className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1"
+                >
                   Message
                 </label>
                 <textarea
@@ -133,7 +157,7 @@ const Contact: React.FC = () => {
                   placeholder="Your message..."
                 ></textarea>
               </div>
-              
+
               <button
                 type="submit"
                 className="w-full px-6 py-3 rounded-lg bg-gradient-to-r from-emerald-600 to-blue-600 text-white font-medium transition-transform hover:scale-105 shadow-md hover:shadow-lg"

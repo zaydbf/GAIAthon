@@ -1,0 +1,47 @@
+.MainDash{
+    /* padding-top: 1rem; */
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+}
+
+@media screen and (max-width: 1200px) {
+    .MainDash{
+        justify-content:flex-start;
+        margin-top: 2rem;
+    }
+}
+
+@media screen and (max-width: 768px)
+{
+    .MainDash{
+        align-items: center;
+    }
+}
+.mapContainer {
+    display: flex;
+    flex-direction: row;
+    align-items: flex-start;
+    gap: 20px;              /* space between table and map */
+    width: 100%;
+    height: 100%;
+    margin-top: 2rem;
+}
+
+.mapContainer .tableWrapper {
+    flex: 1 1 0;
+    min-width: 0;
+}
+
+.mapContainer .mapWrapper {
+    width: 520px;
+    height: 400px;
+    flex-shrink: 0;
+    display: flex;
+    justify-content: flex-end;
+}
+.roundedMap {
+  border-radius: 1rem;
+  overflow: hidden;
+  border: none;
+}
