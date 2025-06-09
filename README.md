@@ -54,5 +54,3 @@ cd frotend
 ```bash
 npm run dev
 ```
-
-
