@@ -1,9 +1,9 @@
 from django.shortcuts import render
 from .models import User
 from django.contrib.auth import authenticate
-from rest_framework.decorators import api_view
-from rest_framework.response import Response
-from rest_framework import status
+from rest_framework.decorators import api_view # Turns a regular Django function into a DRF (Django REST Framework) API view.
+from rest_framework.response import Response # Sends structured JSON responses from the API so we can return Response({"message": "OK"}, status=200)
+from rest_framework import status # Cleaner Code using HTTP status so instead of status=201 I use status=status.HTTP_201_CREATED (this better for bigger project to avoid mistakes)
 from rest_framework_simplejwt.tokens import RefreshToken
 from langchain.prompts import PromptTemplate
 from langchain_groq import ChatGroq
