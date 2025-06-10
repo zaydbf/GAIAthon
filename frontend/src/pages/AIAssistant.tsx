@@ -4,7 +4,7 @@ import axios from 'axios';
 
 const AIAssistant: React.FC = () => {
   const [messages, setMessages] = useState<Array<{ text: string; isUser: boolean }>>([
-    { text: "Hello! I'm your AI assistant. How can I help you with carbon emissions today? Upload data or enter factory details manually, then switch to Analysis Mode for insights!", isUser: false }
+    { text: "Hello! I'm your AI assistant. How can I assist you with carbon emissions today? Upload data or enter factory details manually, then switch to Analysis Mode for insights!", isUser: false }
   ]);
   const [input, setInput] = useState('');
   const [isAnalysisMode, setIsAnalysisMode] = useState(false);
@@ -14,7 +14,7 @@ const AIAssistant: React.FC = () => {
     co2Level: '',
     location: ''
   });
-  const [error, setError] = useState<string | null>(null); // Added for error handling
+  const [error, setError] = useState<string | null>(null);
 
   const handleSubmit = async (e: React.FormEvent, message?: string) => {
     e.preventDefault();
@@ -77,7 +77,7 @@ const AIAssistant: React.FC = () => {
       setMessages(prev => [...prev, { text: `Manually entered factory data for ${factoryData.factoryID}`, isUser: true }]);
       console.log('Manual data formatted:', csvData);
       setFactoryData({ factoryID: '', co2Level: '', location: '' });
-      setError(null); // Clear any previous errors
+      setError(null);
     } else {
       setMessages(prev => [...prev, { text: 'Please provide Factory ID and CO2 Level.', isUser: false }]);
     }
@@ -225,12 +225,26 @@ const AIAssistant: React.FC = () => {
               </form>
             </div>
 
-            <button
-              onClick={() => setIsAnalysisMode(!isAnalysisMode)}
-              className="px-4 py-2 bg-emerald-600 text-white rounded-lg hover:bg-emerald-700 transition-colors w-full text-center"
-            >
-              {isAnalysisMode ? 'Switch to Chat Mode' : 'Switch to Analysis Mode'}
-            </button>
+            {/* Toggle Switch for Analysis Mode */}
+            <div className="flex items-center justify-between">
+              <span className="text-md font-semibold text-gray-800 dark:text-gray-200">
+                Analysis Mode
+              </span>
+              <label className="relative inline-flex items-center cursor-pointer">
+                <input
+                  type="checkbox"
+                  checked={isAnalysisMode}
+                  onChange={() => setIsAnalysisMode(!isAnalysisMode)}
+                  className="sr-only peer"
+                />
+                <div className="w-11 h-6 bg-gray-300 peer-focus:outline-none peer-focus:ring-2 peer-focus:ring-emerald-500 rounded-full peer peer-checked:bg-emerald-600 transition-colors">
+                  <div className={`w-5 h-5 bg-white rounded-full shadow-md transform transition-transform ${isAnalysisMode ? 'translate-x-5' : 'translate-x-0'}`}></div>
+                </div>
+                <span className="ml-2 text-sm text-gray-600 dark:text-gray-300">
+                  {isAnalysisMode ? 'On' : 'Off'}
+                </span>
+              </label>
+            </div>
           </div>
         </div>
       </div>
