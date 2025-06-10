@@ -1,6 +1,7 @@
-import React from 'react';
-import { Link } from 'react-router-dom';
+import React, { useState, useEffect } from 'react';
+import { Link, useNavigate } from 'react-router-dom';
 import { LineChart, Bot, BarChart4 } from 'lucide-react';
+
 
 interface ServiceCardProps {
   icon: React.ReactNode;
@@ -8,11 +9,25 @@ interface ServiceCardProps {
   description: string;
   gradient: string;
   link: string;
+  isAuthenticated: boolean;
 }
 
-const ServiceCard: React.FC<ServiceCardProps> = ({ icon, title, description, gradient, link }) => {
+const ServiceCard: React.FC<ServiceCardProps> = ({ icon, title, description, gradient, link }) => 
+  {
+    const [isAuthenticated, SetisAuthenticated] = useState(false);
+    const navigate = useNavigate();
+    useEffect(() => {
+    const auth = localStorage.getItem('accessToken');
+    SetisAuthenticated(!!auth);
+    }, []);
+    const handleClick = (e: React.MouseEvent<HTMLAnchorElement>) => {
+      if (!isAuthenticated) {
+        e.preventDefault();
+        navigate('/Signin', { state: { success: "Please Signin to use our services or Signup If you don't have an account" } });
+      }
+    };
   return (
-    <Link to={link}>
+    <Link to={isAuthenticated ? link : ""} onClick={handleClick}>
       <div className="bg-white dark:bg-gray-800 rounded-xl shadow-lg overflow-hidden transition-transform hover:scale-105 group">
         <div className={`h-2 ${gradient}`}></div>
         <div className="p-6">
@@ -27,9 +42,11 @@ const ServiceCard: React.FC<ServiceCardProps> = ({ icon, title, description, gra
   );
 };
 
-const Services: React.FC = () => {
+
+const Services: React.FC<ServiceCardProps> = ({ isAuthenticated }) => {
   const services = [
     {
+      
       icon: <LineChart className="text-emerald-600 dark:text-emerald-400" size={32} />,
       title: "Interactive Dashboard",
       description: "Monitor carbon emissions in real-time with our intuitive, data-rich dashboard that provides actionable insights and visualizations.",
@@ -74,6 +91,7 @@ const Services: React.FC = () => {
               description={service.description}
               gradient={service.gradient}
               link={service.link}
+              isAuthenticated={isAuthenticated}
             />
           ))}
         </div>

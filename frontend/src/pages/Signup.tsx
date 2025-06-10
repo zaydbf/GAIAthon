@@ -1,5 +1,5 @@
-import React, { useState } from 'react';
-import { useNavigate } from 'react-router-dom'
+import React, { useEffect, useState } from 'react';
+import { useLocation, useNavigate } from 'react-router-dom'
 import { Link } from 'react-router-dom';
 
 const Signup: React.FC = () => {
@@ -7,9 +7,17 @@ const Signup: React.FC = () => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [confirmPassword, setConfirmPassword] = useState('');
-  const [message, setMessage] = useState('');
+  
+  const [successMessage, setSuccessMessage] = useState('');
+  const [errorMessage, setErrorMessage] = useState('');
   const navigate = useNavigate();
+  const location = useLocation();
 
+  useEffect(() => {
+  if (location.state?.success) {
+    setSuccessMessage(location.state.success);
+    }
+  }, [location]);
   const onSignupSuccess = (username: string) => {
     console.log('Signup successful for:', username);
     navigate('/Signin', { state: { success: 'Account created successfully. Please log in.' } });
@@ -17,9 +25,10 @@ const Signup: React.FC = () => {
 
   const signup = async (e: React.FormEvent) => {
     e.preventDefault();
-
+    setErrorMessage('');  
+    setSuccessMessage(''); 
     if (password !== confirmPassword) {
-      setMessage('Passwords do not match');
+      setErrorMessage('Passwords do not match');
       return;
     }
 
@@ -32,7 +41,7 @@ const Signup: React.FC = () => {
     if (res.ok) {
       onSignupSuccess(username);
     } else {
-      setMessage('Error creating user, please verify your credentials');
+      setErrorMessage('Error creating user, please verify your credentials or use another username & email');
     }
   };
 
@@ -46,9 +55,24 @@ const Signup: React.FC = () => {
           Join CARBONSENS and be part of the movement for a sustainable future.
         </p>
 
-        {message && (
-          <div className="mb-4 rounded-lg border-l-4 border-red-600 bg-red-100 px-4 py-3 text-red-800 dark:bg-red-900 dark:text-red-200" role="alert">{message}</div>
+        {successMessage && (
+        <div
+          className="mb-4 rounded-lg border-l-4 border-blue-600 bg-blue-100 px-4 py-3 text-blue-800 dark:bg-blue-900 dark:text-blue-200"
+          role="alert"
+        >
+          {successMessage}
+        </div>
         )}
+
+      {errorMessage && (
+        <div
+          className="mb-4 rounded-lg border-l-4 border-red-600 bg-red-100 px-4 py-3 text-red-800 dark:bg-red-900 dark:text-red-200"
+          role="alert"
+        >
+          {errorMessage}
+        </div>
+      )}
+
 
         <form className="space-y-6" onSubmit={signup}>
           <div>

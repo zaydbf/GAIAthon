@@ -33,7 +33,8 @@ const Navbar: React.FC = () => {
     localStorage.removeItem('refreshToken');
     localStorage.removeItem('username');
     setUsername(null);
-    navigate('/'); 
+    navigate('/');
+    window.location.reload(); 
   };
 
   return (
