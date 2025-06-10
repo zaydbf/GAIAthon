@@ -1,6 +1,6 @@
 // Data.tsx
 
-// Sidebar imports
+// MainDash imports
 
 import { UilFire } from "@iconscout/react-unicons";
 import { UilCloud } from "@iconscout/react-unicons";
@@ -63,8 +63,8 @@ export const cardsData: CardData[] = [
   {
     title: "CO₂ (ppm)",
     color: {
-      backGround: "linear-gradient(180deg, #56ccf2 0%, #2f80ed 100%)",
-      boxShadow: "0px 10px 20px 0px #a0c4ff",
+      backGround: "linear-gradient(180deg, #efd65c 0%, #dc9751 100%)",
+      boxShadow: "0px 10px 20px 0px #efd65c",
     },
     threshold: 1000,
     barValue: valueCO2,

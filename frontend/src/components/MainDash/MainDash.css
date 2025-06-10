@@ -45,3 +45,21 @@
   overflow: hidden;
   border: none;
 }
+
+.MainDash h1 {
+  font-size: 1.5rem;
+  font-weight: 600;
+  color: #ffffff;
+  margin-bottom: 1.2rem;
+  text-align: left;
+  line-height: 1.1;
+  background: none;
+  box-shadow: none;
+  border-radius: 0;
+  display: block;
+  transition: color 0.3s;
+}
+
+.MainDash h1:hover {
+  color: #9ca1a8;
+}

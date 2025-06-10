@@ -1,8 +1,7 @@
 .AppGlass {
   display: grid;
-  height:97%;
-  width: 97%;
-  border-radius: 1rem;
+  height:100%;
+  width: 100%;
   gap: 16px;
   overflow: hidden;
 }

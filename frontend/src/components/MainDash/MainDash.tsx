@@ -4,6 +4,7 @@ import "./MainDash.css";
 const MainDash = () => {
   return (
     <div className="MainDash">
+      <h1>Real-Time Atmospheric Gas Readings :</h1>
       <Cards />
       <div className="mapContainer">
         <div className="tableWrapper">
@@ -13,7 +14,7 @@ const MainDash = () => {
           <iframe
             className="roundedMap"
             width="1200"
-            height="600"
+            height="467"
             frameborder="0"
             scrolling="no"
             marginheight="0"

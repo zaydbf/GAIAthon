@@ -1,28 +1,21 @@
-.RightSide{
+.RightSide {
     display: flex;
-    flex-direction: column;
-    /* padding-top: 1rem; */
+    flex-direction: row;      /* Side by side by default */
     width: 95%;
     justify-content: space-evenly;
+    gap: 1rem;                /* Space between the two components */
+    align-items: flex-start;
 }
 
+.RightSide > div {
+    flex: 1;                  /* Make both children take equal width */
+}
 
+/* Stack vertically on medium and small screens */
 @media screen and (max-width: 1200px) {
-    .RightSide{
-        justify-content: flex-start;
-        margin-top: 3rem;
-    }
-}
-
-@media screen and (max-width: 768px)
-{
-    .RightSide{
-        width: 100%;
-        margin-top: 0;
-    }
-    .RightSide>div{
-        display: flex;
+    .RightSide {
         flex-direction: column;
-        align-items: center;
+        margin-top: 3rem;
+        gap: 2rem;
     }
 }
