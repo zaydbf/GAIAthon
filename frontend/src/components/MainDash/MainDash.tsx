@@ -12,13 +12,7 @@ const MainDash = () => {
         </div>
         <div className="mapWrapper">
           <iframe
-            className="roundedMap"
-            width="1200"
-            height="467"
-            frameborder="0"
-            scrolling="no"
-            marginheight="0"
-            marginwidth="0"
+            className="roundedMap" 
             src="https://maps.google.com/maps?width=520&amp;height=400&amp;hl=en&amp;q=Falbrook%20+(Falbrook%20Art%20Center)&amp;t=&amp;z=14&amp;ie=UTF8&amp;iwloc=B&amp;output=embed"
           >
             <a href="https://www.mapsdirections.info/calcular-la-población-en-un-mapa"></a>

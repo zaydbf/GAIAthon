@@ -1,0 +1,7 @@
+Django==5.1.7
+djangorestframework
+django-cors-headers
+djangorestframework-simplejwt
+python-dotenv
+langchain
+langchain-groq

@@ -1,0 +1,28 @@
+# === Python / Django ===
+*.pyc
+*.pyo
+*.pyd
+__pycache__/
+*.sqlite3
+.env
+
+# Django migrations
+!*/migrations/__init__.py
+
+# === Node.js / React ===
+node_modules/
+dist/
+build/
+
+# === OS / Editor ===
+.DS_Store
+Thumbs.db
+.vscode/
+.idea/
+
+# === Docker / Devcontainers ===
+.devcontainer/*.json
+.devcontainer/*.env
+*.devcontainer/*-override.json
+
+
