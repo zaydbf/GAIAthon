@@ -107,11 +107,14 @@ function ExpandedCard({
         {
           y: param.threshold,
           borderColor: "#FF0000",
+          borderWidth: 2,
           label: {
             borderColor: "#FF0000",
             style: {
               color: "#fff",
               background: "#FF0000",
+              fontWeight: 700,
+              fontSize: "14px",
             },
             text: `Threshold (${param.threshold} ppm)`,
           },

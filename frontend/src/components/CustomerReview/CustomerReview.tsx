@@ -1,13 +1,14 @@
 import Chart from "react-apexcharts";
-import { ApexOptions } from "apexcharts"; // ✅ Import correct types
+import { ApexOptions } from "apexcharts";
+import "./CustomerReview.css";
 
 const CustomerReview = () => {
   const options: ApexOptions = {
     chart: {
-      type: "area", // ✅ Correct type
+      type: "area",
       height: 160,
       toolbar: {
-        show: false,
+        show: true,
       },
     },
     fill: {
@@ -22,12 +23,12 @@ const CustomerReview = () => {
       colors: ["#ff929f"],
     },
     tooltip: {
-      x: {
-        format: "dd/MM/yy HH:mm",
-      },
+      x: { format: "dd/MM/yy HH:mm" },
+      fillSeriesColor: true,
+      cssClass: "custom-tooltip",
     },
     grid: {
-      show: false,
+      show: true,
     },
     xaxis: {
       type: "datetime",
@@ -42,7 +43,7 @@ const CustomerReview = () => {
       ],
     },
     yaxis: {
-      show: false,
+      show: true,
     },
   };
 
@@ -55,7 +56,22 @@ const CustomerReview = () => {
 
   return (
     <div className="CustomerReview">
+      <h3
+        style={{
+          textAlign: "center",
+          fontSize: "1.5rem",
+          fontWeight: 700,
+          color: "#fff",
+          margin: "0 0 1rem 0",
+          letterSpacing: "1px",
+        }}
+      >
+        Pollution Levels 🌫️
+      </h3>
       <Chart options={options} series={series} type="area" height={160} />
+      <p style={{ color: "#fff", textAlign: "center", marginTop: "1rem" }}>
+        Live 🔴
+      </p>
     </div>
   );
 };

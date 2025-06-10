@@ -1,6 +1,6 @@
 import "./App.css";
 import MainDash from "../components/MainDash/MainDash";
-// import RightSide from "../components/RightSide/RightSide";
+import RightSide from "../components/RightSide/RightSide";
 import ThemeProvider, { useTheme } from "../context/ThemeContext";
 import BackgroundAnimation from "../components/BackgroundAnimation";
 
@@ -19,9 +19,17 @@ const Dashboard = () => {
           <BackgroundAnimation darkMode={isDarkMode} />
           <div className="AppGlass">
             <MainDash />
-            {/* <RightSide /> */}
+            <RightSide />
           </div>
         </div>
+        <p align="center">
+          ⚠️ Stay below the thresholds to remain compliant, avoid penalties, and
+          protect public health and the environment.
+        </p>
+        <p align="center">
+          This dashboard helps track emissions in real-time to promote
+          transparency and responsible industrial activity.
+        </p>
         <div className="mt-16 text-center">
           <a
             href="/#home"

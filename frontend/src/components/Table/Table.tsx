@@ -79,7 +79,7 @@ const makeStyle = (status: RowData["status"]) => {
 export default function BasicTable() {
   return (
     <div className="Table">
-      <h3>Live 🔴</h3>
+      <h3>LiveSensorData – Industry location (GPS):</h3>
       <TableContainer
         component={Paper}
         style={{ boxShadow: "0px 13px 20px 0px #80808029" }}

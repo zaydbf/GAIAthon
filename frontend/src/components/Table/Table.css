@@ -11,9 +11,15 @@ th {
   border: none !important;
 }
 
-.Table:first-child {
+/* Apply border radius to the table and its Paper container */
+.Table table {
+  border-radius: 1rem !important;
+  overflow: hidden;
+}
+.Table .MuiPaper-root {
   border-radius: 1rem !important;
 }
+
 .status {
   padding: 8px;
   border-radius: 9px;
@@ -30,13 +36,29 @@ th {
   }
 }
 
-
 @media screen and (max-width: 768px) {
-  .Table{
-    position: left;
+  .Table {
     display: flex;
     flex-direction: column;
     align-items: center;
     width: 5rem;
   }
+}
+
+.Table h3 {
+  font-size: 1.5rem;
+  font-weight: 600;
+  color: #ffffff;
+  margin-bottom: 1.2rem;
+  text-align: left;
+  line-height: 1.1;
+  background: none;
+  box-shadow: none;
+  border-radius: 0;
+  display: block;
+  transition: color 0.3s;
+}
+
+.Table h3:hover {
+  color: #9ca1a8;
 }

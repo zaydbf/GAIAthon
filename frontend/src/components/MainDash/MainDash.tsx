@@ -4,6 +4,7 @@ import "./MainDash.css";
 const MainDash = () => {
   return (
     <div className="MainDash">
+      <h1>Real-Time Atmospheric Gas Readings :</h1>
       <Cards />
       <div className="mapContainer">
         <div className="tableWrapper">

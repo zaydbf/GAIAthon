@@ -13,4 +13,5 @@ declare module '@iconscout/react-unicons' {
   export const UilCloud: ComponentType<SVGProps<SVGSVGElement>>;
   export const UilFlask: ComponentType<SVGProps<SVGSVGElement>>;
   export const UilTimes: ComponentType<SVGProps<SVGSVGElement>>;
+  export const UilScaleBalanced: ComponentType<SVGProps<SVGSVGElement>>;
 }
