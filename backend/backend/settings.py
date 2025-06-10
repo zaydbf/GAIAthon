@@ -32,14 +32,15 @@ ALLOWED_HOSTS = []
 INSTALLED_APPS = [
     'django.contrib.admin',
     'django.contrib.auth',
-    'django.contrib.contenttypes',  # Required for ContentType model
+    'django.contrib.contenttypes',
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    'API',  # Your application
-    'corsheaders',  # For CORS support
-    'rest_framework',  # For API functionality
-    'rest_framework_simplejwt',  # For JWT authentication
+    'rest_framework', #Rest_Framework integration
+    'corsheaders',  #Lets Django accept requests from other domains (Cross-Origin Resource Sharing)
+    'API', #Our Application
+    'rest_framework_simplejwt'
+
 ]
 
 REST_FRAMEWORK = {
@@ -93,8 +94,7 @@ DATABASES = {
     }
 }
 
-# Custom User Model
-AUTH_USER_MODEL = 'API.User'  # Points to your custom User model in API app
+AUTH_USER_MODEL = 'API.User' # So that we can make a custom user and not the django integrated User
 
 # Password validation
 # https://docs.djangoproject.com/en/5.1/ref/settings/#auth-password-validators
