@@ -44,6 +44,8 @@
   border-radius: 1rem;
   overflow: hidden;
   border: none;
+  width: 1200px;
+  height: 467px;
 }
 .MainDash h1 {
   font-size: 1.5rem;
@@ -61,5 +63,5 @@
   color: #9ca1a8;
   margin: 0;
   width: 1200px;
-  height: 600px;
+  height: 467px;
 }

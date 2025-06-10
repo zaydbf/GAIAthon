@@ -86,7 +86,7 @@ export const cardsData: CardData[] = [
       backGround: "linear-gradient(180deg, #42e695 0%, #3bb2b8 100%)",
       boxShadow: "0px 10px 20px 0px #b2f2bb",
     },
-    threshold: 1000,
+    threshold: 800,
     barValue: valueCH4,
     png: UilFlask,
     series: [

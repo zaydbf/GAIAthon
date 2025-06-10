@@ -9,6 +9,8 @@ const SignIn: React.FC = () => {
   const [message, setMessage] = useState(location.state?.success || '');
   const [isError, setIsError] = useState(false);
   const [isFading, setIsFading] = useState(false);
+  useEffect(() => {
+  }, []);
  useEffect(() => {
   if (location.state?.success) {
     const fadeTimer = setTimeout(() => setIsFading(true), 4000); 

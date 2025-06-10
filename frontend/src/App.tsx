@@ -15,6 +15,8 @@ import Signup from "./pages/Signup";
 import Signin from "./pages/Signin";
 import BackgroundAnimation from "./components/BackgroundAnimation";
 
+
+
 function App() {
   const { isDarkMode } = useTheme();
   return (
@@ -25,6 +27,7 @@ function App() {
           <Navbar />
           <main className="relative z-10">
             <Routes>
+              
               <Route
                 path="/"
                 element={
@@ -38,15 +41,12 @@ function App() {
                   </>
                 }
               />
-
+              
               <Route path="/Signup" element={<Signup />} />
               <Route path="/Signin" element={<Signin />} />
               <Route path="/dashboard" element={<Dashboard />} />
               <Route path="/ai-assistant" element={<AIAssistant />} />
-              <Route
-                path="/carbon-forecasting"
-                element={<CarbonForecasting />}
-              />
+              <Route path="/carbon-forecasting" element={<CarbonForecasting />}/>
             </Routes>
           </main>
           <Footer />
