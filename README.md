@@ -5,6 +5,7 @@ This guide explains how to run the project using **Docker Compose** or **manual 
 ---
 
 ##  Run with  the existing Docker Compose 
+Ensure that docker is already installed on you pc  
 
 ### 1. Build the Docker Images
 
