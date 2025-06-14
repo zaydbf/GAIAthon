@@ -123,14 +123,14 @@ df_o3 = read_gas_files(gas_dir_o3,gas_key_o3,gas_name_o3)
 print(df_no2,df_co,df_ch4,df_o3)
 
 # convert pandas dataframe to csv file 
-
+os.makedirs('./CSV_data', exist_ok=True) # Create the folder if it doesn't exist 
 df_no2.to_csv('./CSV_data/no2_data.csv', index=False)
 df_co.to_csv('./CSV_data/co_data.csv', index=False)
 df_ch4.to_csv('./CSV_data/ch4_data.csv', index=False)
 df_o3.to_csv('./CSV_data/o3_data.csv', index=False)
 
 
-
+os.makedirs('./plot', exist_ok=True) 
 gasses = {"CH4": df_ch4, "NO2": df_no2, "CO": df_co, "O3": df_o3}
 for gas, df in gasses.items():
     plot_gas_cartopy(df, gas, cmap='viridis', save_path=f'./plot/{gas.lower()}_plot.png')
