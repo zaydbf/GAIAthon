@@ -21,10 +21,11 @@ import os
 #     print(f"Average {gas} in Africa: {average} {unit}")
     
 # region = {"lat_min": -35, "long_min": -20, "lat_max": 37, "long_max": 55}
-BASE_DIR = os.path.dirname(os.path.abspath(__file__))
+BASE_DIR = os.path.abspath(os.path.join(os.path.dirname(__file__), ".."))
 
 def compute_average(gas, region):
     csv_path = os.path.join(BASE_DIR, "CSV_data", f"{gas.lower()}_data.csv")
+    print("Reading CSV from:", csv_path)
     df = pd.read_csv(csv_path)
 
 # Filter for region bounds (approximate)
