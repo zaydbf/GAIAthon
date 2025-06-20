@@ -13,7 +13,7 @@ run the run_data.py file
 cd backend\data
 python run_data.py
 ```
-then for testing go to localhost/calculate/<gas>/<Region>
+then for testing go to localhost/calculate/gas/Region
 exemple : 
 http://127.0.0.1:8000/data/calculate/NO2/Africa/
 this should calculate the average of NO2 emission in africa today 
