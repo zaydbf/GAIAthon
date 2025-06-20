@@ -39,6 +39,7 @@ INSTALLED_APPS = [
     'rest_framework', #Rest_Framework integration
     'corsheaders',  #Lets Django accept requests from other domains (Cross-Origin Resource Sharing)
     'API', #Our Application
+    'data',
     'rest_framework_simplejwt'
 
 ]
