@@ -16,8 +16,9 @@ python run_data.py
 then for testing go to localhost/calculate/gas/Region
 exemple : 
 http://127.0.0.1:8000/data/calculate/NO2/Africa/
-this should calculate the average of NO2 emission in africa today 
-
+this should calculate the average of NO2 emission in africa
+(visit all links to calculate the average of each gas  http://127.0.0.1:8000/data/calculate/"gas"/Africa/  where gas =[CH4, CO, NO2, O3, SO2]  
+then visit the website's dashboard the added values should be visible
 # Documentation for data files
 first I'm going to talk about each script and what it does : 
 
