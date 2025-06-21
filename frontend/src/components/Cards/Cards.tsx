@@ -1,8 +1,14 @@
 import "./Cards.css";
-import { cardsData } from "../../Data/Data.tsx"; //here we are sharing code between files
-import Card from "../Card/Card"; //but here we're calling a component to use it and call it
+import { useCardsData } from "../../Data/Data.tsx";
+import Card from "../Card/Card";
 
 const Cards = () => {
+  const cardsData = useCardsData("Africa"); // Change africa later
+
+  if (cardsData.length === 0) {
+    return <p>Loading cards...</p>;
+  }
+
   return (
     <div className="Cards">
       {cardsData.map((card, id) => (
@@ -23,3 +29,4 @@ const Cards = () => {
 };
 
 export default Cards;
+

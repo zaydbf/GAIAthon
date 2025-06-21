@@ -48,5 +48,14 @@ def calculate(request, gas, region_name):
         "region": region_name
     })
 
+@api_view(['GET'])
+def get_gas_values(request, gas, region_name):
+    
+    values = [61.6, 29.33, 24.15, 229.71, 249.37, 224.17, 250.26]
 
-
+    return Response({
+        "gas": gas,
+        "region": region_name,
+        "values": values,
+        "unit": "ppm"  
+    })
