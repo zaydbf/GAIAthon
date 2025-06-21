@@ -25,7 +25,7 @@ interface CardData {
 
 const gasConfig: Record<string, Omit<CardData, "barValue" | "value" | "series">> = {
   CO: {
-    title: "CO (ppm)",
+    title: "CO(mmol/m²)",
     threshold: 1000,
     color: {
       backGround: "linear-gradient(180deg, #ff6a6a 0%, #ffb88c 100%)",
@@ -34,17 +34,35 @@ const gasConfig: Record<string, Omit<CardData, "barValue" | "value" | "series">>
     png: UilFire,
   },
   NO2: {
-    title: "NO₂ (ppm)",
-    threshold: 500,
+    title: "NO₂(µmol/m²)",
+    threshold: 40,
     color: {
       backGround: "linear-gradient(180deg, #a1c4fd 0%, #c2e9fb 100%)",
       boxShadow: "0px 10px 20px 0px #add8e6",
     },
     png: UilCloud,
   },
+  O3: {
+    title: "O₃(µmol/m²)",
+    threshold: 1000,
+    color: {
+      backGround: "linear-gradient(180deg, #ff6a6a 0%, #ffb88c 100%)",
+      boxShadow: "0px 10px 20px 0px #fbbaba",
+    },
+    png: UilFire,
+  },
+  SO2: {
+    title: "SO₂(µmol/m²)",
+    threshold: 1000,
+    color: {
+      backGround: "linear-gradient(180deg, #ff6a6a 0%, #ffb88c 100%)",
+      boxShadow: "0px 10px 20px 0px #fbbaba",
+    },
+    png: UilFire,
+  },
   CH4: {
-    title: "CH₄ (ppm)",
-    threshold: 800,
+    title: "CH₄ (ppbv)",
+    threshold: 3000,
     color: {
       backGround: "linear-gradient(180deg, #42e695 0%, #3bb2b8 100%)",
       boxShadow: "0px 10px 20px 0px #b2f2bb",
@@ -57,7 +75,7 @@ export const useCardsData = (region: string) => {
   const [cardsData, setCardsData] = useState<CardData[]>([]);
 
   useEffect(() => {
-    const gases = ["CO", "NO2", "CH4"];
+    const gases = ["CO", "NO2", "CH4", "SO2"];
     Promise.all(
       gases.map((gas) =>
         fetch(`http://localhost:8000/data/get-data/${gas}/${region}/`)
@@ -74,7 +92,7 @@ export const useCardsData = (region: string) => {
             const card: CardData = {
               ...config,
               barValue,
-              value: max.toString(),
+              value: max.toFixed(2),
               series: [{ name: config.title, data: values }],
             };
 

@@ -135,7 +135,7 @@ def download_function(access_token,gas,product_list,download_dir):
 # ==== Run All ==== #
 
 def main():
-    gases = ["CH4", "CO", "NO2", "O3"]
+    gases = ["CH4", "CO", "NO2", "O3", "SO2"]
     for gas in gases :
         username,password,satellite_name,p_name,footprint_aoi,start_date,end_date,download_dir,image_nbr = variables_function(gas)
 

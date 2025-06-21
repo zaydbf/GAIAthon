@@ -58,6 +58,7 @@ gas_key_no2, gas_name_no2, gas_dir_no2 =  'nitrogendioxide_tropospheric_column',
 gas_key_co, gas_name_co, gas_dir_co  =  'carbonmonoxide_total_column', 'CO', './data_sentinel_5p/co_data'
 gas_key_ch4, gas_name_ch4, gas_dir_ch4  = 'methane_mixing_ratio_bias_corrected', 'CH4', './data_sentinel_5p/ch4_data'
 gas_key_o3, gas_name_o3, gas_dir_o3  = 'ozone_total_vertical_column', 'O3', './data_sentinel_5p/o3_data'
+gas_key_so2, gas_name_so2, gas_dir_so2  = 'sulfurdioxide_total_vertical_column', 'SO2', './data_sentinel_5p/so2_data'
 
 
 # Read gas files 
@@ -119,7 +120,8 @@ def plot_gas_cartopy(df, gas_name, cmap='viridis', save_path=None):
 df_no2 = read_gas_files(gas_dir_no2,gas_key_no2,gas_name_no2)
 df_co = read_gas_files(gas_dir_co,gas_key_co,gas_name_co)
 df_ch4 = read_gas_files(gas_dir_ch4,gas_key_ch4,gas_name_ch4)
-df_o3 = read_gas_files(gas_dir_o3,gas_key_o3,gas_name_o3) 
+df_o3 = read_gas_files(gas_dir_o3,gas_key_o3,gas_name_o3)
+df_so2 = read_gas_files(gas_dir_so2, gas_key_so2, gas_name_so2) 
 print(df_no2,df_co,df_ch4,df_o3)
 
 # convert pandas dataframe to csv file 
@@ -128,10 +130,11 @@ df_no2.to_csv('./CSV_data/no2_data.csv', index=False)
 df_co.to_csv('./CSV_data/co_data.csv', index=False)
 df_ch4.to_csv('./CSV_data/ch4_data.csv', index=False)
 df_o3.to_csv('./CSV_data/o3_data.csv', index=False)
+df_so2.to_csv('./CSV_data/so2_data.csv', index=False)
 
 
 os.makedirs('./plot', exist_ok=True) 
-gasses = {"CH4": df_ch4, "NO2": df_no2, "CO": df_co, "O3": df_o3}
+gasses = {"CH4": df_ch4, "CO": df_co,"NO2": df_no2, "O3": df_o3, "SO2": df_so2}
 for gas, df in gasses.items():
     plot_gas_cartopy(df, gas, cmap='viridis', save_path=f'./plot/{gas.lower()}_plot.png')
 
