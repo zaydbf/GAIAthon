@@ -10,7 +10,7 @@ COPERNICUS_PASSWORD=<password>
 ```
 run the run_data.py file
 ``` bash
-cd backend\data
+cd backend\data\data
 python run_data.py
 ```
 then for testing go to localhost/calculate/gas/Region
