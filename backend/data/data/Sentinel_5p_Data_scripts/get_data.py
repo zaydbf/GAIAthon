@@ -42,7 +42,7 @@ def variables_function(gas):
     satellite_name = 'SENTINEL-5P'
     p_name = f'L2__{gas}___'    # relevant parameters for atmospheric monitoring : CO, CH4, NO2, O3,SO2
     # Specify the number of images to search. The latest {image_nbr} images will be searched for and downloaded.
-    image_nbr = 30
+    image_nbr = 3
     return(username,password,satellite_name,p_name,footprint_aoi,start_date,end_date,download_dir,image_nbr)
 
 # Authentification function (get token)

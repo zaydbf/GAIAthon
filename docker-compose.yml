@@ -17,3 +17,10 @@ services:
       - /app/node_modules
     environment:
       - CHOKIDAR_USEPOLLING=true
+  cronjob:
+    build:
+      context: ./backend
+      dockerfile: cron.Dockerfile
+    volumes:
+      - ./backend:/app
+    restart: unless-stopped    

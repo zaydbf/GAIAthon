@@ -5,6 +5,9 @@
 __pycache__/
 *.sqlite3
 .env
+plot/
+data_sentinel_5p/
+CSV_data/
 
 # Django migrations
 !*/migrations/__init__.py
@@ -24,5 +27,6 @@ Thumbs.db
 .devcontainer/*.json
 .devcontainer/*.env
 *.devcontainer/*-override.json
+cron.log
 
 
