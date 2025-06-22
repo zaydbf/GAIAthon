@@ -1,3 +1,6 @@
+# Automation
+Now run_data.py runs automatically everyday at midnight to update data 
+
 # Usage 
 
 First make an account at : https://dataspace.copernicus.eu/
