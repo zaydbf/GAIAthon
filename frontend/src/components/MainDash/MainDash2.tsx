@@ -1,6 +1,8 @@
 import Cards from "../Cards/Cards";
 import Table from "../Table/Table";
 import "./MainDash.css";
+import "../geography/Geography"
+import Geography from "../geography/Geography";
 
 
 const MainDash2 = () => {
@@ -12,7 +14,7 @@ const MainDash2 = () => {
       <div className="mapContainer">
         <div className="tableWrapper">
           <Table />
-
+          <Geography />
         </div>
         <div className="mapWrapper">
           <iframe
