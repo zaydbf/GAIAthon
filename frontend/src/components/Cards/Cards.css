@@ -1,23 +1,27 @@
 .Cards {
   display: flex;
-  gap: 20px;
+  flex-direction: row;
+  gap: 1rem; /* space between cards */
+  justify-content: center; /* center the row horizontally */
+  align-items: stretch; /* make all cards the same height */
+  flex-wrap: nowrap; /* prevent wrapping to a new line */
 }
-.parentContainer{
+
+.parentContainer {
   width: 100%;
 }
 
 @media screen and (max-width: 1200px) {
-  .Cards{
+  .Cards {
     flex-direction: column;
   }
-  .parentContainer{
+  .parentContainer {
     height: 9rem;
   }
 }
 
-@media screen and (max-width: 768px)
-{
-  .Cards{
+@media screen and (max-width: 768px) {
+  .Cards {
     width: 90%;
   }
 }
