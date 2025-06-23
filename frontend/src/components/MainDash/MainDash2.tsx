@@ -1,4 +1,4 @@
-import Cards from "../Cards/Cards";
+import Cards from "../Cards/Cards2";
 import Table from "../Table/Table";
 import "./MainDash.css";
 import "../geography/Geography"

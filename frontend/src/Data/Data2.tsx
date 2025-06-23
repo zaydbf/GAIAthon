@@ -33,8 +33,8 @@ const gasConfig: Record<
   string,
   Omit<CardData, "barValue" | "value" | "series">
 > = {
-  CO2: {
-    title: "CO2 (mmol/m²)",
+  CO: {
+    title: "CO (mmol/m²)",
     threshold: 1000,
     color: {
       backGround: "linear-gradient(180deg, #ff5858 0%, #ffc371 100%)", // red-orange
@@ -42,9 +42,9 @@ const gasConfig: Record<
     },
     png: UilFire,
   },
-  Light: {
-    title: "Light (lx)",
-    threshold: 500,
+  NO2: {
+    title: "NO₂ (µmol/m²)",
+    threshold: 40,
     color: {
       backGround:
         "linear-gradient(180deg,  #185a9d 0% ,rgb(67, 127, 206) 100%)", // green-blue
@@ -52,7 +52,24 @@ const gasConfig: Record<
     },
     png: UilCloud,
   },
-  
+  O3: {
+    title: "O₃ (µmol/m²)",
+    threshold: 1000000,
+    color: {
+      backGround: "linear-gradient(180deg, #f7971e 0%, #ffd200 100%)", // orange-yellow
+      boxShadow: "0px 10px 20px 0px #ffe5a0",
+    },
+    png: UilTemperatureHalf,
+  },
+  SO2: {
+    title: "SO₂ (µmol/m²)",
+    threshold: 1000,
+    color: {
+      backGround: "linear-gradient(180deg, #c471f5 0%, #fa71cd 100%)", // purple-pink
+      boxShadow: "0px 10px 20px 0px #e9e4f0",
+    },
+    png: UilWind,
+  },
   CH4: {
     title: "CH₄ (ppbv)",
     threshold: 3000,
@@ -68,7 +85,7 @@ export const useCardsData = (region: string) => {
   const [cardsData, setCardsData] = useState<CardData[]>([]);
 
   useEffect(() => {
-    const gases = ["CO2","Light", "CH4"];
+    const gases = ["CO", "NO2", "CH4", "O3", "SO2"];
     Promise.all(
       gases.map((gas) =>
         fetch(`http://localhost:8000/data/get-data/${gas}/${region}/`)

@@ -1,7 +1,6 @@
 from django.shortcuts import render
 from rest_framework.decorators import api_view
 from rest_framework.response import Response
-import random
 from .models import Region, Gas
 from .data.Sentinel_5p_Data_scripts import read_data, get_data, calculate_avg
 from .utils import REGION_BOUNDS

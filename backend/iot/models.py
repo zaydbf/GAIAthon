@@ -20,11 +20,19 @@ class IotData(models.Model):
     longitude = models.FloatField(null=True, blank=True)         # gpsLocation[1].longitude
     altitude = models.FloatField(null=True, blank=True)          # gpsLocation[1].altitude
 
-    # Raw JSON (optional, for debugging)
     rx_info = models.JSONField(null=True, blank=True)
     object_json = models.JSONField(null=True, blank=True)
 
     timestamp = models.DateTimeField()
 
+    def save(self, *args, **kwargs):
+        super().save(*args, **kwargs)  # Save the new data first
+
+        # Automatically delete the oldest data after 7 values
+        oldest_entries = IotData.objects.order_by('-timestamp')[7:]
+        for entry in oldest_entries:
+            entry.delete()
+
     def __str__(self):
         return f"L :{self.light_lux},CH4 : {self.ch4_ppm}, CO2 : {self.co2_ppm}"
+    
