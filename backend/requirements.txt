@@ -19,3 +19,7 @@ python-dotenv>=1.0.0
 h5py
 seaborn>=0.11.0
 cartopy>=0.21.1
+
+# ======= IOT ======= #
+paho-mqtt
+
