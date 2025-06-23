@@ -1,5 +1,5 @@
-declare module '@iconscout/react-unicons' {
-  import { ComponentType, SVGProps } from 'react';
+declare module "@iconscout/react-unicons" {
+  import { ComponentType, SVGProps } from "react";
 
   export const UilEstate: ComponentType<SVGProps<SVGSVGElement>>;
   export const UilClipboardAlt: ComponentType<SVGProps<SVGSVGElement>>;
@@ -14,4 +14,6 @@ declare module '@iconscout/react-unicons' {
   export const UilFlask: ComponentType<SVGProps<SVGSVGElement>>;
   export const UilTimes: ComponentType<SVGProps<SVGSVGElement>>;
   export const UilScaleBalanced: ComponentType<SVGProps<SVGSVGElement>>;
+  export const UilWind: ComponentType<SVGProps<SVGSVGElement>>;
+  export const UilTemperatureHalf: ComponentType<SVGProps<SVGSVGElement>>;
 }

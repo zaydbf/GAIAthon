@@ -65,7 +65,7 @@ function CompactCard({
       </div>
       <div className="detail">
         <Png />
-        <span>{param.value} ppm</span>
+        <span>{param.value}</span>
         <span>Live 🔴</span>
       </div>
     </motion.div>
@@ -93,13 +93,13 @@ function ExpandedCard({
     xaxis: {
       type: "datetime",
       categories: [
-        "2018-09-19T00:00:00.000Z",
-        "2018-09-19T01:30:00.000Z",
-        "2018-09-19T02:30:00.000Z",
-        "2018-09-19T03:30:00.000Z",
-        "2018-09-19T04:30:00.000Z",
-        "2018-09-19T05:30:00.000Z",
-        "2018-09-19T06:30:00.000Z",
+        "2025-06-23",
+        "2025-06-24",
+        "2025-06-25",
+        "2025-06-26",
+        "2025-06-27",
+        "2025-06-28",
+        "2025-06-29",
       ],
     },
     annotations: {
