@@ -4,7 +4,7 @@
 *.pyd
 __pycache__/
 *.sqlite3
-.env
+
 plot/
 data_sentinel_5p/
 CSV_data/
