@@ -39,6 +39,8 @@ INSTALLED_APPS = [
     'rest_framework', #Rest_Framework integration
     'corsheaders',  #Lets Django accept requests from other domains (Cross-Origin Resource Sharing)
     'API', #Our Application
+    'data',
+    'iot',
     'rest_framework_simplejwt'
 
 ]
@@ -62,7 +64,7 @@ MIDDLEWARE = [
 
 # CORS settings
 CORS_ALLOWED_ORIGINS = [
-    "http://localhost:5173",  # Matches your frontend's dev server
+    "http://localhost:5173",  # frontend's dev server
 ]
 
 ROOT_URLCONF = 'backend.urls'

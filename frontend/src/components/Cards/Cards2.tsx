@@ -1,5 +1,5 @@
 import "./Cards.css";
-import { useCardsData } from "../../Data/Data.tsx";
+import { useCardsData } from "../../Data/Data2.tsx";
 import Card from "../Card/Card";
 
 const Cards = () => {

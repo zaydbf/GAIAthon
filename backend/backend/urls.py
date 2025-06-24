@@ -19,5 +19,7 @@ from django.urls import include, path
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('api/', include("API.urls")) # Add all the urls in API app in the api path (so it would be localhost:8000/api/signup)
+    path('api/', include("API.urls")), # Add all the urls in API app in the api path (so it would be localhost:8000/api/signup)
+    path('data/', include("data.urls")),
+    path('iot/', include("iot.urls"))
 ]

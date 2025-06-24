@@ -2,5 +2,8 @@ __pycache__/
 *.pyc
 *.pyo
 *.db
+*.nc
+*.csv
 *.sqlite3
 .env
+plot/

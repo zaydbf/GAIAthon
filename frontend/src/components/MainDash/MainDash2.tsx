@@ -1,15 +1,20 @@
-import Cards from "../Cards/Cards";
+import Cards from "../Cards/Cards2";
 import Table from "../Table/Table";
 import "./MainDash.css";
-const MainDash = () => {
+import "../geography/Geography"
+import Geography from "../geography/Geography";
+
+
+const MainDash2 = () => {
   return (
     <div className="MainDash">
-      <h1>iot</h1>
-      <h1>Real-Time Atmospheric  Readings :</h1>
+      <h1>eo</h1>
+      <h1>Real-Time Atmospheric Gas Readings :</h1>
       <Cards />
       <div className="mapContainer">
         <div className="tableWrapper">
           <Table />
+          <Geography />
         </div>
         <div className="mapWrapper">
           <iframe
@@ -24,4 +29,4 @@ const MainDash = () => {
   );
 };
 
-export default MainDash;
+export default MainDash2;

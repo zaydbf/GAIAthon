@@ -1,13 +1,13 @@
 .CompactCard {
   display: flex;
-  flex: 1;
-  height: 10rem !important;       /* Increased height */
-  border-radius: 1rem;            /* Slightly rounder corners */
+  flex: 5;
+  height: 180px; /* Increased height */
+  border-radius: 1rem; /* Slightly rounder corners */
   color: white;
-  padding: 2rem;                  /* More internal spacing */
+  padding: 2rem; /* More internal spacing */
   position: relative;
   cursor: pointer;
-  font-size: 1.2rem;              /* Optional: increase text size */
+  font-size: 1rem; /* Optional: increase text size */
 }
 
 .CompactCard:hover {
@@ -73,7 +73,6 @@
   align-items: center;
   justify-content: space-around;
   padding: 1rem;
-  
 }
 .ExpandedCard > span:nth-of-type(1) {
   color: white;
