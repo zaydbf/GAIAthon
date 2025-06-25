@@ -1,7 +1,8 @@
 import { Box, useTheme } from "@mui/material";
 
 import { ResponsiveLine } from "@nivo/line";
-
+import { useEffect, useState } from "react";
+import axios from "axios";
 const timeLabels = [
   "15/June",
   "16/June",
@@ -17,98 +18,60 @@ const timeLabels = [
   "26/June",
 ];
 
-const data = [
-  {
-    id: "CO",
-    color: "hsl(4, 70%, 50%)",
-    data: [
-      { x: timeLabels[0], y: 79 },
-      { x: timeLabels[1], y: 28 },
-      { x: timeLabels[2], y: 150 },
-      { x: timeLabels[3], y: 173 },
-      { x: timeLabels[4], y: 234 },
-      { x: timeLabels[5], y: 98 },
-      { x: timeLabels[6], y: 244 },
-      { x: timeLabels[7], y: 295 },
-      { x: timeLabels[8], y: 287 },
-      { x: timeLabels[9], y: 157 },
-      { x: timeLabels[10], y: 239 },
-      { x: timeLabels[11], y: 69 },
-    ],
-  },
-  {
-    id: "NO₂",
-    color: "hsl(205, 70%, 50%)",
-    data: [
-      { x: timeLabels[0], y: 278 },
-      { x: timeLabels[1], y: 222 },
-      { x: timeLabels[2], y: 65 },
-      { x: timeLabels[3], y: 213 },
-      { x: timeLabels[4], y: 89 },
-      { x: timeLabels[5], y: 278 },
-      { x: timeLabels[6], y: 231 },
-      { x: timeLabels[7], y: 47 },
-      { x: timeLabels[8], y: 126 },
-      { x: timeLabels[9], y: 191 },
-      { x: timeLabels[10], y: 95 },
-      { x: timeLabels[11], y: 26 },
-    ],
-  },
-  {
-    id: "CH₄",
-    color: "hsl(39, 70%, 50%)",
-    data: [
-      { x: timeLabels[0], y: 3 },
-      { x: timeLabels[1], y: 187 },
-      { x: timeLabels[2], y: 259 },
-      { x: timeLabels[3], y: 294 },
-      { x: timeLabels[4], y: 158 },
-      { x: timeLabels[5], y: 146 },
-      { x: timeLabels[6], y: 125 },
-      { x: timeLabels[7], y: 253 },
-      { x: timeLabels[8], y: 230 },
-      { x: timeLabels[9], y: 287 },
-      { x: timeLabels[10], y: 193 },
-      { x: timeLabels[11], y: 12 },
-    ],
-  },
-  {
-    id: "O₃",
-    color: "hsl(179, 70%, 50%)",
-    data: [
-      { x: timeLabels[0], y: 213 },
-      { x: timeLabels[1], y: 271 },
-      { x: timeLabels[2], y: 22 },
-      { x: timeLabels[3], y: 270 },
-      { x: timeLabels[4], y: 97 },
-      { x: timeLabels[5], y: 146 },
-      { x: timeLabels[6], y: 116 },
-      { x: timeLabels[7], y: 159 },
-      { x: timeLabels[8], y: 165 },
-      { x: timeLabels[9], y: 210 },
-      { x: timeLabels[10], y: 76 },
-      { x: timeLabels[11], y: 126 },
-    ],
-  },
-  {
-    id: "SO₂",
-    color: "hsl(333, 70.20%, 50.00%)",
-    data: [
-      { x: timeLabels[0], y: 0 },
-      { x: timeLabels[1], y: 271 },
-      { x: timeLabels[2], y: 22 },
-      { x: timeLabels[3], y: null },
-      { x: timeLabels[4], y: 97 },
-      { x: timeLabels[5], y: 146 },
-      { x: timeLabels[6], y: 116 },
-      { x: timeLabels[7], y: 159 },
-      { x: timeLabels[8], y: 165 },
-      { x: timeLabels[9], y: 210 },
-      { x: timeLabels[10], y: 76 },
-      { x: timeLabels[11], y: 126 },
-    ],
-  },
-];
+type GasType = "CO" | "NO2" | "CH4" | "O3" | "SO2";
+
+const GAS_COLORS: Record<GasType, string> = {
+  CO: "hsl(4, 70%, 50%)",
+  NO2: "hsl(205, 70%, 50%)",
+  CH4: "hsl(39, 70%, 50%)",
+  O3: "hsl(179, 70%, 50%)",
+  SO2: "hsl(100, 70%, 50%)",
+};
+
+type DataPoint = {
+  x: string;
+  y: number;
+};
+
+type ChartSeries = {
+  id: GasType;
+  color: string;
+  data: DataPoint[];
+};
+
+const REGION = "Africa"
+
+const [data, setData] = useState<ChartSeries[]>([]);
+
+useEffect(() => {
+  const gases: GasType[] = ["CO", "NO2", "CH4", "O3", "SO2"];
+
+  const fetchData = async () => {
+    const result = await Promise.all(
+      gases.map(async (gas): Promise<ChartSeries | null> => {
+        try {
+          const res = await axios.get(`/api/ai-predict/${gas}/${REGION}`);
+          return {
+            id: gas,
+            color: GAS_COLORS[gas],
+            data: res.data.predictions.map((y: number, i: number) => ({
+              x: timeLabels[i],
+              y,
+            })),
+          };
+        } catch (err) {
+          console.error(`Error fetching ${gas}`, err);
+          return null;
+        }
+      })
+    );
+
+    // filter out nulls with type guard
+    setData(result.filter((d): d is ChartSeries => d !== null));
+  };
+
+  fetchData();
+}, []);
 
 const Line = ({ isDahboard = false }) => {
   const theme = useTheme();
