@@ -63,7 +63,15 @@ const Contact: React.FC = () => {
                         href="mailto:support@carbonsens.com"
                         className="hover:text-emerald-600 dark:hover:text-emerald-400"
                       >
-                        support@carbonsens.com
+                        zaydbenfadhel2003@gmail.com
+                      </a>
+                    </p>
+                    <p className="mt-1 text-gray-600 dark:text-gray-300">
+                      <a
+                        href="mailto:support@carbonsens.com"
+                        className="hover:text-emerald-600 dark:hover:text-emerald-400"
+                      >
+                        youssefchatti420@gmail.com
                       </a>
                     </p>
                   </div>
