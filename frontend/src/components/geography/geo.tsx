@@ -5,6 +5,7 @@ import { data } from "./data";
 
 const Geo = ({ isDashbord = false }) => {
   const theme = useTheme();
+
   return (
     <Box
       sx={{
@@ -137,7 +138,7 @@ const Geo = ({ isDashbord = false }) => {
                   itemWidth: 94,
                   itemHeight: 18,
                   itemDirection: "left-to-right",
-                  itemTextColor: theme.palette.text.primary,
+                  itemTextColor: "#fff",
                   itemOpacity: 0.85,
                   symbolSize: 18,
                   effects: [

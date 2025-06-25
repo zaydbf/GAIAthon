@@ -11,7 +11,7 @@ const Header = ({ title, subTitle, isDashboard = false }: HeaderProps) => {
     <Box mb={isDashboard ? 2 : 4}>
       <Typography
         sx={{
-          color: "#16a34a",
+          color: "#fff",
           fontWeight: "bold",
         }}
         variant="h5"

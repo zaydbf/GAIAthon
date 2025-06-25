@@ -91,13 +91,13 @@ const data = [
     ],
   },
   {
-    id: "O₃",
-    color: "hsl(179, 70%, 50%)",
+    id: "SO₂",
+    color: "hsl(333, 70.20%, 50.00%)",
     data: [
-      { x: timeLabels[0], y: 213 },
+      { x: timeLabels[0], y: 0 },
       { x: timeLabels[1], y: 271 },
       { x: timeLabels[2], y: 22 },
-      { x: timeLabels[3], y: 270 },
+      { x: timeLabels[3], y: null },
       { x: timeLabels[4], y: 97 },
       { x: timeLabels[5], y: 146 },
       { x: timeLabels[6], y: 116 },
@@ -116,35 +116,35 @@ const Line = ({ isDahboard = false }) => {
     <Box sx={{ height: isDahboard ? "280px" : "75vh" }}>
       <ResponsiveLine
         theme={{
-          textColor: theme.palette.text.primary,
+          textColor: "theme.palette.text.primary",
           fontSize: 11,
           axis: {
             domain: {
               line: {
-                stroke: theme.palette.divider,
+                stroke: "#fff",
                 strokeWidth: 1,
               },
             },
             legend: {
               text: {
                 fontSize: 12,
-                fill: theme.palette.text.primary,
+                fill: "#fff",
               },
             },
             ticks: {
               line: {
-                stroke: theme.palette.divider,
+                stroke: "#fff",
                 strokeWidth: 1,
               },
               text: {
                 fontSize: 11,
-                fill: theme.palette.text.secondary,
+                fill: "#fff",
               },
             },
           },
           grid: {
             line: {
-              stroke: theme.palette.divider,
+              stroke: "#fff",
               strokeWidth: 0,
             },
           },
@@ -152,25 +152,25 @@ const Line = ({ isDahboard = false }) => {
             title: {
               text: {
                 fontSize: 11,
-                fill: theme.palette.text.primary,
+                fill: "#fff",
               },
             },
             text: {
               fontSize: 11,
-              fill: theme.palette.text.primary,
+              fill: "#fff",
             },
             ticks: {
               line: {},
               text: {
                 fontSize: 10,
-                fill: theme.palette.text.primary,
+                fill: "#fff",
               },
             },
           },
           annotations: {
             text: {
               fontSize: 13,
-              fill: theme.palette.text.primary,
+              fill: "theme.palette.text.primary",
               outlineWidth: 2,
               outlineColor: "#ffffff",
               outlineOpacity: 1,
@@ -217,7 +217,7 @@ const Line = ({ isDahboard = false }) => {
           type: "linear",
           min: "auto",
           max: "auto",
-          stacked: true,
+          stacked: false,
           reverse: false,
         }}
         yFormat=" >-.2f"
@@ -235,7 +235,7 @@ const Line = ({ isDahboard = false }) => {
           tickSize: 5,
           tickPadding: 5,
           tickRotation: 0,
-          legend: isDahboard ? null : "Count",
+          legend: isDahboard ? null : "Concentration",
           legendOffset: -45,
           legendPosition: "middle",
         }}
