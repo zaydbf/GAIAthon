@@ -3,8 +3,10 @@ djangorestframework
 django-cors-headers
 djangorestframework-simplejwt
 python-dotenv
+# ======= AI ======= #
 langchain
 langchain-groq
+scikit-learn
 
 
 # ======= Sentinel data ======= #
