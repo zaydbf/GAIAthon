@@ -10,6 +10,9 @@
     "preview": "vite preview"
   },
   "dependencies": {
+    "@nivo/pie": "^0.80.0",
+    "@nivo/bar": "^0.80.0",
+    "@nivo/line": "^0.80.0",
     "@emotion/react": "^11.9.0",
     "@emotion/styled": "^11.8.1",
     "@iconscout/react-unicons": "^1.1.6",

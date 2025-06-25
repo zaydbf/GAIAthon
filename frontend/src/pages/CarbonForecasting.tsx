@@ -1,5 +1,7 @@
-import React from 'react';
-import { TrendingUp, AlertTriangle, CheckCircle } from 'lucide-react';
+import "../components/geography/Geography";
+import Geography from "../components/geography/Geography";
+import "../components/lineChart/LineChart";
+import LineChart from "../components/lineChart/LineChart";
 
 const CarbonForecasting: React.FC = () => {
   return (
@@ -7,55 +9,24 @@ const CarbonForecasting: React.FC = () => {
       <div className="text-center mb-16">
         <h1 className="text-4xl font-bold mb-4">Carbon Forecasting</h1>
         <p className="text-xl text-gray-600 dark:text-gray-300">
-          AI-powered predictions for future carbon emissions
+          AI-powered predictions for future carbon emissions The integrated AI
+          model forecasts greenhouse gas emissions for the next 7 days based on
+          IoT and EO data.
         </p>
       </div>
+      <LineChart />
+      <Geography />
 
-      <div className="grid md:grid-cols-2 gap-8 mb-12">
-        <div className="bg-white dark:bg-gray-800 p-6 rounded-xl shadow-lg">
-          <h3 className="text-xl font-semibold mb-4">Emission Forecast</h3>
-          <div className="h-64 bg-gray-100 dark:bg-gray-700 rounded-lg mb-4"></div>
-          <div className="flex items-center gap-2 text-emerald-600">
-            <TrendingUp size={20} />
-            <span>Predicted 15% reduction by next quarter</span>
-          </div>
-        </div>
-
-        <div className="bg-white dark:bg-gray-800 p-6 rounded-xl shadow-lg">
-          <h3 className="text-xl font-semibold mb-4">Risk Analysis</h3>
-          <div className="space-y-4">
-            <div className="flex items-center gap-3 p-4 bg-red-100 dark:bg-red-900/20 rounded-lg">
-              <AlertTriangle className="text-red-600" />
-              <div>
-                <h4 className="font-semibold">High Risk Area</h4>
-                <p className="text-sm text-gray-600 dark:text-gray-300">Manufacturing emissions exceed target</p>
-              </div>
-            </div>
-            <div className="flex items-center gap-3 p-4 bg-yellow-100 dark:bg-yellow-900/20 rounded-lg">
-              <AlertTriangle className="text-yellow-600" />
-              <div>
-                <h4 className="font-semibold">Medium Risk Area</h4>
-                <p className="text-sm text-gray-600 dark:text-gray-300">Transportation emissions near threshold</p>
-              </div>
-            </div>
-            <div className="flex items-center gap-3 p-4 bg-green-100 dark:bg-green-900/20 rounded-lg">
-              <CheckCircle className="text-green-600" />
-              <div>
-                <h4 className="font-semibold">Low Risk Area</h4>
-                <p className="text-sm text-gray-600 dark:text-gray-300">Office energy consumption within target</p>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-
-      <div className="bg-white dark:bg-gray-800 p-6 rounded-xl shadow-lg">
-        <h3 className="text-xl font-semibold mb-4">Optimization Recommendations</h3>
+      <div className="bg-white dark:bg-gray-800 p-6 rounded-xl shadow-lg mt-10">
+        <h3 className="text-xl font-semibold mb-4">
+          Optimization Recommendations
+        </h3>
         <div className="grid md:grid-cols-3 gap-6">
           <div className="p-4 border border-gray-200 dark:border-gray-700 rounded-lg">
             <h4 className="font-semibold mb-2">Process Optimization</h4>
             <p className="text-sm text-gray-600 dark:text-gray-300">
-              Implement smart scheduling for manufacturing processes to reduce peak energy consumption.
+              Implement smart scheduling for manufacturing processes to reduce
+              peak energy consumption.
             </p>
           </div>
           <div className="p-4 border border-gray-200 dark:border-gray-700 rounded-lg">
