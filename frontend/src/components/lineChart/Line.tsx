@@ -1,13 +1,16 @@
-import { Box, useTheme } from "@mui/material";
+import { Box, Button, Stack, useTheme } from "@mui/material";
 import { ResponsiveLine } from "@nivo/line";
 import { useEffect, useState } from "react";
 import axios from "axios";
 
-const timeLabels = [
-  "20/June", "21/June", "22/June",
-  "23/June", "24/June", "25/June", "26/June",
-];
-
+const timeLabels = Array.from({ length: 7 }, (_, i) => {
+  const date = new Date();
+  date.setDate(date.getDate() + i + 1); 
+  return date.toLocaleDateString("en-GB", {
+    day: "2-digit",
+    month: "short",
+  }); 
+});
 
 type GasType = "CO" | "NO2" | "CH4" | "O3" | "SO2";
 
@@ -18,6 +21,13 @@ const GAS_COLORS: Record<GasType, string> = {
   O3: "hsl(179, 70%, 50%)",
   SO2: "hsl(100, 70%, 50%)",
 };
+const GAS_UNITS: Record<GasType, string> = {
+  CO: "mmol/m²",
+  NO2: "µmol/m²",
+  CH4: "ppbv",
+  O3: "µmol/m²",
+  SO2: "µmol/m²",
+};
 
 type DataPoint = { x: string; y: number };
 type ChartSeries = { id: GasType; color: string; data: DataPoint[] };
@@ -27,6 +37,7 @@ const REGION = "Africa";
 const Line = ({ isDahboard = false }) => {
   const theme = useTheme();
   const [data, setData] = useState<ChartSeries[]>([]);
+  const [selectedGas, setSelectedGas] = useState<GasType | null>(null);
 
   useEffect(() => {
     const gases: GasType[] = ["CO", "NO2", "CH4", "O3", "SO2"];
@@ -47,8 +58,6 @@ const Line = ({ isDahboard = false }) => {
               y,
             }));
 
-            console.log(`[${gas}] Mapped Data:`, seriesData);
-
             return {
               id: gas,
               color: GAS_COLORS[gas],
@@ -68,124 +77,160 @@ const Line = ({ isDahboard = false }) => {
     fetchData();
   }, []);
 
-
   return (
-    <Box sx={{ height: isDahboard ? "280px" : "75vh" }}>
-      <ResponsiveLine
-        theme={{
-          textColor: "theme.palette.text.primary",
-          fontSize: 11,
-          axis: {
-            domain: { line: { stroke: theme.palette.divider, strokeWidth: 1 } },
-            legend: { text: { fontSize: 12, fill: theme.palette.text.primary } },
-            ticks: {
-              line: { stroke: theme.palette.divider, strokeWidth: 1 },
-              text: { fontSize: 11, fill: theme.palette.text.secondary },
-            },
-          },
-          grid: { line: { stroke: theme.palette.divider, strokeWidth: 0 } },
-          legends: {
+    <Box>
+      {/* Buttons */}
+      <Stack direction="row" spacing={1} mb={2}>
+        {(["CO", "NO2", "CH4", "O3", "SO2"] as GasType[]).map((gas) => (
+          <Button
+            key={gas}
+            variant={selectedGas === gas ? "contained" : "outlined"}
+            size="small"
+            onClick={() => setSelectedGas(selectedGas === gas ? null : gas)}
+          >
+            {gas}
+          </Button>
+        ))}
+        <Button
+          variant={selectedGas === null ? "contained" : "outlined"}
+          size="small"
+          onClick={() => setSelectedGas(null)}
+        >
+          Show All
+        </Button>
+      </Stack>
 
-            title: { text: { fontSize: 11, fill: theme.palette.text.primary } },
-            text: { fontSize: 11, fill: theme.palette.text.primary },
-            ticks: { text: { fontSize: 10, fill: theme.palette.text.primary } },
-          },
-          annotations: {
-            text: {
-              fontSize: 13,
-              fill: "theme.palette.text.primary",
-              outlineWidth: 2,
-              outlineColor: "#ffffff",
-              outlineOpacity: 1,
-            },
-            link: {
-              stroke: "#000000",
-              strokeWidth: 1,
-              outlineWidth: 2,
-              outlineColor: "#ffffff",
-              outlineOpacity: 1,
-            },
-            outline: {
-              stroke: "#000000",
-              strokeWidth: 2,
-              outlineWidth: 2,
-              outlineColor: "#ffffff",
-              outlineOpacity: 1,
-            },
-            symbol: {
-              fill: "#000000",
-              outlineWidth: 2,
-              outlineColor: "#ffffff",
-              outlineOpacity: 1,
-            },
-          },
-          tooltip: {
-            container: {
-              background: theme.palette.background.default,
-              color: theme.palette.text.primary,
-              fontSize: 12,
-            },
-          },
-        }}
-        data={data}
-        curve="catmullRom"
-        margin={{ top: 50, right: 110, bottom: 50, left: 60 }}
-        xScale={{ type: "point" }}
-        yScale={{ type: "linear", min: "auto", max: "auto", stacked: true, reverse: false }}
-        yFormat=" >-.10f"
-        axisTop={null}
-        axisRight={null}
-        axisBottom={{
-          tickSize: 5,
-          tickPadding: 5,
-          tickRotation: 0,
-          legend: isDahboard ? null : "Time",
-          legendOffset: 36,
-          legendPosition: "middle",
-        }}
-        axisLeft={{
-          tickSize: 5,
-          tickPadding: 5,
-          tickRotation: 0,
-          legend: isDahboard ? null : "Concentration",
-          legendOffset: -45,
-          legendPosition: "middle",
-          format: (value) => value.toFixed(5),
-         
-        }}
-        pointSize={10}
-        pointColor={{ theme: "background" }}
-        pointBorderWidth={2}
-        pointBorderColor={{ from: "serieColor" }}
-        pointLabelYOffset={-12}
-        useMesh={true}
-        legends={[
-          {
-            anchor: "bottom-right",
-            direction: "column",
-            justify: false,
-            translateX: 100,
-            translateY: 0,
-            itemsSpacing: 0,
-            itemDirection: "left-to-right",
-            itemWidth: 80,
-            itemHeight: 20,
-            itemOpacity: 0.75,
-            symbolSize: 12,
-            symbolShape: "circle",
-            symbolBorderColor: "rgba(0, 0, 0, .5)",
-            effects: [
-              {
-                on: "hover",
-                style: {
-                  itemBackground: "rgba(0, 0, 0, .03)",
-                  itemOpacity: 1,
-                },
+      {/* Chart */}
+      <Box sx={{ position: "relative", height: isDahboard ? "280px" : "75vh" }}>
+        {selectedGas && (
+          <Box
+            sx={{
+              position: "absolute",
+              left: 10,
+              top: 0,
+              fontSize: 14,
+              fontWeight: 500,
+              zIndex: 1,
+            }}
+          >
+          {GAS_UNITS[selectedGas]}
+          </Box>
+        )}
+
+        <ResponsiveLine
+          theme={{
+            textColor: "theme.palette.text.primary",
+            fontSize: 11,
+            axis: {
+              domain: { line: { stroke: theme.palette.divider, strokeWidth: 1 } },
+              legend: { text: { fontSize: 12, fill: theme.palette.text.primary } },
+              ticks: {
+                line: { stroke: theme.palette.divider, strokeWidth: 1 },
+                text: { fontSize: 11, fill: theme.palette.text.secondary },
               },
-            ],
-          },
-        ]}
-      />
+            },
+            grid: { line: { stroke: theme.palette.divider, strokeWidth: 0 } },
+            legends: {
+              title: { text: { fontSize: 11, fill: theme.palette.text.primary } },
+              text: { fontSize: 11, fill: theme.palette.text.primary },
+              ticks: { text: { fontSize: 10, fill: theme.palette.text.primary } },
+            },
+            annotations: {
+              text: {
+                fontSize: 13,
+                fill: "theme.palette.text.primary",
+                outlineWidth: 2,
+                outlineColor: "#ffffff",
+                outlineOpacity: 1,
+              },
+              link: {
+                stroke: "#000000",
+                strokeWidth: 1,
+                outlineWidth: 2,
+                outlineColor: "#ffffff",
+                outlineOpacity: 1,
+              },
+              outline: {
+                stroke: "#000000",
+                strokeWidth: 2,
+                outlineWidth: 2,
+                outlineColor: "#ffffff",
+                outlineOpacity: 1,
+              },
+              symbol: {
+                fill: "#000000",
+                outlineWidth: 2,
+                outlineColor: "#ffffff",
+                outlineOpacity: 1,
+              },
+            },
+            tooltip: {
+              container: {
+                background: theme.palette.background.default,
+                color: theme.palette.text.primary,
+                fontSize: 12,
+              },
+            },
+          }}
+          data={selectedGas ? data.filter((d) => d.id === selectedGas) : data}
+          curve="catmullRom"
+          margin={{ top: 50, right: 110, bottom: 50, left: 60 }}
+          xScale={{ type: "point" }}
+          yScale={{ type: "linear", min: "auto", max: "auto", stacked: true, reverse: false }}
+          yFormat=" >-.3f"
+          axisTop={null}
+          axisRight={null}
+          axisBottom={{
+            tickSize: 5,
+            tickPadding: 5,
+            tickRotation: 0,
+            legend: isDahboard ? null : "Days",
+            legendOffset: 36,
+            legendPosition: "middle",
+          }}
+          axisLeft={{
+            tickSize: 5,
+            tickPadding: 5,
+            tickRotation: 0,
+            legend: isDahboard ? null : "Concentration",
+            legendOffset: -50,
+            legendPosition: "middle",
+            format: (value) => value.toFixed(2),
+          }}
+          pointSize={10}
+          pointColor={{ theme: "background" }}
+          pointBorderWidth={2}
+          pointBorderColor={{ from: "serieColor" }}
+          pointLabelYOffset={-12}
+          useMesh={true}
+          legends={[
+            {
+              anchor: "bottom-right",
+              direction: "column",
+              justify: false,
+              translateX: 100,
+              translateY: 0,
+              itemsSpacing: 0,
+              itemDirection: "left-to-right",
+              itemWidth: 80,
+              itemHeight: 20,
+              itemOpacity: 0.75,
+              symbolSize: 12,
+              symbolShape: "circle",
+              symbolBorderColor: "rgba(0, 0, 0, .5)",
+              effects: [
+                {
+                  on: "hover",
+                  style: {
+                    itemBackground: "rgba(0, 0, 0, .03)",
+                    itemOpacity: 1,
+                  },
+                },
+              ],
+            },
+          ]}
+        />
+      </Box>
     </Box>
   );
 };

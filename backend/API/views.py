@@ -266,7 +266,7 @@ def ai_prediction(request, gas, region):
         current_features = future_days.iloc[i].copy()
         current_features['Lag_1'] = last_known
         log_pred = model.predict([current_features[['Day', 'Day_sin', 'Day_cos', 'Lag_1']]])[0]
-        pred = 10*float(log_pred)
+        pred = float(exp(log_pred))
         predictions.append(pred)
         last_known = log_pred
 

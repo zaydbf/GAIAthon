@@ -18,8 +18,7 @@ const CarbonForecasting: React.FC = () => {
       <Geography />
       <LineChart />
       <p className="mt-4 text-center">
-        ⚠️ Regularly monitor your emissions to stay within allowed thresholds
-        and avoid penalties.
+        ⚠️ Regularly monitor your emissions to stay within allowed thresholds.
       </p>
       <p className="mt-1 text-center">
         Use the AI-powered forecasts to plan proactive actions and reduce your
