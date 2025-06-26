@@ -38,10 +38,10 @@ const data = [
   },
 ];
 
-const Bar = ({ isDashbord = false }) => {
+const Bar = () => {
   const theme = useTheme();
   return (
-    <Box sx={{ height: isDashbord ? "300px" : "75vh" }}>
+    <Box sx={{ height: "300px" }}>
       <ResponsiveBar
         data={data}
         keys={["Spain", "France", "Germany"]}
@@ -189,7 +189,7 @@ const Bar = ({ isDashbord = false }) => {
           tickSize: 5,
           tickPadding: 5,
           tickRotation: 0,
-          legend: isDashbord ? null : "Year",
+          legend: "Year",
           legendPosition: "middle",
           legendOffset: 35,
         }}
@@ -197,7 +197,7 @@ const Bar = ({ isDashbord = false }) => {
           tickSize: 5,
           tickPadding: 5,
           tickRotation: 0,
-          legend: isDashbord ? null : "salary/month",
+          legend: "salary/month",
           legendPosition: "middle",
           legendOffset: -55,
         }}

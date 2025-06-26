@@ -5,16 +5,35 @@ import TableContainer from "@mui/material/TableContainer";
 import TableHead from "@mui/material/TableHead";
 import TableRow from "@mui/material/TableRow";
 import Paper from "@mui/material/Paper";
+import { useEffect, useState } from "react";
 import "./Table.css";
 
-// Define row type
+const useCurrentTime = () => {
+  const [time, setTime] = useState(() => new Date());
+
+  useEffect(() => {
+    const interval = setInterval(() => {
+      setTime(new Date());
+    }, 1000);
+    return () => clearInterval(interval);
+  }, []);
+
+  return time.toLocaleTimeString("en-US", {
+    hour: "2-digit",
+    minute: "2-digit",
+    second: "2-digit",
+    hour12: true,
+  });
+};
+
+// Type for a table row
 interface RowData {
   parameter: string;
   value: number | string;
   status: "Low" | "Moderate" | "High" | "N/A";
 }
 
-// Helper to determine status based on parameter and value
+// Function to determine status
 function getStatus(
   parameter: string,
   value: number | string
@@ -30,7 +49,7 @@ function getStatus(
     if (num <= 1020) return "Moderate";
     return "High";
   }
-  if (parameter === "Hmidity (%)") {
+  if (parameter === "Humidity (%)") {
     if (num < 30) return "Low";
     if (num <= 60) return "Moderate";
     return "High";
@@ -38,45 +57,38 @@ function getStatus(
   return "N/A";
 }
 
-// Raw data without status
-const rawRows: Omit<RowData, "status">[] = [
-  { parameter: "Time (PM)", value: "12:56:54 " },
-  { parameter: "Temperature (°C)", value: 50.67 },
-  { parameter: "Pressure (hPa)", value: 0.11 },
-  { parameter: "Hmidity (%)", value: 57.13 },
-  { parameter: "Longitude (°)", value: 3.054025 },
-  { parameter: "Latitude (°)", value: 36.740354 },
-  { parameter: "Altitude (m)", value: 97.85 },
-];
-
-// Generate rows with status
-const Rows: RowData[] = rawRows.map((row) => ({
-  ...row,
-  status: getStatus(row.parameter, row.value),
-}));
-
+// Style helper for status
 const makeStyle = (status: RowData["status"]) => {
   if (status === "Low") {
-    return {
-      background: "rgb(145 254 159 / 47%)",
-      color: "green",
-    };
+    return { background: "rgb(145 254 159 / 47%)", color: "green" };
   } else if (status === "High") {
-    return {
-      background: "#ffadad8f",
-      color: "red",
-    };
+    return { background: "#ffadad8f", color: "red" };
   } else if (status === "Moderate") {
-    return {
-      background: "#59bfff",
-      color: "white",
-    };
+    return { background: "#59bfff", color: "white" };
   } else {
     return {};
   }
 };
 
 export default function BasicTable() {
+  const currentTime = useCurrentTime();
+
+  // Row data updated with current time
+  const rawRows: Omit<RowData, "status">[] = [
+    { parameter: "Time (PM)", value: currentTime },
+    { parameter: "Temperature (°C)", value: 50.67 },
+    { parameter: "Pressure (hPa)", value: 1008.11 },
+    { parameter: "Humidity (%)", value: 57.13 },
+    { parameter: "Longitude (°)", value: 3.054025 },
+    { parameter: "Latitude (°)", value: 36.740354 },
+    { parameter: "Altitude (m)", value: 97.85 },
+  ];
+
+  const rows: RowData[] = rawRows.map((row) => ({
+    ...row,
+    status: getStatus(row.parameter, row.value),
+  }));
+
   return (
     <div className="Table">
       <h3>LiveSensorData – Industry location (GPS):</h3>
@@ -84,7 +96,7 @@ export default function BasicTable() {
         component={Paper}
         style={{ boxShadow: "0px 13px 20px 0px #80808029" }}
       >
-        <Table sx={{ minWidth: 650 }} aria-label="simple table">
+        <Table sx={{ minWidth: 650 }} aria-label="sensor table">
           <TableHead>
             <TableRow>
               <TableCell align="left">Parameter</TableCell>
@@ -93,19 +105,19 @@ export default function BasicTable() {
               <TableCell align="left"></TableCell>
             </TableRow>
           </TableHead>
-          <TableBody style={{ color: "white" }}>
-            {Rows.map((Row) => (
+          <TableBody>
+            {rows.map((row) => (
               <TableRow
-                key={Row.parameter}
+                key={row.parameter}
                 sx={{ "&:last-child td, &:last-child th": { border: 0 } }}
               >
                 <TableCell component="th" scope="row">
-                  {Row.parameter}
+                  {row.parameter}
                 </TableCell>
-                <TableCell align="left">{Row.value}</TableCell>
+                <TableCell align="left">{row.value}</TableCell>
                 <TableCell align="left">
-                  <span className="status" style={makeStyle(Row.status)}>
-                    {Row.status}
+                  <span className="status" style={makeStyle(row.status)}>
+                    {row.status}
                   </span>
                 </TableCell>
                 <TableCell align="left" className="Details">

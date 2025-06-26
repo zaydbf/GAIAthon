@@ -13,6 +13,12 @@ import csv
 from io import StringIO
 import json
 
+from data.models import Gas, Region
+import pandas as pd
+import numpy as np
+from sklearn.ensemble import RandomForestRegressor
+from django.http import JsonResponse, HttpResponseBadRequest
+from math import exp, log
 # Prompt templates from prompt.ts
 DEFAULT_PROMPT = """
 Role: You are the AI assistant for CarbonSens, an innovative environmental monitoring system developed for GAIAthon'25. 
@@ -207,3 +213,61 @@ def chatbot_response(request):
         return Response({'reply': reply}, status=status.HTTP_200_OK)
     except Exception as e:
         return Response({'error': str(e)}, status=status.HTTP_500_INTERNAL_SERVER_ERROR)
+
+@api_view(['GET'])
+def ai_prediction(request, gas, region):
+    # 1. Get region object
+    region = Region.objects.filter(name=region).first()
+    if not region:
+        return HttpResponseBadRequest("Region not found")
+
+    # 2. Get last 7 days' gas values
+    gas_data = Gas.objects.filter(gas=gas, region=region).order_by('-date')[:7]
+    if len(gas_data) < 7:
+        return HttpResponseBadRequest("Not enough data")
+
+    gas_data = list(reversed(gas_data))
+    concentration = [g.average for g in gas_data]
+
+    # Check for non-positive values
+    if any(c <= 0 for c in concentration):
+        return HttpResponseBadRequest("Gas values must be > 0 for log transformation")
+
+    # 3. Create DataFrame
+    data = {
+        'Day': [1, 2, 3, 4, 5, 6, 7],
+        'Concentration': concentration,
+        'Log_Concentration': [log(c) for c in concentration]
+    }
+    df = pd.DataFrame(data)
+
+    # 4. Feature Engineering
+    df['Day_sin'] = np.sin(2 * np.pi * df['Day'] / 7)
+    df['Day_cos'] = np.cos(2 * np.pi * df['Day'] / 7)
+    df['Lag_1'] = df['Log_Concentration'].shift(1)
+    df = df.dropna()
+
+    # 5. Train model on log values
+    model = RandomForestRegressor(n_estimators=100, random_state=42)
+    X = df[['Day', 'Day_sin', 'Day_cos', 'Lag_1']]
+    y = df['Log_Concentration']
+    model.fit(X, y)
+
+    # 6. Predict next 7 days
+    future_days = pd.DataFrame({
+        'Day': range(8, 15),
+        'Day_sin': np.sin(2 * np.pi * np.arange(8, 15) / 7),
+        'Day_cos': np.cos(2 * np.pi * np.arange(8, 15) / 7)
+    })
+
+    predictions = []
+    last_known = df['Log_Concentration'].iloc[-1]
+    for i in range(7):
+        current_features = future_days.iloc[i].copy()
+        current_features['Lag_1'] = last_known
+        log_pred = model.predict([current_features[['Day', 'Day_sin', 'Day_cos', 'Lag_1']]])[0]
+        pred = float(exp(log_pred))
+        predictions.append(pred)
+        last_known = log_pred
+
+    return Response({"predictions": predictions})

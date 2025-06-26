@@ -1,4 +1,3 @@
-import React from "react";
 import { ResponsivePie } from "@nivo/pie";
 
 import { Box, useTheme } from "@mui/material";
@@ -36,10 +35,10 @@ const data = [
   },
 ];
 
-const Pie = ({ isDashbord = false }) => {
+const Pie = () => {
   const theme = useTheme();
   return (
-    <Box sx={{ height: isDashbord ? "200px" : "75vh" }}>
+    <Box sx={{ height: "300px" }}>
       <ResponsivePie
         data={data}
         theme={{
@@ -136,12 +135,8 @@ const Pie = ({ isDashbord = false }) => {
             tableCellValue: {},
           },
         }}
-        margin={
-          isDashbord
-            ? { top: 10, right: 0, bottom: 10, left: 0 }
-            : { top: 40, right: 80, bottom: 80, left: 80 }
-        }
-        innerRadius={isDashbord ? 0.8 : 0.5}
+        margin={{ top: 40, right: 80, bottom: 80, left: 80 }}
+        innerRadius={0.5}
         padAngle={0.7}
         cornerRadius={3}
         activeOuterRadiusOffset={8}
@@ -156,8 +151,8 @@ const Pie = ({ isDashbord = false }) => {
         arcLinkLabelsThickness={2}
         arcLinkLabelsColor={{ from: "color" }}
         arcLabelsSkipAngle={10}
-        enableArcLabels={isDashbord ? false : true}
-        enableArcLinkLabels={isDashbord ? false : true}
+        enableArcLabels={true}
+        enableArcLinkLabels={true}
         arcLabelsTextColor={{
           from: "color",
           modifiers: [["darker", 2]],
@@ -232,35 +227,31 @@ const Pie = ({ isDashbord = false }) => {
             id: "lines",
           },
         ]}
-        legends={
-          isDashbord
-            ? []
-            : [
-                {
-                  anchor: "bottom",
-                  direction: "row",
-                  justify: false,
-                  translateX: 0,
-                  translateY: 56,
-                  itemsSpacing: 0,
-                  itemWidth: 100,
-                  itemHeight: 18,
+        legends={[
+          {
+            anchor: "bottom",
+            direction: "row",
+            justify: false,
+            translateX: 0,
+            translateY: 56,
+            itemsSpacing: 0,
+            itemWidth: 100,
+            itemHeight: 18,
+            itemTextColor: theme.palette.text.primary,
+            itemDirection: "left-to-right",
+            itemOpacity: 1,
+            symbolSize: 18,
+            symbolShape: "circle",
+            effects: [
+              {
+                on: "hover",
+                style: {
                   itemTextColor: theme.palette.text.primary,
-                  itemDirection: "left-to-right",
-                  itemOpacity: 1,
-                  symbolSize: 18,
-                  symbolShape: "circle",
-                  effects: [
-                    {
-                      on: "hover",
-                      style: {
-                        itemTextColor: theme.palette.text.primary,
-                      },
-                    },
-                  ],
                 },
-              ]
-        }
+              },
+            ],
+          },
+        ]}
       />
     </Box>
   );

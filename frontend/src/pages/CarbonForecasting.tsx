@@ -14,36 +14,17 @@ const CarbonForecasting: React.FC = () => {
           IoT and EO data.
         </p>
       </div>
-      <LineChart />
-      <Geography />
 
-      <div className="bg-white dark:bg-gray-800 p-6 rounded-xl shadow-lg mt-10">
-        <h3 className="text-xl font-semibold mb-4">
-          Optimization Recommendations
-        </h3>
-        <div className="grid md:grid-cols-3 gap-6">
-          <div className="p-4 border border-gray-200 dark:border-gray-700 rounded-lg">
-            <h4 className="font-semibold mb-2">Process Optimization</h4>
-            <p className="text-sm text-gray-600 dark:text-gray-300">
-              Implement smart scheduling for manufacturing processes to reduce
-              peak energy consumption.
-            </p>
-          </div>
-          <div className="p-4 border border-gray-200 dark:border-gray-700 rounded-lg">
-            <h4 className="font-semibold mb-2">Resource Allocation</h4>
-            <p className="text-sm text-gray-600 dark:text-gray-300">
-              Optimize delivery routes and vehicle capacity utilization.
-            </p>
-          </div>
-          <div className="p-4 border border-gray-200 dark:border-gray-700 rounded-lg">
-            <h4 className="font-semibold mb-2">Energy Management</h4>
-            <p className="text-sm text-gray-600 dark:text-gray-300">
-              Switch to renewable energy sources during peak hours.
-            </p>
-          </div>
-        </div>
-      </div>
-      <div className="mt-16 text-center">
+      <Geography />
+      <LineChart />
+      <p className="mt-4 text-center">
+        ⚠️ Regularly monitor your emissions to stay within allowed thresholds.
+      </p>
+      <p className="mt-1 text-center">
+        Use the AI-powered forecasts to plan proactive actions and reduce your
+        environmental impact.
+      </p>
+      <div className="mt-5 text-center">
         <a
           href="/#home"
           className="inline-block px-6 py-3 bg-emerald-600 text-white rounded-full font-medium transition-transform hover:scale-105 shadow-md hover:shadow-lg"

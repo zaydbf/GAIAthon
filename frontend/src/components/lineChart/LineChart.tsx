@@ -1,20 +1,19 @@
 import { Box } from "@mui/material";
-
+import React from "react";
 import Line from "./Line";
 import Header from "../Header";
 
-const LineChart = () => {
+const LineChart: React.FC = () => {
   return (
-    <Box>
-      <Header
-        title="Predicted Greenhouse Gas Emissions (Next 7 Days)
-
-"
-        subTitle="Powered by AI, this forecast shows expected levels of CO₂, CH₄, CO, NO₂, and O₃ based on IoT sensor data and Earth Observation datasets."
-      />
-
-      <Line />
-    </Box>
+    <div className="bg-white dark:bg-gray-800 p-6 rounded-xl shadow-lg mt-5">
+      <Box>
+        <Header
+          title="Predicted Greenhouse Gas Emissions (Next 7 Days)"
+          subTitle="Powered by AI, this forecast shows expected levels of SO₂, CH₄, CO, NO₂, and O₃ based on IoT sensor data and Earth Observation datasets."
+        />
+        <Line />
+      </Box>
+    </div>
   );
 };
 
