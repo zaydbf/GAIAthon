@@ -82,11 +82,12 @@ const gasConfig: Record<
 };
 
 export const useCardsData = (region: string) => {
-  const [cardsData, setCardsData] = useState<CardData[]>([]);
+  const [cardsData, setCardsData] = useState<CardData[]>([]); //assign an empty array to the CardData
 
   useEffect(() => {
     const gases = ["CO", "NO2", "CH4", "O3", "SO2"];
     Promise.all(
+      //runs multiple promises in parallel
       gases.map((gas) =>
         fetch(`http://localhost:8000/data/get-data/${gas}/${region}/`)
           .then((res) => res.json())

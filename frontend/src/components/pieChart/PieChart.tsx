@@ -7,8 +7,11 @@ const PieChart = () => {
   return (
     <div className="pie-chart-container bg-white dark:bg-gray-800 p-6 rounded-xl shadow-lg mt-5">
       <Box>
-        <Header title="Pie Chart" subTitle="Simple Pie Chart" />
-        <Pie />
+        <Header
+          title="Gas Emissions Breakdown"
+          subTitle="Daily distribution of major atmospheric pollutants"
+        />
+        <Pie region="Africa" />
       </Box>
     </div>
   );
