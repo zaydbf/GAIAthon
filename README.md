@@ -22,7 +22,7 @@ MQTT_TOPIC=<MQTT_TOPIC>
 ````
 
 ##  Run with  the existing Docker Compose 
-Ensure that docker is already installed on you pc  
+Ensure that docker desktop is already installed on you pc  
 
 ### Build the Docker Images & start the containers
 ```bash
