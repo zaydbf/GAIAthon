@@ -8,6 +8,7 @@ const timeLabels = [
   "23/June", "24/June", "25/June", "26/June",
 ];
 
+
 type GasType = "CO" | "NO2" | "CH4" | "O3" | "SO2";
 
 const GAS_COLORS: Record<GasType, string> = {
@@ -72,7 +73,7 @@ const Line = ({ isDahboard = false }) => {
     <Box sx={{ height: isDahboard ? "280px" : "75vh" }}>
       <ResponsiveLine
         theme={{
-          textColor: theme.palette.text.primary,
+          textColor: "theme.palette.text.primary",
           fontSize: 11,
           axis: {
             domain: { line: { stroke: theme.palette.divider, strokeWidth: 1 } },
@@ -84,6 +85,7 @@ const Line = ({ isDahboard = false }) => {
           },
           grid: { line: { stroke: theme.palette.divider, strokeWidth: 0 } },
           legends: {
+
             title: { text: { fontSize: 11, fill: theme.palette.text.primary } },
             text: { fontSize: 11, fill: theme.palette.text.primary },
             ticks: { text: { fontSize: 10, fill: theme.palette.text.primary } },
@@ -91,7 +93,7 @@ const Line = ({ isDahboard = false }) => {
           annotations: {
             text: {
               fontSize: 13,
-              fill: theme.palette.text.primary,
+              fill: "theme.palette.text.primary",
               outlineWidth: 2,
               outlineColor: "#ffffff",
               outlineOpacity: 1,
@@ -145,7 +147,7 @@ const Line = ({ isDahboard = false }) => {
           tickSize: 5,
           tickPadding: 5,
           tickRotation: 0,
-          legend: isDahboard ? null : "Count",
+          legend: isDahboard ? null : "Concentration",
           legendOffset: -45,
           legendPosition: "middle",
           format: (value) => value.toFixed(5),

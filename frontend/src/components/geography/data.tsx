@@ -613,7 +613,7 @@ export const data = [
   },
   {
     id: "TUN",
-    value: 421464,
+    value: 50000000,
   },
   {
     id: "TUR",

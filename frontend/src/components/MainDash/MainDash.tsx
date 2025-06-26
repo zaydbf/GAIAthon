@@ -5,7 +5,7 @@ const MainDash = () => {
   return (
     <div className="MainDash">
       <h1>iot</h1>
-      <h1>Real-Time Atmospheric  Readings :</h1>
+      <h1>Real-Time Atmospheric Readings :</h1>
       <Cards />
       <div className="mapContainer">
         <div className="tableWrapper">
@@ -14,7 +14,7 @@ const MainDash = () => {
         <div className="mapWrapper">
           <iframe
             className="roundedMap"
-            src="https://maps.google.com/maps?width=520&amp;height=400&amp;hl=en&amp;q=Falbrook%20+(Falbrook%20Art%20Center)&amp;t=&amp;z=14&amp;ie=UTF8&amp;iwloc=B&amp;output=embed"
+            src="https://maps.google.com/maps?width=100%25&amp;height=600&amp;hl=en&amp;q=V5VP+FR7,%20Cebalat,%20Tunisia+(Higher%20School%20of%20Communication%20of%20Tunis%20(SUP%E2%80%99COM))&amp;t=k&amp;z=14&amp;ie=UTF8&amp;iwloc=B&amp;output=embed"
           >
             <a href="https://www.mapsdirections.info/calcular-la-población-en-un-mapa"></a>
           </iframe>
