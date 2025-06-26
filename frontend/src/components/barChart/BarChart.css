@@ -1,9 +1,10 @@
 .bar-chart-container {
   position : relative ;
   width: 650px;
-  height: 450px;
+  height: 100%;
   max-width: 100%;
   margin-left: 0;
   margin-right: auto;
   margin-top : 10px;
+  margin-bottom: 60px;
 }

@@ -1,10 +1,10 @@
-.MainDash{
+.MainDash {
     /* padding-top: 1rem; */
     display: flex;
     flex-direction: column;
-    justify-content: space-evenly;
+    justify-content: flex-start;
+    align-items: stretch;
 }
-
 @media screen and (max-width: 1200px) {
     .MainDash{
         justify-content:flex-start;
@@ -70,4 +70,10 @@
   overflow: visible;      /* Ensure content is not clipped */
   width: 100%;
   min-height: 660px;      /* Adjust as needed for your charts */
+  height : 100%;
+}
+.flex {
+  display: flex;
+  align-items: stretch;
+  gap: 10px;
 }

@@ -1,9 +1,9 @@
 from django.urls import path
 from .views import signup, signin, chatbot_response, ai_prediction
-from rest_framework_simplejwt.views import (
-    TokenObtainPairView,
-    TokenRefreshView,
-)
+    from rest_framework_simplejwt.views import (
+        TokenObtainPairView,
+        TokenRefreshView,
+    )
 
 urlpatterns = [
     path('signup/', signup, name='signup'),
