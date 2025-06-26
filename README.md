@@ -1,6 +1,6 @@
 # Project Setup and Run Guide
 
-This guide explains how to run the project using **Docker Compose** or you can use **manual setup** (with `requirements.txt` and `npm install`).
+This guide explains how to run the project using **Docker Compose** .Alternatively, you can use the manual setup process (requiring the use of requirements.txt and npm install).
 
 ---
 ##  Setup .env file (backend/.env)
@@ -22,7 +22,7 @@ MQTT_TOPIC=<MQTT_TOPIC>
 ````
 
 ##  Run with  the existing Docker Compose 
-Ensure that docker desktop is already installed on you pc  
+Ensure that docker system is already installed on you pc  
 
 ### Build the Docker Images & start the containers
 ```bash
@@ -31,9 +31,9 @@ docker-compose up
 ```
 And everything  will run fine ( no need for further configurations )
 
-the frontend will be available at http://localhost:5173
+The frontend will be available at http://localhost:5173
 the backend will run at http://localhost:8000 .
-Of course you can change the Dockerfiles and docker-compose.yml to your likings
+You can modify the Dockerfiles and docker-compose.yml to suit your specific needs.
 
 ---
 # Documentation And Project Overview
@@ -42,7 +42,7 @@ Here you can find a guide on the project's structure and each service it provide
 ## Backend
 
 ### API
-The api app serves the Singup, Signin Logic, the Chat Bot logic and the Ai prediction logic:
+The api app serves the Singup, Signin Logic, the Chat Bot logic and the AI prediction logic:
 
 ##### ChatBot
 The application includes an AI-powered chatbot capable of two modes:
@@ -71,7 +71,7 @@ The Data app serves the integration of Earth Observation (EO) data
 This script handles all the data logic as follows :
 - **get_data Function:**
 this function is located in backend/data/data/Sentinel_5p_Data_scripts/get_data.py which:
-  - Define Variables (username, password,nbr of images, area of interest ...)
+  - Defines Variables (username, password,nbr of images, area of interest ...)
   - Connects to COPERNICUS' Website
   - Gets EO Data and download .nc files (backend/data/data/data_sentinel_5p)
 - **read_data Function:**
@@ -83,9 +83,9 @@ this function is located in backend/data/data/Sentinel_5p_Data_scripts/read_data
 - **calculate_avg Function:**
 this function is located in backend/data/data/calculate_avg.py which:
   - Reads CSV file
-  - Calculate the average concentration of a given gas in a given Region
+  - Calculates the average concentration of a given gas in a given Region
   
-All of these functionalities are handled by run_data.py script then for scalability, this script deletes all unnecessary files after use.
+All of these functionalities are handled by run_data.py script. The script deletes all unnecessary files after use to improve scalability and resource efficiency..
   - For testing :
      ```bash
     cd backend/data/data
@@ -93,7 +93,7 @@ All of these functionalities are handled by run_data.py script then for scalabil
     ```
      and everything will be handled automatically
 - **Web integration:**
-  Then for web intergration every function is imported to views.py to handle requests using Django Rest FrameWork (DRF)
+  For web intergration every function is imported to views.py to handle requests using Django Rest FrameWork (DRF)
 ### IoT
 - **mqtt_listener Function:**
 This script connects to an MQTT broker to receive IoT sensor data in real-time:
@@ -103,7 +103,9 @@ This script connects to an MQTT broker to receive IoT sensor data in real-time:
   - Saves the parsed data into the Django database.
   - **Web integration:**
   Then for web intergration the mqqt_listener function is imported to views.py to handle requests using DRF.
-### Scalability
+
+### Dockerfile overview
+We use multiple Dockerfile to run different components independently.
 - **Dockerfile:**
   - This Dockerfile handles the installation of dependencies, migrating the database, and starting the Django server on port 8000
 - **cron.Dockerfile:**
@@ -122,20 +124,18 @@ The frontend provides a user-friendly interface featuring a data dashboard, AI-p
   - There are 5 cards containing 5 gases (CO, NO2, CH4, O3, SO2) each card is clickable to expand and see the average concentration for each gas.
   #### IoT Data: 
   - There are 3 cards containing (CO2, Light, CH4) each card is clickable to expand and see the average concentration.
-  - There is also  a table which contains more data collected by the IoT device (Tempreture, Pressure, Humidity, Location (gps))
-  - A small compliance note that helps meet environmental regulations and avoid health, environmental risks
+  - There is also  a table which contains more data collected by the IoT device (Temperature, Pressure, Humidity, Location (gps))
+  - A small compliance note that helps meet environmental regulations and avoid health environmental risks
 
 ### AI Assistance page:
   -  The UI for the user to interact with the chatbot getting various information and getting help or analysis about a given data
 ### Carbon Forcasting page:
   -  A map to indicate if a region is predicted to be in danger or not
-  -  a graph that contains the predicted values (using ai predictions) for the next week for each gas based on EO data
+  -  A graph that contains the predicted values (using AI predictions) for the next week for each gas based on EO data
   -  Buttons to switch between each gas
-### Scalability:
-  - **Dockerfile:**
-    - This Dockerfile handles the installation of dependencies, and starting the Web server on port 5173
+### Dockerfile:
+  - This Dockerfile handles the installation of dependencies, and starting the Web server on port 5173
      
-### Whole Project's Scalability:
-  - **docker-compose:**
-    - docker-compose file ensuring the execution of each Dockerfile (backend & frontend) and the execution of cronjob to get daily data automatically everyday . 
+### Service orchestration with Docker Compose:
+  - Docker Compose manages the build and execution of multiple services based on their respective Dockerfiles, including the backend, the frontend and a cronjob service that runs daily to collect data.
 
