@@ -10,7 +10,7 @@ const MainDash2 = () => {
       <h1>eo</h1>
       <h1>Real-Time Atmospheric Gas Readings :</h1>
       <Cards />
-      <div className="flex gap-1">
+      <div className="flex items-stretch gap-1">
         <div className="bar-chart-container">
           <BarChart />
         </div>
