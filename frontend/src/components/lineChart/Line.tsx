@@ -1,21 +1,11 @@
 import { Box, useTheme } from "@mui/material";
-
 import { ResponsiveLine } from "@nivo/line";
 import { useEffect, useState } from "react";
 import axios from "axios";
+
 const timeLabels = [
-  "15/June",
-  "16/June",
-  "17/June",
-  "18/June",
-  "19/June",
-  "20/June",
-  "21/June",
-  "22/June",
-  "23/June",
-  "24/June",
-  "25/June",
-  "26/June",
+  "20/June", "21/June", "22/June",
+  "23/June", "24/June", "25/June", "26/June",
 ];
 
 type GasType = "CO" | "NO2" | "CH4" | "O3" | "SO2";
@@ -28,54 +18,56 @@ const GAS_COLORS: Record<GasType, string> = {
   SO2: "hsl(100, 70%, 50%)",
 };
 
-type DataPoint = {
-  x: string;
-  y: number;
-};
+type DataPoint = { x: string; y: number };
+type ChartSeries = { id: GasType; color: string; data: DataPoint[] };
 
-type ChartSeries = {
-  id: GasType;
-  color: string;
-  data: DataPoint[];
-};
-
-const REGION = "Africa"
-
-const [data, setData] = useState<ChartSeries[]>([]);
-
-useEffect(() => {
-  const gases: GasType[] = ["CO", "NO2", "CH4", "O3", "SO2"];
-
-  const fetchData = async () => {
-    const result = await Promise.all(
-      gases.map(async (gas): Promise<ChartSeries | null> => {
-        try {
-          const res = await axios.get(`/api/ai-predict/${gas}/${REGION}`);
-          return {
-            id: gas,
-            color: GAS_COLORS[gas],
-            data: res.data.predictions.map((y: number, i: number) => ({
-              x: timeLabels[i],
-              y,
-            })),
-          };
-        } catch (err) {
-          console.error(`Error fetching ${gas}`, err);
-          return null;
-        }
-      })
-    );
-
-    // filter out nulls with type guard
-    setData(result.filter((d): d is ChartSeries => d !== null));
-  };
-
-  fetchData();
-}, []);
-
+const REGION = "Africa";
 
 const Line = ({ isDahboard = false }) => {
   const theme = useTheme();
+  const [data, setData] = useState<ChartSeries[]>([]);
+
+  useEffect(() => {
+    const gases: GasType[] = ["CO", "NO2", "CH4", "O3", "SO2"];
+
+    const fetchData = async () => {
+      const result = await Promise.all(
+        gases.map(async (gas): Promise<ChartSeries | null> => {
+          try {
+            const res = await axios.get(`http://127.0.0.1:8000/api/ai-predict/${gas}/${REGION}`);
+            if (!res.data || !Array.isArray(res.data.predictions)) {
+              console.error(`Unexpected response for ${gas}:`, res.data);
+              return null;
+            }
+
+            const predictions = res.data.predictions.slice(0, 7);
+            const seriesData = predictions.map((y: number, i: number) => ({
+              x: timeLabels[i] ?? `Day ${i + 1}`,
+              y,
+            }));
+
+            console.log(`[${gas}] Mapped Data:`, seriesData);
+
+            return {
+              id: gas,
+              color: GAS_COLORS[gas],
+              data: seriesData,
+            };
+          } catch (err) {
+            console.error(`Error fetching ${gas}`, err);
+            return null;
+          }
+        })
+      );
+
+      const filtered = result.filter((d): d is ChartSeries => d !== null);
+      setData(filtered);
+    };
+
+    fetchData();
+  }, []);
+
+
   return (
     <Box sx={{ height: isDahboard ? "280px" : "75vh" }}>
       <ResponsiveLine
@@ -83,53 +75,18 @@ const Line = ({ isDahboard = false }) => {
           textColor: theme.palette.text.primary,
           fontSize: 11,
           axis: {
-            domain: {
-              line: {
-                stroke: theme.palette.divider,
-                strokeWidth: 1,
-              },
-            },
-            legend: {
-              text: {
-                fontSize: 12,
-                fill: theme.palette.text.primary,
-              },
-            },
+            domain: { line: { stroke: theme.palette.divider, strokeWidth: 1 } },
+            legend: { text: { fontSize: 12, fill: theme.palette.text.primary } },
             ticks: {
-              line: {
-                stroke: theme.palette.divider,
-                strokeWidth: 1,
-              },
-              text: {
-                fontSize: 11,
-                fill: theme.palette.text.secondary,
-              },
+              line: { stroke: theme.palette.divider, strokeWidth: 1 },
+              text: { fontSize: 11, fill: theme.palette.text.secondary },
             },
           },
-          grid: {
-            line: {
-              stroke: theme.palette.divider,
-              strokeWidth: 0,
-            },
-          },
+          grid: { line: { stroke: theme.palette.divider, strokeWidth: 0 } },
           legends: {
-            title: {
-              text: {
-                fontSize: 11,
-                fill: theme.palette.text.primary,
-              },
-            },
-            text: {
-              fontSize: 11,
-              fill: theme.palette.text.primary,
-            },
-            ticks: {
-              line: {},
-              text: {
-                fontSize: 10,
-                fill: theme.palette.text.primary,
-              },
-            },
+            title: { text: { fontSize: 11, fill: theme.palette.text.primary } },
+            text: { fontSize: 11, fill: theme.palette.text.primary },
+            ticks: { text: { fontSize: 10, fill: theme.palette.text.primary } },
           },
           annotations: {
             text: {
@@ -166,25 +123,14 @@ const Line = ({ isDahboard = false }) => {
               color: theme.palette.text.primary,
               fontSize: 12,
             },
-            basic: {},
-            chip: {},
-            table: {},
-            tableCell: {},
-            tableCellValue: {},
           },
         }}
         data={data}
         curve="catmullRom"
         margin={{ top: 50, right: 110, bottom: 50, left: 60 }}
         xScale={{ type: "point" }}
-        yScale={{
-          type: "linear",
-          min: "auto",
-          max: "auto",
-          stacked: true,
-          reverse: false,
-        }}
-        yFormat=" >-.2f"
+        yScale={{ type: "linear", min: "auto", max: "auto", stacked: true, reverse: false }}
+        yFormat=" >-.10f"
         axisTop={null}
         axisRight={null}
         axisBottom={{
@@ -202,6 +148,8 @@ const Line = ({ isDahboard = false }) => {
           legend: isDahboard ? null : "Count",
           legendOffset: -45,
           legendPosition: "middle",
+          format: (value) => value.toFixed(5),
+         
         }}
         pointSize={10}
         pointColor={{ theme: "background" }}
