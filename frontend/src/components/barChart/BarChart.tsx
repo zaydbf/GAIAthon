@@ -8,8 +8,8 @@ const BarChart = () => {
     <div className="bar-chart-container bg-white dark:bg-gray-800 p-6 rounded-xl shadow-lg mt-5">
       <Box>
         <Header
-          title="Bar Chart"
-          subTitle="The minimum wage in Germany, France and Spain (EUR/month)"
+          title="Gas Emissions Compared to Safety Thresholds"
+          subTitle="Current pollutant levels as a percentage of recommended limits"
         />
         <Bar />
       </Box>
