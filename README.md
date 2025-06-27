@@ -1,4 +1,17 @@
-# Project Architecture :
+<table width="100%">
+<tr>
+<td align="left">
+  
+# Project Architecture
+
+</td>
+<td align="right">
+  
+<img src="./images/Logo.png" alt="Project Logo" width="100"/>
+
+</td>
+</tr>
+</table>
 ## IoT
   - Contains the Iot firmware & libraries
 ## Web
