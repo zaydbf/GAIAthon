@@ -120,19 +120,45 @@ The frontend provides a user-friendly interface featuring a data dashboard, AI-p
   - the user can only use the Services if he has an account.
 ### Interactive Dashboard page:
   - The dashboard features two gas emission services, EO and IoT, which users can switch between using the integrated button on the page.
+
+   ![Alt text](images/Dashboard/EO_Dashboard.jpeg)
+   ![Alt text](images/Dashboard/IoT_Dashboard.png)
+   
   #### EO Data:
   - There are 5 cards containing 5 gases (CO, NO2, CH4, O3, SO2) each card is clickable to expand and see the average concentration for each gas.
+    
+  <p align="center">
+    <img src="images/Dashboard/NO2_Card.png" alt="Image 1" width="200"/>
+    <img src="images/Dashboard/CH4_Card.png" alt="Image 2" width="200"/>
+    <img src="images/Dashboard/O3_Card.png" alt="Image 3" width="200"/>
+  </p>
+  
   #### IoT Data: 
   - There are 3 cards containing (CO2, Light, CH4) each card is clickable to expand and see the average concentration.
   - There is also  a table which contains more data collected by the IoT device (Temperature, Pressure, Humidity, Location (gps))
   - A small compliance note that helps meet environmental regulations and avoid health environmental risks
-
+  
+  <p align="center">
+    <img src="images/Dashboard/CO2_Card.png" alt="Image 1" width="200"/>
+    <img src="images/Dashboard/CH4_IoT_Card.png" alt="Image 2" width="200"/>
+    <img src="images/Dashboard/Light_Card.png" alt="Image 3" width="200"/>
+  </p>
+  
 ### AI Assistance page:
   -  The UI for the user to interact with the chatbot getting various information and getting help or analysis about a given data
+  
+   ![Alt text](images/ChatBot/Chatbot_detailed.png)
+   
 ### Carbon Forcasting page:
   -  A map to indicate if a region is predicted to be in danger or not
+        
+  ![Alt text](images/AI_Forecasting/World_Map.png)
+  
   -  A graph that contains the predicted values (using AI predictions) for the next week for each gas based on EO data
   -  Buttons to switch between each gas
+    
+  ![Alt text](images/AI_Forecasting/Prediction_Chart.png)
+  
 ### Dockerfile:
   - This Dockerfile handles the installation of dependencies, and starting the Web server on port 5173
      
