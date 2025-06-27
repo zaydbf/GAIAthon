@@ -9,7 +9,7 @@ const LineChart: React.FC = () => {
       <Box>
         <Header
           title="Predicted Greenhouse Gas Emissions (Next 7 Days)"
-          subTitle="Powered by AI, this forecast shows expected levels of SO₂, CH₄, CO, NO₂, and O₃ based on IoT sensor data and Earth Observation datasets."
+          subTitle="Powered by AI, this forecast shows expected levels of SO₂, CH₄, CO, NO₂, and O₃ based on Earth Observation datasets."
         />
         <Line />
       </Box>
