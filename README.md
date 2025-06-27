@@ -1,17 +1,8 @@
-<table width="100%">
-<tr>
-<td align="left">
-  
-# Project Architecture
+<div style="display: flex; justify-content: space-between; align-items: center;">
+  <h1>Project Architecture</h1>
+  <img src="./images/Logo.png" alt="Project Logo" width="120"/>
+</div>
 
-</td>
-<td align="right">
-  
-<img src="./images/Logo.png" alt="Project Logo" width="100"/>
-
-</td>
-</tr>
-</table>
 ## IoT
   - Contains the Iot firmware & libraries
 ## Web
