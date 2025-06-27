@@ -71,9 +71,9 @@ const Team: React.FC = () => {
       role: "Team Leader",
       image: "/Jawher.jpg",
       socials: {
-        linkedin: "#",
-        twitter: "#",
-        email: "emma@carbonsens.com"
+        linkedin: "https://www.linkedin.com/in/jawher-sadok/",
+        twitter: "https://x.com/Jawher_Sadok",
+        email: "jawher.sadok@supcom.tn"
       }
     },
     {
@@ -81,9 +81,9 @@ const Team: React.FC = () => {
       role: "Team Member",
       image: "/Zayd.jpg",
       socials: {
-        linkedin: "#",
-        twitter: "#",
-        email: "michael@carbonsens.com"
+        linkedin: "https://www.linkedin.com/in/zaydbenfadhel/",
+        twitter: "https://x.com/FadhelZayd",
+        email: "zayd.benfadhel@supcom.tn"
       }
     },
     {
@@ -91,9 +91,9 @@ const Team: React.FC = () => {
       role: "Team Member",
       image: "/mdhaffar.jpg",
       socials: {
-        linkedin: "#",
-        twitter: "#",
-        email: "sarah@carbonsens.com"
+        linkedin: "https://www.linkedin.com/in/mohamed-mdhafar-08707b280/",
+        twitter: "https://x.com/MMedhaffar56798",
+        email: "mohamed.mdhaffar@supcom.tn"
       }
     },
     {
@@ -101,9 +101,9 @@ const Team: React.FC = () => {
       role: "Team Member",
       image: "/Youssef.jpg",
       socials: {
-        linkedin: "#",
-        twitter: "#",
-        email: "david@carbonsens.com"
+        linkedin: "https://www.linkedin.com/in/youssef-chatti-811351329/",
+        twitter: "https://www.facebook.com/youssef.chatti.16",
+        email: "youssefchatti420@gmail.com"
       }
     }
   ];

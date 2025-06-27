@@ -14,7 +14,7 @@ const Footer: React.FC = () => {
               <span className="ml-2 text-xl font-bold">CARBONSENS</span>
             </div>
             <p className="text-gray-400 mb-4">
-              Monitoring carbon emissions with IoT and AI for a sustainable future.
+              Monitoring carbon emissions with EO/IoT and AI for a sustainable future.
             </p>
             <div className="flex space-x-4">
               <a href="#" className="text-gray-400 hover:text-white transition-colors" aria-label="Twitter">
@@ -26,7 +26,7 @@ const Footer: React.FC = () => {
               <a href="#" className="text-gray-400 hover:text-white transition-colors" aria-label="Facebook">
                 <Facebook size={20} />
               </a>
-              <a href="mailto:info@carbonsens.com" className="text-gray-400 hover:text-white transition-colors" aria-label="Email">
+              <a href="#" className="text-gray-400 hover:text-white transition-colors" aria-label="Email">
                 <Mail size={20} />
               </a>
             </div>
@@ -78,7 +78,7 @@ const Footer: React.FC = () => {
               </li>
               <li>
                 <a href="#services" className="text-gray-400 hover:text-white transition-colors">
-                  Carbon Forecasting
+                  Gas Forecasting
                 </a>
               </li>
             </ul>

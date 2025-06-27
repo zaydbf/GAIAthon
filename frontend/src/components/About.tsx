@@ -21,10 +21,10 @@ const About: React.FC = () => {
               Our Mission
             </h3>
             <p className="text-gray-600 dark:text-gray-300 mb-6">
-              At CARBONSENS, we're committed to empowering organizations with the tools they need to understand, manage, and reduce their carbon footprint. Our innovative solution combines the power of Internet of Things (IoT) sensors with advanced artificial intelligence to provide accurate, real-time data and actionable insights.
+              At CARBONSENS, we're committed to empowering organizations with the tools they need to understand, manage, and reduce their carbon footprint. Our innovative solution combines the power of Internet of Things (IoT) sensors and Earth observation data (EO) with advanced artificial intelligence to provide accurate, real-time data and actionable insights.
             </p>
             <p className="text-gray-600 dark:text-gray-300 mb-6">
-              We believe that by making carbon emissions data more accessible and understandable, we can accelerate the transition to a low-carbon economy and contribute to a more sustainable future for our planet.
+              We believe that by making gas emissions data more accessible and understandable, we can accelerate the transition to a low-carbon economy and contribute to a more sustainable future for our planet.
             </p>
             
             <div className="space-y-3">
@@ -34,7 +34,7 @@ const About: React.FC = () => {
                 </div>
                 <div className="ml-3">
                   <p className="text-gray-600 dark:text-gray-300">
-                    <span className="font-medium text-gray-900 dark:text-white">Precision Monitoring:</span> Our IoT sensors provide accurate, real-time data collection.
+                    <span className="font-medium text-gray-900 dark:text-white">Precision Monitoring:</span> Our IoT sensors provide accurate, real-time data collection.& We get daily EO data
                   </p>
                 </div>
               </div>

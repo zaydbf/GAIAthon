@@ -63,7 +63,7 @@ const Contact: React.FC = () => {
                         href="mailto:support@carbonsens.com"
                         className="hover:text-emerald-600 dark:hover:text-emerald-400"
                       >
-                        zaydbenfadhel2003@gmail.com
+                        zayd.benfadhel@supcom.tn
                       </a>
                     </p>
                     <p className="mt-1 text-gray-600 dark:text-gray-300">
@@ -72,6 +72,14 @@ const Contact: React.FC = () => {
                         className="hover:text-emerald-600 dark:hover:text-emerald-400"
                       >
                         youssefchatti420@gmail.com
+                      </a>
+                    </p>
+                    <p className="mt-1 text-gray-600 dark:text-gray-300">
+                      <a
+                        href="mailto:support@carbonsens.com"
+                        className="hover:text-emerald-600 dark:hover:text-emerald-400"
+                      >
+                        jawher.sadok@supcom.tn
                       </a>
                     </p>
                   </div>
@@ -87,10 +95,18 @@ const Contact: React.FC = () => {
                     </h4>
                     <p className="mt-1 text-gray-600 dark:text-gray-300">
                       <a
-                        href="tel:+15551234567"
+                        href="tel:+21699655775"
                         className="hover:text-emerald-600 dark:hover:text-emerald-400"
                       >
                         +216 99 655 775
+                      </a>
+                    </p>
+                    <p className="mt-1 text-gray-600 dark:text-gray-300">
+                      <a
+                        href="tel:+21654599614"
+                        className="hover:text-emerald-600 dark:hover:text-emerald-400"
+                      >
+                        +216 54 599 614
                       </a>
                     </p>
                   </div>

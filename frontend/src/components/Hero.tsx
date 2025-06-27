@@ -29,15 +29,15 @@ const Hero: React.FC = () => {
         <div className="flex flex-col lg:flex-row items-center">
           <div className="lg:w-1/2 text-center lg:text-left mb-12 lg:mb-0">
             <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold text-gray-900 dark:text-white leading-tight">
-              <span className="block">Monitoring Carbon</span>
+              <span className="block">Monitoring Gases</span>
               <span className="block mt-2">
                 <span className="text-transparent bg-clip-text bg-gradient-to-r from-emerald-600 to-blue-600">
-                  Emissions with IoT & AI
+                  Emissions with EO/IoT & AI
                 </span>
               </span>
             </h1>
             <p className="mt-6 text-xl text-gray-600 dark:text-gray-300 max-w-2xl mx-auto lg:mx-0">
-              CARBONSENS revolutionizes environmental monitoring by combining advanced IoT sensors with AI-powered analytics to track, predict, and optimize carbon emissions in real-time.
+              CARBONSENS revolutionizes environmental monitoring by combining advanced IoT sensors & EO Data with AI-powered analytics to track, predict, and optimize carbon emissions in real-time.
             </p>
             <div className="mt-10 flex flex-col sm:flex-row justify-center lg:justify-start gap-4">
               <a

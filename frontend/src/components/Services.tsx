@@ -62,7 +62,7 @@ const Services: React.FC<ServiceCardProps> = ({ isAuthenticated }) => {
           size={32}
         />
       ),
-      title: "Interactive Dashboard",
+      title: "Interactive Dashboard EO/IoT",
       description:
         "Monitor carbon emissions in real-time with our intuitive, data-rich dashboard that provides actionable insights and visualizations.",
       gradient: "bg-gradient-to-r from-emerald-500 to-emerald-600",
@@ -163,7 +163,7 @@ const Services: React.FC<ServiceCardProps> = ({ isAuthenticated }) => {
                   </h4>
                   <p className="text-gray-600 dark:text-gray-300 text-sm">
                     Clear visualizations and recommendations help you reduce
-                    your carbon footprint.
+                    Gas Emission.
                   </p>
                 </div>
               </div>
