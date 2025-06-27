@@ -119,7 +119,7 @@ The frontend provides a user-friendly interface featuring a data dashboard, AI-p
 ### SignIn & SignUp page:
   - the user can only use the Services if he has an account.
 
-  ![Alt text](images/Dashboard/SignUp.png)
+  <img src="images/Dashboard/SignUp.png" alt="Image 4" width="300"/>
 
 ### Interactive Dashboard page:
   - The dashboard features two gas emission services, EO and IoT, which users can switch between using the integrated button on the page.
@@ -139,11 +139,12 @@ The frontend provides a user-friendly interface featuring a data dashboard, AI-p
 
   - Pie Chart to display the concentration of each gas together
 
-  ![Alt text](images/Dashboard/PIE_Chart.png)
+
+  <img src="images/Dashboard/PIE_Chart.png" alt="Image 4" width="400"/>
 
   - Line Chart to display some gas concentration in the past years
 
-  ![Alt text](images/Dashboard/Line_Chart.png)
+  <img src="images/Dashboard/Line_Chart.png" alt="Image 4" width="400"/>
 
   #### IoT Data: 
   - There are 3 cards containing (CO2, Light, CH4) each card is clickable to expand and see the average concentration.
