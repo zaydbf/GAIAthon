@@ -8,6 +8,8 @@
   - API : Contains AI forcasting and ChatBot functionalities
   - data : Contains data handling for EO
   - IoT : Contains scripts to link Iot device to the webapplication
+## AI
+  - Integrated in the web's backend : backend/API/views.py
 ## Documents 
   - Just for documentations and explaining
 ## Images 
