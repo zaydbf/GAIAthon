@@ -35,7 +35,7 @@ const gasConfig: Record<
 > = {
   CO: {
     title: "CO (mmol/m²)",
-    threshold: 1000,
+    threshold: 30,
     color: {
       backGround: "linear-gradient(180deg, #ff5858 0%, #ffc371 100%)", // red-orange
       boxShadow: "0px 10px 20px 0px #ffb199",

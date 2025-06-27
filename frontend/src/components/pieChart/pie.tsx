@@ -15,13 +15,42 @@ const Pie = ({ region = "default" }: PieProps) => {
     return <div>Loading gas data...</div>;
   }
 
-  // Transform CardData to pie chart format
-  const data = cardsData.map((card) => ({
-    id: card.title,
-    label: card.title,
-    value: Number(card.value), // use latest max value
-    color: card.color.backGround,
-  }));
+  const data = cardsData.map((card) => {
+    let value = Number(card.value);
+    const rawTitle = card.title;
+
+    const gas = rawTitle
+      .split(" ")[0]
+      .replace(/₀/g, "0")
+      .replace(/₁/g, "1")
+      .replace(/₂/g, "2")
+      .replace(/₃/g, "3")
+      .replace(/₄/g, "4")
+      .replace(/₅/g, "5")
+      .replace(/₆/g, "6")
+      .replace(/₇/g, "7")
+      .replace(/₈/g, "8")
+      .replace(/₉/g, "9")
+      .toUpperCase();
+
+    if (gas === "CO" || gas === "NO2") {
+      value *= 10;
+    } else if (gas === "CH4") {
+      value /= 10;
+    } else if (gas === "O3") {
+      value /= 1000;
+    }
+
+    // Keep only one digit after the decimal point
+    value = Number(value.toFixed(1));
+
+    return {
+      id: rawTitle,
+      label: rawTitle,
+      value,
+      color: card.color.backGround,
+    };
+  });
 
   return (
     <Box sx={{ height: "450px" }}>
@@ -29,7 +58,7 @@ const Pie = ({ region = "default" }: PieProps) => {
         data={data}
         theme={{
           textColor: "#fff",
-          fontSize: 20,
+          fontSize: 15,
           axis: {
             domain: {
               line: {

@@ -4,72 +4,68 @@ import { Box, useTheme } from "@mui/material";
 const data = [
   {
     year: 2019,
-    Spain: 900,
-    France: 1400,
-    Germany: 1700,
+    "CH₄": 186.6, // 1.866 × 100
+    "CO₂": 410.1,
+    "O₃": 340, // 0.034 × 10,000
   },
-
   {
     year: 2020,
-    Spain: 1000,
-    France: 1500,
-    Germany: 1800,
+    "CH₄": 189.0, // 1.890 × 100
+    "CO₂": 412.4,
+    "O₃": 330, // 0.033 × 10,000
   },
-
   {
     year: 2021,
-    Spain: 1100,
-    France: 1600,
-    Germany: 1900,
+    "CH₄": 190.9, // 1.909 × 100
+    "CO₂": 414.7,
+    "O₃": 350, // 0.035 × 10,000
   },
-
   {
     year: 2022,
-    Spain: 1200,
-    France: 1700,
-    Germany: 2000,
+    "CH₄": 192.1, // 1.921 × 100
+    "CO₂": 417.1,
+    "O₃": 360, // 0.036 × 10,000
   },
-
   {
     year: 2023,
-    Spain: 1260,
-    France: 1709,
-    Germany: 2080,
+    "CH₄": 192.4, // 1.924 × 100
+    "CO₂": 419.3,
+    "O₃": 365, // 0.0365 × 10,000
   },
 ];
-
 const Bar = () => {
   const theme = useTheme();
   return (
-    <Box sx={{ height: "450px", width: "720px" }}>
+    <Box sx={{ height: "400px", marginBottom: "50px" }}>
+      {" "}
       <ResponsiveBar
         data={data}
-        keys={["Spain", "France", "Germany"]}
+        keys={["CH₄", "CO₂", "O₃"]}
         indexBy="year"
         theme={{
-          textColor: theme.palette.text.primary,
+          textColor: "#ffffff",
           fontSize: 11,
           axis: {
             domain: {
               line: {
-                stroke: theme.palette.divider,
+                stroke: "#ffffff",
                 strokeWidth: 1,
               },
             },
             legend: {
               text: {
                 fontSize: 12,
-                fill: theme.palette.text.primary,
+                fill: "#ffffff",
               },
             },
             ticks: {
               line: {
-                stroke: theme.palette.divider,
+                stroke: "#ffffff",
                 strokeWidth: 1,
               },
               text: {
                 fontSize: 11,
-                fill: theme.palette.text.secondary,
+                fill: "#ffffff",
               },
             },
           },
@@ -83,45 +79,45 @@ const Bar = () => {
             title: {
               text: {
                 fontSize: 11,
-                fill: theme.palette.text.primary,
+                fill: "#ffffff",
               },
             },
             text: {
-              fontSize: 11,
-              fill: theme.palette.text.primary,
+              fontSize: 17,
+              fill: "#ffffff",
             },
             ticks: {
               line: {},
               text: {
                 fontSize: 10,
-                fill: theme.palette.text.primary,
+                fill: "#ffffff",
               },
             },
           },
           annotations: {
             text: {
               fontSize: 13,
-              fill: theme.palette.text.primary,
+              fill: "#ffffff",
               outlineWidth: 2,
               outlineColor: "#ffffff",
               outlineOpacity: 1,
             },
             link: {
-              stroke: "#000000",
+              stroke: "#ffffff",
               strokeWidth: 1,
               outlineWidth: 2,
               outlineColor: "#ffffff",
               outlineOpacity: 1,
             },
             outline: {
-              stroke: "#000000",
+              stroke: "#ffffff",
               strokeWidth: 2,
               outlineWidth: 2,
               outlineColor: "#ffffff",
               outlineOpacity: 1,
             },
             symbol: {
-              fill: "#000000",
+              fill: "#ffffff",
               outlineWidth: 2,
               outlineColor: "#ffffff",
               outlineOpacity: 1,
@@ -129,7 +125,7 @@ const Bar = () => {
           },
           tooltip: {
             container: {
-              background: theme.palette.background.default,
+              background: "#ffffff",
               color: theme.palette.text.primary,
               fontSize: 12,
             },
@@ -197,7 +193,7 @@ const Bar = () => {
           tickSize: 5,
           tickPadding: 5,
           tickRotation: 0,
-          legend: "salary/month",
+          legend: "Concentration (ppm)",
           legendPosition: "middle",
           legendOffset: -55,
         }}
@@ -207,6 +203,30 @@ const Bar = () => {
           from: "color",
           modifiers: [["darker", 1.6]],
         }}
+        legends={[
+          {
+            dataFrom: "keys",
+            anchor: "bottom-right",
+            direction: "column",
+            justify: false,
+            translateX: 120,
+            translateY: 0,
+            itemsSpacing: 2,
+            itemWidth: 100,
+            itemHeight: 20,
+            itemDirection: "left-to-right",
+            itemOpacity: 0.85,
+            symbolSize: 20,
+            effects: [
+              {
+                on: "hover",
+                style: {
+                  itemOpacity: 1,
+                },
+              },
+            ],
+          },
+        ]}
         role="application"
         ariaLabel="Nivo bar chart demo"
         barAriaLabel={function (e) {

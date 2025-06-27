@@ -3,11 +3,7 @@
 // MainDash imports
 
 import { useEffect, useState } from "react";
-import {
-  UilFire,
-  UilCloud,
-  UilFlask,
-} from "@iconscout/react-unicons";
+import { UilFire, UilCloud, UilFlask } from "@iconscout/react-unicons";
 
 // Type Definitions
 
@@ -33,7 +29,7 @@ const gasConfig: Record<
 > = {
   CO2: {
     title: "CO2 (mmol/m²)",
-    threshold: 1000,
+    threshold: 40,
     color: {
       backGround: "linear-gradient(180deg, #ff5858 0%, #ffc371 100%)", // red-orange
       boxShadow: "0px 10px 20px 0px #ffb199",
@@ -76,7 +72,9 @@ export const useCardsData = (region: string) => {
             const latest = values.length ? values[values.length - 1] : 0;
             const config = gasConfig[res.gas];
             const threshold = config.threshold;
-            const barValue = threshold ? Math.round((latest / threshold) * 100) : 0;
+            const barValue = threshold
+              ? Math.round((latest / threshold) * 100)
+              : 0;
 
             return {
               ...config,
