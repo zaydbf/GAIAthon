@@ -14,10 +14,12 @@ const DashboardContent = () => {
   return (
     <div className="py-20 px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto">
       <div className="text-center mb-16">
-        <h1 className="text-4xl font-bold mb-4">Interactive Dashboard EO/IoT</h1>
+        <h1 className="text-4xl font-bold mb-4">
+          Interactive Dashboard EO/IoT
+        </h1>
         <p className="text-xl text-gray-600 dark:text-gray-300">
           Real-time Monitoring and Visualization of Carbon Emissions Data from
-          Earth Observation Sources and IoT device 
+          Earth Observation Sources and IoT device
         </p>
       </div>
       <div className="text-center mt-2 text-sm font-semibold text-gray-700 dark:text-gray-300">
@@ -32,8 +34,9 @@ const DashboardContent = () => {
         </button>
       </div>
       <div className="text-center mt-2 text-sm font-semibold text-gray-700 dark:text-gray-300">
-        
-        {toggled ? "Currently showing: IoT Dashboard" : "Currently showing: EO Dashboard"}
+        {toggled
+          ? "Currently showing: IoT Dashboard"
+          : "Currently showing: EO Dashboard"}
       </div>
 
       <div className="min-h-screen bg-white dark:bg-gray-900 text-gray-900 dark:text-white relative overflow-hidden">
