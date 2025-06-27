@@ -20,7 +20,9 @@ const DashboardContent = () => {
           Earth Observation Sources and IoT device 
         </p>
       </div>
-
+      <div className="text-center mt-2 text-sm font-semibold text-gray-700 dark:text-gray-300">
+        Click To Change Data Type
+      </div>
       <div className="App">
         <button
           className={`toggle-btn ${toggled ? "toggled" : ""}`}
@@ -28,6 +30,10 @@ const DashboardContent = () => {
         >
           <div className="thumb"></div>
         </button>
+      </div>
+      <div className="text-center mt-2 text-sm font-semibold text-gray-700 dark:text-gray-300">
+        
+        {toggled ? "Currently showing: IoT Dashboard" : "Currently showing: EO Dashboard"}
       </div>
 
       <div className="min-h-screen bg-white dark:bg-gray-900 text-gray-900 dark:text-white relative overflow-hidden">
