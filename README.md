@@ -1,3 +1,17 @@
+# Project Architecture :
+## IoT
+  - Contains the Iot firmware & libraries
+## Web
+### Frontend
+  - Contains every service display for user ensuring a good UI & UX
+### Backend
+  - API : Contains AI forcasting and ChatBot functionalities
+  - data : Contains data handling for EO
+  - IoT : Contains scripts to link Iot device to the webapplication
+## Documents 
+  - Just for documentations and explaining
+## Images 
+  - to display images in Readme file
 # Project Setup and Run Guide
 
 This guide explains how to run the project using **Docker Compose** .Alternatively, you can use the manual setup process (requiring the use of requirements.txt and npm install).
