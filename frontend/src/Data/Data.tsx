@@ -29,7 +29,7 @@ const gasConfig: Record<
 > = {
   CO2: {
     title: "CO2 (mmol/m²)",
-    threshold: 40,
+    threshold: 45,
     color: {
       backGround: "linear-gradient(180deg, #ff5858 0%, #ffc371 100%)", // red-orange
       boxShadow: "0px 10px 20px 0px #ffb199",
@@ -38,7 +38,7 @@ const gasConfig: Record<
   },
   Light: {
     title: "Light (lx)",
-    threshold: 500,
+    threshold: 100,
     color: {
       backGround:
         "linear-gradient(180deg,  #185a9d 0% ,rgb(67, 127, 206) 100%)", // green-blue
@@ -48,7 +48,7 @@ const gasConfig: Record<
   },
   CH4: {
     title: "CH₄ (ppbv)",
-    threshold: 3000,
+    threshold: 2000,
     color: {
       backGround: "linear-gradient(180deg, #11998e 0%, #38ef7d 100%)", // teal-green
       boxShadow: "0px 10px 20px 0px #b2f2bb",

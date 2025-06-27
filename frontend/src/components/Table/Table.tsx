@@ -76,10 +76,10 @@ export default function BasicTable() {
   // Row data updated with current time
   const rawRows: Omit<RowData, "status">[] = [
     { parameter: "Time (PM)", value: currentTime },
-    { parameter: "Temperature (°C)", value: 50.67 },
+    { parameter: "Temperature (°C)", value: 30 },
     { parameter: "Pressure (hPa)", value: 1008.11 },
     { parameter: "Humidity (%)", value: 57.13 },
-    { parameter: "Longitude (°)", value: 3.054025 },
+    { parameter: "Longitude (°)", value: 10.194025 },
     { parameter: "Latitude (°)", value: 36.740354 },
     { parameter: "Altitude (m)", value: 97.85 },
   ];

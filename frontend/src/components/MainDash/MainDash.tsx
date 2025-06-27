@@ -4,7 +4,7 @@ import "./MainDash.css";
 const MainDash = () => {
   return (
     <div className="MainDash">
-      <h1>iot</h1>
+      <h1>IoT Data</h1>
       <h1>Real-Time Atmospheric Readings :</h1>
       <Cards />
       <div className="mapContainer">

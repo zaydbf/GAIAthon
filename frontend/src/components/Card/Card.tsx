@@ -115,8 +115,10 @@ function ExpandedCard({
               background: "#FF0000",
               fontWeight: 700,
               fontSize: "14px",
+              
             },
             text: `Threshold (${param.threshold} ppm)`,
+            
           },
         },
       ],

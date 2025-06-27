@@ -7,7 +7,7 @@ import "./MainDash.css";
 const MainDash2 = () => {
   return (
     <div className="MainDash">
-      <h1>eo</h1>
+      <h1>EO Data</h1>
       <h1>Real-Time Atmospheric Gas Readings :</h1>
       <Cards />
       <div className="flex items-stretch gap-1">

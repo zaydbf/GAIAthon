@@ -14,10 +14,10 @@ const DashboardContent = () => {
   return (
     <div className="py-20 px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto">
       <div className="text-center mb-16">
-        <h1 className="text-4xl font-bold mb-4">Interactive Dashboard</h1>
+        <h1 className="text-4xl font-bold mb-4">Interactive Dashboard EO/IoT</h1>
         <p className="text-xl text-gray-600 dark:text-gray-300">
           Real-time Monitoring and Visualization of Carbon Emissions Data from
-          IoT and Earth Observation Sources
+          Earth Observation Sources and IoT device 
         </p>
       </div>
 

@@ -35,7 +35,7 @@ const gasConfig: Record<
 > = {
   CO: {
     title: "CO (mmol/m²)",
-    threshold: 30,
+    threshold: 30.15,
     color: {
       backGround: "linear-gradient(180deg, #ff5858 0%, #ffc371 100%)", // red-orange
       boxShadow: "0px 10px 20px 0px #ffb199",
@@ -44,7 +44,7 @@ const gasConfig: Record<
   },
   NO2: {
     title: "NO₂ (µmol/m²)",
-    threshold: 40,
+    threshold: 18.3,
     color: {
       backGround:
         "linear-gradient(180deg,  #185a9d 0% ,rgb(67, 127, 206) 100%)", // green-blue
@@ -54,7 +54,7 @@ const gasConfig: Record<
   },
   O3: {
     title: "O₃ (µmol/m²)",
-    threshold: 1000000,
+    threshold: 126500,
     color: {
       backGround: "linear-gradient(180deg, #f7971e 0%, #ffd200 100%)", // orange-yellow
       boxShadow: "0px 10px 20px 0px #ffe5a0",
@@ -63,7 +63,7 @@ const gasConfig: Record<
   },
   SO2: {
     title: "SO₂ (µmol/m²)",
-    threshold: 1000,
+    threshold: 219,
     color: {
       backGround: "linear-gradient(180deg, #c471f5 0%, #fa71cd 100%)", // purple-pink
       boxShadow: "0px 10px 20px 0px #e9e4f0",
@@ -72,7 +72,7 @@ const gasConfig: Record<
   },
   CH4: {
     title: "CH₄ (ppbv)",
-    threshold: 3000,
+    threshold: 1898,
     color: {
       backGround: "linear-gradient(180deg, #11998e 0%, #38ef7d 100%)", // teal-green
       boxShadow: "0px 10px 20px 0px #b2f2bb",
