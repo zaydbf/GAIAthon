@@ -13,6 +13,18 @@ const PieChart = () => {
         />
         <Pie region="Africa" />
       </Box>
+      <p>
+        This pie chart shows the relative concentrations of various gases after
+        applying normalization factors:
+      </p>
+      <p>
+        CO and NO₂ values are multiplied by 10, CH₄ is divided by 10, and O₃ is
+        divided by 1000.
+      </p>
+      <p>
+        Hover over each slice to view the adjusted values and compare the gases
+        more easily.
+      </p>
     </div>
   );
 };
