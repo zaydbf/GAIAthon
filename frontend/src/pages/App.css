@@ -34,7 +34,8 @@
   cursor: pointer;
   box-shadow: 1px 1px 10px rgba(0, 0, 0, 0.748);
   position: relative;
-  left: 50%;
+  left: 48%;
+  top: 8px;
 }
 
 .toggle-btn .thumb {
