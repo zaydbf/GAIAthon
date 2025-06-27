@@ -20,7 +20,7 @@ const Geo = ({ isDashbord = false }) => {
         features={geo.features}
         margin={{ top: 0, right: 0, bottom: 0, left: 0 }}
         colors="spectral"
-        domain={[0, 1000000]}
+        domain={[450, 400]}
         unknownColor="#666666"
         label="properties.name"
         valueFormat=".2s"

@@ -7,11 +7,11 @@ const CarbonForecasting: React.FC = () => {
   return (
     <div className="py-20 px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto">
       <div className="text-center mb-16">
-        <h1 className="text-4xl font-bold mb-4">Carbon Forecasting</h1>
+        <h1 className="text-4xl font-bold mb-4">Gas Forecasting</h1>
         <p className="text-xl text-gray-600 dark:text-gray-300">
-          AI-powered predictions for future carbon emissions The integrated AI
+          AI-powered predictions for future gas emissions The integrated AI
           model forecasts greenhouse gas emissions for the next 7 days based on
-          IoT and EO data.
+          EO data.
         </p>
       </div>
 

@@ -5,11 +5,11 @@ import axios from "axios";
 
 const timeLabels = Array.from({ length: 7 }, (_, i) => {
   const date = new Date();
-  date.setDate(date.getDate() + i + 1); 
+  date.setDate(date.getDate() + i + 1);
   return date.toLocaleDateString("en-GB", {
     day: "2-digit",
     month: "short",
-  }); 
+  });
 });
 
 type GasType = "CO" | "NO2" | "CH4" | "O3" | "SO2";
@@ -34,7 +34,7 @@ type ChartSeries = { id: GasType; color: string; data: DataPoint[] };
 
 const REGION = "Africa";
 
-const Line = ({ isDahboard = false }) => {
+const Line = () => {
   const theme = useTheme();
   const [data, setData] = useState<ChartSeries[]>([]);
   const [selectedGas, setSelectedGas] = useState<GasType | null>(null);
@@ -46,7 +46,9 @@ const Line = ({ isDahboard = false }) => {
       const result = await Promise.all(
         gases.map(async (gas): Promise<ChartSeries | null> => {
           try {
-            const res = await axios.get(`http://127.0.0.1:8000/api/ai-predict/${gas}/${REGION}`);
+            const res = await axios.get(
+              `http://127.0.0.1:8000/api/ai-predict/${gas}/${REGION}`
+            );
             if (!res.data || !Array.isArray(res.data.predictions)) {
               console.error(`Unexpected response for ${gas}:`, res.data);
               return null;
@@ -101,7 +103,7 @@ const Line = ({ isDahboard = false }) => {
       </Stack>
 
       {/* Chart */}
-      <Box sx={{ position: "relative", height: isDahboard ? "280px" : "75vh" }}>
+      <Box sx={{ position: "relative", height: "75vh" }}>
         {selectedGas && (
           <Box
             sx={{
@@ -113,52 +115,60 @@ const Line = ({ isDahboard = false }) => {
               zIndex: 1,
             }}
           >
-          {GAS_UNITS[selectedGas]}
+            {GAS_UNITS[selectedGas]}
           </Box>
         )}
 
         <ResponsiveLine
           theme={{
-            textColor: "theme.palette.text.primary",
+            textColor: "#ffffff",
             fontSize: 11,
             axis: {
-              domain: { line: { stroke: theme.palette.divider, strokeWidth: 1 } },
-              legend: { text: { fontSize: 12, fill: theme.palette.text.primary } },
+              domain: {
+                line: { stroke: "#ffffff", strokeWidth: 1 },
+              },
+              legend: {
+                text: { fontSize: 12, fill: "#ffffff" },
+              },
               ticks: {
-                line: { stroke: theme.palette.divider, strokeWidth: 1 },
-                text: { fontSize: 11, fill: theme.palette.text.secondary },
+                line: { stroke: "#ffffff", strokeWidth: 1 },
+                text: { fontSize: 11, fill: "#ffffff" },
               },
             },
-            grid: { line: { stroke: theme.palette.divider, strokeWidth: 0 } },
+            grid: { line: { stroke: "#ffffff", strokeWidth: 0 } },
             legends: {
-              title: { text: { fontSize: 11, fill: theme.palette.text.primary } },
-              text: { fontSize: 11, fill: theme.palette.text.primary },
-              ticks: { text: { fontSize: 10, fill: theme.palette.text.primary } },
+              title: {
+                text: { fontSize: 11, fill: "#ffffff" },
+              },
+              text: { fontSize: 11, fill: "#ffffff" },
+              ticks: {
+                text: { fontSize: 10, fill: "#ffffff" },
+              },
             },
             annotations: {
               text: {
                 fontSize: 13,
-                fill: "theme.palette.text.primary",
+                fill: "#ffffff",
                 outlineWidth: 2,
                 outlineColor: "#ffffff",
                 outlineOpacity: 1,
               },
               link: {
-                stroke: "#000000",
+                stroke: "#ffffff",
                 strokeWidth: 1,
                 outlineWidth: 2,
                 outlineColor: "#ffffff",
                 outlineOpacity: 1,
               },
               outline: {
-                stroke: "#000000",
+                stroke: "#ffffff",
                 strokeWidth: 2,
                 outlineWidth: 2,
                 outlineColor: "#ffffff",
                 outlineOpacity: 1,
               },
               symbol: {
-                fill: "#000000",
+                fill: "#ffffff",
                 outlineWidth: 2,
                 outlineColor: "#ffffff",
                 outlineOpacity: 1,
@@ -174,9 +184,15 @@ const Line = ({ isDahboard = false }) => {
           }}
           data={selectedGas ? data.filter((d) => d.id === selectedGas) : data}
           curve="catmullRom"
-          margin={{ top: 50, right: 110, bottom: 50, left: 60 }}
+          margin={{ top: 50, right: 110, bottom: 50, left: 80 }}
           xScale={{ type: "point" }}
-          yScale={{ type: "linear", min: "auto", max: "auto", stacked: true, reverse: false }}
+          yScale={{
+            type: "linear",
+            min: "auto",
+            max: "auto",
+            stacked: true,
+            reverse: false,
+          }}
           yFormat=" >-.3f"
           axisTop={null}
           axisRight={null}
@@ -184,7 +200,7 @@ const Line = ({ isDahboard = false }) => {
             tickSize: 5,
             tickPadding: 5,
             tickRotation: 0,
-            legend: isDahboard ? null : "Days",
+            legend: "Days",
             legendOffset: 36,
             legendPosition: "middle",
           }}
@@ -192,8 +208,8 @@ const Line = ({ isDahboard = false }) => {
             tickSize: 5,
             tickPadding: 5,
             tickRotation: 0,
-            legend: isDahboard ? null : "Concentration",
-            legendOffset: -50,
+            legend: "Concentration",
+            legendOffset: -70,
             legendPosition: "middle",
             format: (value) => value.toFixed(2),
           }}
@@ -217,12 +233,12 @@ const Line = ({ isDahboard = false }) => {
               itemOpacity: 0.75,
               symbolSize: 12,
               symbolShape: "circle",
-              symbolBorderColor: "rgba(0, 0, 0, .5)",
+              symbolBorderColor: "rgba(255, 255, 255, 0.5)",
               effects: [
                 {
                   on: "hover",
                   style: {
-                    itemBackground: "rgba(0, 0, 0, .03)",
+                    itemBackground: "rgba(255, 255, 255, 0.03)",
                     itemOpacity: 1,
                   },
                 },
