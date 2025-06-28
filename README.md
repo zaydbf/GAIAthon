@@ -1,6 +1,6 @@
 <div style="display: flex; justify-content: space-between; align-items: center;">
   <h1>CarbonSense </h1>
-  <img src="./Web//images/Logo.png" alt="Project Logo" width="120"/>
+  <img src="Web/images/Capture d'écran 2025-06-28 220232.png" alt="Project Logo" width="120"/>
 </div>
 
 
