@@ -1,24 +1,7 @@
 <div style="display: flex; justify-content: space-between; align-items: center;">
-  <h1>Project Architecture</h1>
   <img src="./images/Logo.png" alt="Project Logo" width="120"/>
 </div>
 
-## IoT
-  - Contains the Iot firmware & libraries
-## Web
-### Frontend
-  - Contains every service display for user ensuring a good UI & UX
-### Backend
-  - API : Contains AI forcasting and ChatBot functionalities
-  - data : Contains data handling for EO
-  - IoT : Contains scripts to link Iot device to the webapplication
-## AI
-  - ChatBot & AI forcasting 
-  - Integrated in the web's backend : backend/API/views.py
-## Documents 
-  - Just for documentations and explaining
-## Images 
-  - to display images in Readme file
 # Project Setup and Run Guide
 
 This guide explains how to run the project using **Docker Compose** .Alternatively, you can use the manual setup process (requiring the use of requirements.txt and npm install).
