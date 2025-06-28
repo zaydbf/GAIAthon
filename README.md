@@ -3,7 +3,7 @@
   <img src="./Web//images/Logo.png" alt="Project Logo" width="120"/>
 </div>
 
-## Project Overview :
+
 
 Carbonsens weaves IoT, AI, and Web into a vibrant platform for tracking Earth's air. Its sleek dashboard, AI chatbot, and 7-day gas forecasts empower users to monitor CO2, CH4, and more. Split into three GitHub repos—AI for analytics, IoT for sensors, and Web for UI/backend—it’s a bold step toward a greener future.
 
