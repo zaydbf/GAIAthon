@@ -10,7 +10,7 @@ Carbonsens weaves IoT, AI, and Web into a vibrant platform for tracking Earth's 
 
 
 ## IoT
-  - Contains the Iot firmware & libraries
+  - Contains documentation and source code for the IoT system  including Firmwares , Required libraries and dependencies and Hardware integration details
 ## Web
 ### Frontend
   - Contains every service display for user ensuring a good UI & UX
