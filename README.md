@@ -1,7 +1,8 @@
 <div style="display: flex; justify-content: space-between; align-items: center;">
   <h1>CarbonSense </h1>
 </div>
-  ![Architecture Diagram](Web/images/Capture d'écran 2025-06-28 220232.png)
+
+![Architecture Diagram](Web/images/Capture.png).
 
 
 
