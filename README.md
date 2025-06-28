@@ -34,7 +34,7 @@ The system monitors environmental gas concentrations ( CO, NO2, CH4, CO2...) usi
 - 7-day gas emission forecasts.
 - AI Assistant
 
-## System Structure
+## Project Structure
 
 The project is split into three GitHub repositories:
 
