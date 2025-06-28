@@ -2,7 +2,7 @@
   <h1>CarbonSense </h1>
 </div>
 
-![Architecture Diagram](Web/images/Capture.png).
+![Architecture Diagram](Web/images/Capture.png)
 
 
 
