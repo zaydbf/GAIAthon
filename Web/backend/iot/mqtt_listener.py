@@ -1,15 +1,26 @@
+import sys
 import os
+
+# Add the parent directory of 'backend' to sys.path
+sys.path.append(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
+
 import django
 import json
 import paho.mqtt.client as mqtt
 from datetime import datetime
-from .models import IotData
-from dotenv import load_dotenv
 import time
-# --- Setup Django Environment ---
-os.environ.setdefault('DJANGO_SETTINGS_MODULE', 'backend.settings')
+from dotenv import load_dotenv
+
+os.environ.setdefault("DJANGO_SETTINGS_MODULE", "backend.settings")
 django.setup()
+
+from iot.models import IotData
+from django.utils import timezone
+
 load_dotenv()
+
+
+
 
   
 
@@ -47,7 +58,7 @@ def on_message(client, userdata, msg):
             latitude = gps.get("latitude"),
             longitude = gps.get("longitude"),
             altitude = gps.get("altitude"),
-            timestamp = datetime.utcnow()
+            timestamp = timezone.now()
         )
 
         iot_entry.save()
@@ -61,8 +72,8 @@ mqtt_client.on_connect = on_connect
 mqtt_client.on_message = on_message
 
 mqtt_client.connect(MQTT_BROKER, MQTT_PORT, 60)
-print("[System] Starting MQTT loop for 30 seconds...")
+print("[System] Starting MQTT loop for 120 seconds...")
 mqtt_client.loop_start()
-time.sleep(30)  # Ecoute pendant 30 secondes
+time.sleep(120)  # Ecoute pendant 30 secondes
 mqtt_client.loop_stop()
 print("[System] Exiting.")
