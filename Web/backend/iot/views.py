@@ -3,6 +3,7 @@ from rest_framework.decorators import api_view
 from rest_framework.response import Response
 from django.http import HttpResponseBadRequest
 from .models import IotData
+from django.db.models import Avg
 # Create your views here.
 
 # @api_view(['GET'])
@@ -55,3 +56,15 @@ def get_iot_data(request, gas):
             "CH4": "ppm"
         }[gas]
     })
+
+@api_view(['GET'])
+def get_average_iot_data(request):
+    averages = IotData.objects.aggregate(
+        avg_barometer=Avg('barometer'),
+        avg_humidity=Avg('humidity'),
+        avg_temperature=Avg('temperature'),
+        avg_latitude=Avg('latitude'),
+        avg_longitude=Avg('longitude'),
+        avg_altitude=Avg('altitude'),
+    )
+    return Response(averages)   
