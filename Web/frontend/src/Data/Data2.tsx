@@ -53,8 +53,8 @@ const gasConfig: Record<
     png: UilCloud,
   },
   O3: {
-    title: "O₃ (µmol/m²)",
-    threshold: 126500,
+    title: "O₃ (mol/m²)",
+    threshold: 0.13,
     color: {
       backGround: "linear-gradient(180deg, #f7971e 0%, #ffd200 100%)", // orange-yellow
       boxShadow: "0px 10px 20px 0px #ffe5a0",
@@ -102,7 +102,7 @@ export const useCardsData = (region: string) => {
             const card: CardData = {
               ...config,
               barValue,
-              value: max.toFixed(2),
+              value: max.toFixed(3),
               series: [{ name: config.title, data: values }],
             };
 

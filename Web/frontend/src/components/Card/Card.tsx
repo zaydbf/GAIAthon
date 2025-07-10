@@ -102,6 +102,9 @@ function ExpandedCard({
         "2025-06-29",
       ],
     },
+    yaxis: {
+    max: Math.max(param.threshold, Math.max(...param.series[0].data)) * 1.001, // add 10% padding
+    },
     annotations: {
       yaxis: [
         {

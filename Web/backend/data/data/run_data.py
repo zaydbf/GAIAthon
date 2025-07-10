@@ -31,23 +31,23 @@ def calculate(gas, region_name):
         }
     )
     average = calculate_avg.compute_average(gas, region)
-    unit_multipliers = {
-        "CH4": (1, "ppbv"),
-        "CO": (1000, "mmol/m²"),
-        "NO2": (1000000, "µmol/m²"),
-        "O3": (1000000, "µmol/m²"),
-        "SO2": (1000000, "µmol/m²"),
+    fixed_units = {
+        "CH4": {"scale": 1,        "unit": "ppbv"},
+        "CO":  {"scale": 1000,     "unit": "mmol/m²"},     
+        "NO2": {"scale": 1_000_000,"unit": "µmol/m²"},     
+        "SO2": {"scale": 1_000_000,"unit": "µmol/m²"},     
+        "O3":  {"scale": 1,        "unit": "mol/m²"},      
     }
     
-    multiplier, unit = unit_multipliers.get(gas, (1, "unit"))
-    scaled_avg = round(average * multiplier, 2)
+    rule = fixed_units.get(gas, {"scale": 1, "unit": "unit"})
+    scaled_avg = round(average * rule["scale"], 2)
     if scaled_avg == 0 or scaled_avg is None:
         print("error Invalid average value")
         return 
     Gas.objects.create(
         gas=gas,
-        average=scaled_avg, 
-        unit = unit,
+        average=scaled_avg,
+        unit=rule["unit"],
         region=region,
     )
 

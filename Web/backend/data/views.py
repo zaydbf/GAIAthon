@@ -27,32 +27,37 @@ def calculate(request, gas, region_name):
             "lon_max": bounds["lon_max"],
         }
     )
+
     average = calculate_avg.compute_average(gas, region)
-    unit_multipliers = {
-        "CH4": (1, "ppbv"),
-        "CO": (1000, "mmol/m²"),
-        "NO2": (1000000, "µmol/m²"),
-        "O3": (1000000, "µmol/m²"),
-        "SO2": (1000000, "µmol/m²"),
-    }
-    
-    multiplier, unit = unit_multipliers.get(gas, (1, "unit"))
-    scaled_avg = round(average * multiplier, 2)
-    if scaled_avg == 0 or scaled_avg is None:
+    if average is None or average == 0:
         return Response({"error": "Invalid average value"}, status=400)
+
+    # Final fixed scaling and unit rules
+    fixed_units = {
+        "CH4": {"scale": 1,        "unit": "ppbv"},
+        "CO":  {"scale": 1000,     "unit": "mmol/m²"},     
+        "NO2": {"scale": 1_000_000,"unit": "µmol/m²"},     
+        "SO2": {"scale": 1_000_000,"unit": "µmol/m²"},     
+        "O3":  {"scale": 1,        "unit": "mol/m²"},      
+    }
+
+    rule = fixed_units.get(gas, {"scale": 1, "unit": "unit"})
+    scaled_avg = round(average * rule["scale"], 2)
+
     Gas.objects.create(
         gas=gas,
-        average=scaled_avg, 
-        unit = unit,
+        average=scaled_avg,
+        unit=rule["unit"],
         region=region,
     )
 
     return Response({
         "gas": gas,
         "average": scaled_avg,
-        "unit": unit,
+        "unit": rule["unit"],
         "region": region_name
     })
+
 
 @api_view(['GET'])
 def get_gas_values(request, gas, region_name):
