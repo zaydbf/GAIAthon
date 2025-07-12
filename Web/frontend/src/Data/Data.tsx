@@ -28,8 +28,8 @@ const gasConfig: Record<
   Omit<CardData, "barValue" | "value" | "series">
 > = {
   CO2: {
-    title: "CO2 (mmol/m²)",
-    threshold: 45,
+    title: "CO2 (ppm)",
+    threshold: 1000,
     color: {
       backGround: "linear-gradient(180deg, #ff5858 0%, #ffc371 100%)", // red-orange
       boxShadow: "0px 10px 20px 0px #ffb199",

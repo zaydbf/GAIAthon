@@ -50,8 +50,8 @@ def on_message(client, userdata, msg):
             rx_info = payload.get("rxInfo"),
             object_json = object_data,
             light_lux = object_data.get("illuminanceSensor", {}).get("5"),
-            ch4_ppm = object_data.get("analogInput", {}).get("6"),
-            co2_ppm = object_data.get("analogInput", {}).get("7"),
+            ch4_ppm = object_data.get("analogInput", {}).get("6") * 1000,
+            co2_ppm = round(object_data.get("analogInput", {}).get("7") * 10, 2),
             barometer = object_data.get("barometer", {}).get("4"),
             humidity = object_data.get("humiditySensor", {}).get("3"),
             temperature = object_data.get("temperatureSensor", {}).get("2"),
@@ -72,8 +72,6 @@ mqtt_client.on_connect = on_connect
 mqtt_client.on_message = on_message
 
 mqtt_client.connect(MQTT_BROKER, MQTT_PORT, 60)
-print("[System] Starting MQTT loop for 120 seconds...")
-mqtt_client.loop_start()
-time.sleep(120)  # Ecoute pendant 30 secondes
-mqtt_client.loop_stop()
+print("[System] Starting MQTT loop ...")
+mqtt_client.loop_forever()
 print("[System] Exiting.")

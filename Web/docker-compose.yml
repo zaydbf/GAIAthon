@@ -24,3 +24,11 @@ services:
     volumes:
       - ./backend:/app
     restart: unless-stopped    
+
+  mqtt_listener:
+    build:
+      context: ./backend
+      dockerfile: mqtt.Dockerfile
+    volumes:
+      - ./backend:/app
+    restart: always  
