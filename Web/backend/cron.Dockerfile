@@ -14,7 +14,5 @@ RUN echo "0 0 * * * /usr/local/bin/python /app/data/data/run_data.py >> /app/cro
     echo "" >> /etc/cron.d/daily-job && \
     chmod 0644 /etc/cron.d/daily-job && \
     crontab /etc/cron.d/daily-job
-RUN echo "0 * * * * /usr/local/bin/python /app/iot/mqtt_listener.py >> /app/hourly_cron.log 2>&1" > /etc/cron.d/hourly-job && \
-    chmod 0644 /etc/cron.d/hourly-job    
 
 CMD ["cron", "-f"]

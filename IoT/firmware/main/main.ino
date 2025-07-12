@@ -17,7 +17,9 @@ const float sensitivity = -0.0035;
 #define RL_VALUE 10.0     // Load resistor value in kOhm
 float Ro = 10.0;          // Initial Ro, will be calculated
 bool calibrated = false;  // Set to true after calibration
-#define CH4_FALLBACK_PPM 12  // Static value if sensor not working
+
+#define CH4_FALLBACK_PPM 2  // Static value if sensor not working
+
 //-----
 // OTAA credentials (REVERSED for LMIC!)
 static const u1_t PROGMEM DEVEUI[8] = { 0xAA, 0xBB, 0xCC, 0xDD, 0xEE, 0xFF, 0x00, 0x11 };
@@ -126,7 +128,9 @@ void do_send(osjob_t* j) {
     Serial.print(F("MG-811 CO₂ PPM: "));
     Serial.println(co2ppm);
   }
-  co2ppm =co2ppm / 100;
+
+  co2ppm =co2ppm / 10;
+
   lpp.addAnalogInput(7, co2ppm);  // Cayenne channel 7: CO2
 
      // --- MQ-4 PPM Calculation ---
@@ -144,6 +148,7 @@ void do_send(osjob_t* j) {
     Serial.println(mq4ppm);
   }
   lpp.addAnalogInput(6, mq4ppm);  // Cayenne channel 6: CH₄ in ppm
+
   // --- Send data---
   LMIC_setTxData2(1, lpp.getBuffer(), lpp.getSize(), 0);
   Serial.println(F("LoRa packet queued"));
@@ -175,8 +180,13 @@ float getMQ4Rs(float vrl) {
 }
 
 float getMQ4PPM(float rs, float ro) {
-  float ratio = rs / ro;
-  return pow(10, (-0.38 * log10(ratio) + 1.5));
+
+   const float m = -0.366531f;                
+    const float b =  1.099595f;               
+    float ratio   = rs / ro ;                  
+    float logPpm  = (log10(ratio) - b) / m;    
+    return pow(10, logPpm); 
+
 }
 float getMG811PPM(int analogValue) {
   float voltage = analogValue * (5.0 / 1023.0);  // Convert to volts
@@ -237,7 +247,9 @@ void loop() {
       rs_total += rs;
       delay(100);
     }
-    Ro = rs_total / (float)samples;
+
+    Ro = (rs_total / (float)samples) / 11.2;
+
     Serial.print(F("Calibrated Ro = "));
     Serial.print(Ro, 2);
     Serial.println(F(" kΩ"));

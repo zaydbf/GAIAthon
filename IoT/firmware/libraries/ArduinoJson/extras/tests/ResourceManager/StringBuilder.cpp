@@ -116,12 +116,16 @@ TEST_CASE("StringBuilder") {
   }
 }
 
-static JsonString saveString(StringBuilder& builder, const char* s) {
+
+static VariantData saveString(StringBuilder& builder, const char* s) {
+
   VariantData data;
   builder.startString();
   builder.append(s);
   builder.save(&data);
-  return data.asString();
+
+  return data;
+
 }
 
 TEST_CASE("StringBuilder::save() deduplicates strings") {
@@ -134,9 +138,11 @@ TEST_CASE("StringBuilder::save() deduplicates strings") {
     auto s2 = saveString(builder, "world");
     auto s3 = saveString(builder, "hello");
 
-    REQUIRE(s1 == "hello");
-    REQUIRE(s2 == "world");
-    REQUIRE(+s1.c_str() == +s3.c_str());  // same address
+
+    REQUIRE(s1.asString() == "hello");
+    REQUIRE(s2.asString() == "world");
+    REQUIRE(+s1.asString().c_str() == +s3.asString().c_str());  // same address
+
 
     REQUIRE(spy.log() ==
             AllocatorLog{
@@ -152,9 +158,12 @@ TEST_CASE("StringBuilder::save() deduplicates strings") {
     auto s1 = saveString(builder, "hello world");
     auto s2 = saveString(builder, "hello");
 
-    REQUIRE(s1 == "hello world");
-    REQUIRE(s2 == "hello");
-    REQUIRE(+s2.c_str() != +s1.c_str());  // different address
+
+    REQUIRE(s1.asString() == "hello world");
+    REQUIRE(s2.asString() == "hello");
+    REQUIRE(+s2.asString().c_str() !=
+            +s1.asString().c_str());  // different address
+
 
     REQUIRE(spy.log() ==
             AllocatorLog{
@@ -169,9 +178,12 @@ TEST_CASE("StringBuilder::save() deduplicates strings") {
     auto s1 = saveString(builder, "hello world");
     auto s2 = saveString(builder, "worl");
 
-    REQUIRE(s1 == "hello world");
-    REQUIRE(s2 == "worl");
-    REQUIRE(s2.c_str() != s1.c_str());  // different address
+
+    REQUIRE(s1.asString() == "hello world");
+    REQUIRE(s2.asString() == "worl");
+    REQUIRE(s2.asString().c_str() !=
+            s1.asString().c_str());  // different address
+
 
     REQUIRE(spy.log() ==
             AllocatorLog{

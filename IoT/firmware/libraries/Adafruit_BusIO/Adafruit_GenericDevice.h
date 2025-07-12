@@ -28,6 +28,9 @@ public:
 
   bool begin(void);
 
+  void end(void);
+
+
   bool read(uint8_t *buffer, size_t len);
   bool write(const uint8_t *buffer, size_t len);
   bool readRegister(uint8_t *addr_buf, uint8_t addrsiz, uint8_t *buf,
