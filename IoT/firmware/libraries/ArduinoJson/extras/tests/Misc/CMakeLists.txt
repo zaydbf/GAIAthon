@@ -30,6 +30,7 @@ set_tests_properties(Misc
 		LABELS "Catch"
 )
 
+
 add_executable(Issue2181
 	issue2181.cpp # Cannot be linked with other tests
 )
@@ -49,3 +50,4 @@ if(CMAKE_CXX_COMPILER_ID MATCHES "Clang")
 			-Wno-keyword-macro # keyword is hidden by macro definition
 	)
 endif()
+

@@ -45,7 +45,9 @@ TEST_CASE("JsonDocument constructor") {
 
       REQUIRE(doc2.as<std::string>() == "The size of this string is 32!!");
 
+
       // NOLINTNEXTLINE(clang-analyzer-cplusplus.Move)
+
       REQUIRE(doc1.as<std::string>() == "null");
     }
     REQUIRE(spyingAllocator.log() == AllocatorLog{

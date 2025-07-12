@@ -70,7 +70,9 @@ TEST_CASE("JsonDocument assignment") {
 
       REQUIRE(doc2.as<std::string>() == "{\"hello\":\"world\"}");
 
+
       // NOLINTNEXTLINE(clang-analyzer-cplusplus.Move)
+
       REQUIRE(doc1.as<std::string>() == "null");
     }
     REQUIRE(spyingAllocator.log() == AllocatorLog{

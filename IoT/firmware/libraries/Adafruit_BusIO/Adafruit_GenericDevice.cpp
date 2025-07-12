@@ -34,6 +34,7 @@ bool Adafruit_GenericDevice::begin(void) {
   return true;
 }
 
+
 /*!
 @brief Marks the GenericDevice as no longer in use.
 @note: Since this is a GenericDevice, if you are using this with a Serial
@@ -41,6 +42,7 @@ object, this does NOT disable serial communication or release the RX/TX pins.
 That must be done manually by calling Serial.end().
 */
 void Adafruit_GenericDevice::end(void) { _begun = false; }
+
 
 /*! @brief Write a buffer of data
    @param buffer Pointer to buffer of data to write
