@@ -16,7 +16,7 @@ services:
       - ./frontend:/app
       - /app/node_modules
     environment:
-      - CHOKIDAR_USEPOLLING=true
+      - CHOKIDAR_USEPOLLING=true # Check for changes (for developpment)
   cronjob:
     build:
       context: ./backend
