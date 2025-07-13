@@ -88,7 +88,7 @@ cd GAIAthon
 
 Create & Configure `.env` with Copernicus, Groq API credentials and VM vAriables. (in Web/backend/.env)
 
-Check `.env.exemple` for more details [.env.exemple](./Web/.env.exemple)
+Check `.env.exemple` for more details [.env.exemple](./Web/backend/.env.exemple)
 
 ### 3. Build and Run
 
