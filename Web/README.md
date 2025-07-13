@@ -3,7 +3,6 @@
 </div>
 
 
-
 # Web Application – Setup & Documentation
 
 This folder contains the web interface of the project, including both frontend and backend components. This guide will help you set up and understand the structure of the web application.
@@ -49,7 +48,8 @@ The image below illustrates the high-level architecture connecting users, backen
 <p align="center"><img src="../Documents//images/MermaidGraph.png" alt="Architecture Diagram" width="800" /></p>
 
 
-For a full view of module-level interactions, see [Section 8 – Detailed Architecture](#8-detailed-architecture).
+For a full view of module-level interactions, see [Section 8 – Detailed Architecture](#8-detailed-architecture) or check [Explanatory_Diagram](../Documents/Explanatory_Diagram.jpeg) (Zoom for better visibility).
+
 
 ---
 ## 2. Folder Structure
@@ -274,12 +274,9 @@ The frontend provides a user-friendly interface featuring a data dashboard, AI-p
   
 ### 6.6. Dockerfile
   - This Dockerfile handles the installation of dependencies, and starting the Web server on port 5173
-     
-### 6.7. Service orchestration with Docker Compose
-  - Docker Compose manages the build and execution of multiple services based on their respective Dockerfiles, including the backend, the frontend , mqtt_listener and a cronjob service that runs daily to collect data.
 
 ## 7. Docker Compose  
-  - Orchestrates all services (web, MQTT, cron) in isolated containers.  
+    - Docker Compose manages the build and execution of multiple services based on their respective Dockerfiles, including the backend, the frontend , mqtt_listener and a cronjob service that runs daily to collect data.  
   - Manages networking, environment variables, and shared volumes across services.  
   - Simplifies startup with a single command: `docker-compose up --build`
 ---
@@ -294,4 +291,3 @@ This diagram breaks down:
 
 
 <p align="center"><img src="../Documents/Explanatory_Diagram.jpeg" alt="Architecture Diagram" /></p>
-
