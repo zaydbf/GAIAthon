@@ -66,7 +66,7 @@ The following diagram provides a high-level overview of the complete system arch
 
 1. **EO System:** Earth Observation data, mainly from sentinel 5P imagery, is processed to compute gas concentrations for CO, CH4, NO2, O3 and  SO2
 2. **IoT System:** Physical sensors deployed in the field collect environmental and gas concentration data. The data is transmitted via LoRa to a LoRaWAN Stack in a virtual server in the cloud.
-3. **Web Application:** Serves as the interface for users to visualize real-time sensor data, EO insights, and analytics.  For a detailed view of the web application's internal architecture, see the [Web README](./web/README.md)
+3. **Web Application:** Serves as the interface for users to visualize real-time sensor data, EO insights, and analytics.  For a detailed view of the web application's internal architecture, see the [Web README](./Web/README.md)
 
 ![Architecture Diagram](Documents/images/GlobalArch.jpg)
 
