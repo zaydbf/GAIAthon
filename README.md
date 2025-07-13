@@ -10,7 +10,7 @@ Carbonsens weaves IoT, AI, and Web into a vibrant platform for tracking Earth's 
 
 ---
 
-## Project Structure
+## 1. Project structure
 
 ```bash
 ├── AI            # ChatBot & AI forcasting
@@ -23,18 +23,18 @@ Carbonsens weaves IoT, AI, and Web into a vibrant platform for tracking Earth's 
 ```
 
  
-### (1). AI
+### 1.1. AI
   - ChatBot & AI forcasting 
   - Integrated in the web's backend : backend/API/views.py
 
-### (2). IoT   
+### 1.2. IoT   
   - The `iot/` folder includes the microcontroller code to:
      
      - Interface with sensors (BME680, MQ-4, MG811, TSL2591, GPS)
      - Package data using CayenneLPP
      - Send data over LoRaWAN using LMIC with OTAA
 
-### (3). Web
+### 1.3. Web
 
 #### Frontend
 
@@ -47,13 +47,13 @@ Carbonsens weaves IoT, AI, and Web into a vibrant platform for tracking Earth's 
   - data : Contains data handling for EO
   - IoT : Contains scripts to link Iot device to the webapplication
 
-### (4). Documents
+### 1.4. Documents
 
 - project-related documentation and images
 
 ---
 
-## End-to-End Solution Architecture
+## 2. End-to-End Solution Architecture
 
 The system monitors  gas concentrations ( CO, NO2, CH4, CO2...) using Earth Observation (EO) and IoT (Internet of Things) data, offering:
 
@@ -64,33 +64,34 @@ The system monitors  gas concentrations ( CO, NO2, CH4, CO2...) using Earth Obse
 
 The following diagram provides a high-level overview of the complete system architecture, illustrating the interaction between the core components:
 
-1. **EO System:** Earth Observation data, mainly from sentinel 5P imagery, is processed to compute gas concentrations for CO, CH4, NO2, O3 and  SO2
-2. **IoT System:** Physical sensors deployed in the field collect environmental and gas concentration data. The data is transmitted via LoRa to a LoRaWAN Stack in a virtual server in the cloud.
-3. **Web Application:** Serves as the interface for users to visualize real-time sensor data, EO insights, and analytics.  For a detailed view of the web application's internal architecture, see the [Web README](./Web/README.md)
+### 2.1. EO System
+Earth Observation data, mainly from sentinel 5P imagery, is processed to compute gas concentrations for CO, CH4, NO2, O3 and  SO2
+### 2.2. IoT System
+Physical sensors deployed in the field collect environmental and gas concentration data. The data is transmitted via LoRa to a LoRaWAN Stack in a virtual server in the cloud. For a detailed view of the IoT system and its components, see the [IoT README](./IoT/README.md)
+### 2.3. Web Application
+Serves as the interface for users to visualize real-time sensor data, EO insights, and analytics.  For a detailed view of the web application's internal architecture, see the [Web README](./Web/README.md)
 
 ![Architecture Diagram](Documents/images/GlobalArch.jpg)
 
 
 ---
 
-## Setup
+## 3. Setup
 
-
-
-### 1. Clone the Repository
+### 3.1. Clone the Repository
 
 ```bash
 git clone https://github.com/zaydbf/GAIAthon.git
 cd GAIAthon
 ```
 
-### 2. Environment Configuration
+### 3.2. Environment Configuration
 
 Create & Configure `.env` with Copernicus, Groq API credentials and VM vAriables. (in Web/backend/.env)
 
 Check `.env.exemple` for more details [.env.exemple](./Web/backend/.env.exemple)
 
-### 3. Build and Run
+### 3.3.  Build and Run
 
 
    ```bash
@@ -103,7 +104,7 @@ Check `.env.exemple` for more details [.env.exemple](./Web/backend/.env.exemple)
 
 ---
 
-## Changelog
+## 4. Changelog
 
 See [CHANGELOG.md](CHANGELOG.md) for detailed version history and updates.
 
