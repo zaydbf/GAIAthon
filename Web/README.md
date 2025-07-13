@@ -49,7 +49,7 @@ The image below illustrates the high-level architecture connecting users, backen
 <p align="center"><img src="../Documents//images/MermaidGraph.png" alt="Architecture Diagram" width="800" /></p>
 
 
-For a full view of module-level interactions, see [Section 7 – Detailed Architecture](##7-detailed-architecture).
+For a full view of module-level interactions, see [Section 8 – Detailed Architecture](#8-detailed-architecture).
 
 ---
 ## 2. Folder Structure
