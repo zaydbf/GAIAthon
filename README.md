@@ -71,7 +71,7 @@ Physical sensors deployed in the field collect environmental and gas concentrati
 ### 2.3. Web Application
 Serves as the interface for users to visualize real-time sensor data, EO insights, and analytics.  For a detailed view of the web application's internal architecture, see the [Web README](./Web/README.md)
 
-![Architecture Diagram](Documents/images/GlobalArch.jpg)
+![Architecture Diagram](Documents/images/GlobalArch.gif)
 
 
 ---
