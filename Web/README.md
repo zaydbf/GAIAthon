@@ -276,7 +276,8 @@ The frontend provides a user-friendly interface featuring a data dashboard, AI-p
   - This Dockerfile handles the installation of dependencies, and starting the Web server on port 5173
 
 ## 7. Docker Compose  
-    - Docker Compose manages the build and execution of multiple services based on their respective Dockerfiles, including the backend, the frontend , mqtt_listener and a cronjob service that runs daily to collect data.  
+
+  - Docker Compose manages the build and execution of multiple services based on their respective Dockerfiles, including the backend, the frontend , mqtt_listener and a cronjob service that runs daily to collect data.
   - Manages networking, environment variables, and shared volumes across services.  
   - Simplifies startup with a single command: `docker-compose up --build`
 ---
