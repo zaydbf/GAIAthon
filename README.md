@@ -1,58 +1,96 @@
-<div style="display: flex; justify-content: space-between; align-items: center;">
-  <h1>CarbonSens </h1>
-</div>
-
-![Architecture Diagram](Web/images/Capture.png)
+<h1 style="text-align: center;">
+  CarbonSens: Monitoring Key Atmospheric Pollutants and Climate-Active Gases using IoT, EO and AI
+</h1>
 
 
+Carbonsens weaves IoT, AI, and Web into a vibrant platform for tracking Earth's air. Its sleek dashboard, AI chatbot, and 7-day gas forecasts empower users to monitor key atmospheric pollutants and climate-active gases like CO2, CH4, and more. Split into three GitHub repos—AI for analytics, IoT for sensors, and Web for UI/backend—it’s a bold step toward a greener future.
 
+<p align="center"><img src="./Documents//images/Capture.png" alt="Capture" width="800" /></p>
+ 
 
-Carbonsens weaves IoT, AI, and Web into a vibrant platform for tracking Earth's air. Its sleek dashboard, AI chatbot, and 7-day gas forecasts empower users to monitor CO2, CH4, and more. Split into three GitHub repos—AI for analytics, IoT for sensors, and Web for UI/backend—it’s a bold step toward a greener future.
+---
 
+## Project Structure
 
+```bash
+├── AI            # ChatBot & AI forcasting
+├── Documents     # Project documentation & images
+├── IoT           # IoT system architecture and Arduino firmware  
+├── Web           # Full-stack web application 
+├── .gitignore    # specify which files git should ignore
+├── README.md     # Project overview and setup instructions
+└── CHANGELOG.md   # Version history and updates
+```
 
-## IoT
-  - Contains the IoT system description, firmware, and libraries.
-## Web
-### Frontend
-  - Contains every service display for user ensuring a good UI & UX
-### Backend
-  - API : Contains AI forcasting and ChatBot functionalities
-  - data : Contains data handling for EO
-  - IoT : Contains scripts to link Iot device to the webapplication
-## AI
+ 
+### (1). AI
   - ChatBot & AI forcasting 
   - Integrated in the web's backend : backend/API/views.py
 
+### (2). IoT   
+  - The `iot/` folder includes the microcontroller code to:
+     
+     - Interface with sensors (BME680, MQ-4, MG811, TSL2591, GPS)
+     - Package data using CayenneLPP
+     - Send data over LoRaWAN using LMIC with OTAA
 
-## Architecture Diagram
+### (3). Web
 
-![Architecture Diagram](Web/images/MermaidGraph.png)
+#### Frontend
 
-The system monitors environmental gas concentrations ( CO, NO2, CH4, CO2...) using Earth Observation (EO) and IoT data, offering:
+- Displays interactive dashboards, chatbot UI, and forecasting visuals.
+- Contains every service display for user ensuring a good UI & UX
+  
+#### Backend 
+- Handles APIs (SignUp/SignIn, chatbot, forecasting), EO data processing, and IoT integration using Django REST Framework.
+  - API : Contains AI forcasting and ChatBot functionalities
+  - data : Contains data handling for EO
+  - IoT : Contains scripts to link Iot device to the webapplication
+
+### (4). Documents
+
+- project-related documentation and images
+
+---
+
+## End-to-End Solution Architecture
+
+The system monitors  gas concentrations ( CO, NO2, CH4, CO2...) using Earth Observation (EO) and IoT (Internet of Things) data, offering:
 
 - Real-time dashboards for gas levels.
 - AI-powered chatbot for analysis and queries.
 - 7-day gas emission forecasts.
 - AI Assistant
 
-## Project Structure
+The following diagram provides a high-level overview of the complete system architecture, illustrating the interaction between the core components:
 
-The project is split into three GitHub repositories:
+1. **EO System:** Earth Observation data, mainly from sentinel 5P imagery, is processed to compute gas concentrations for CO, CH4, NO2, O3 and  SO2
+2. **IoT System:** Physical sensors deployed in the field collect environmental and gas concentration data. The data is transmitted via LoRa to a LoRaWAN Stack in a virtual server in the cloud.
+3. **Web Application:** Serves as the interface for users to visualize real-time sensor data, EO insights, and analytics.  For a detailed view of the web application's internal architecture, see the [Web README](./web/README.md)
 
-- **AI**: Powers chatbot and forecasting, integrated into the Web backend.
-- **IoT**: Manages IoT firmware and real-time sensor data via MQTT.
-- **Web**:
-  - **Backend**: Handles APIs (SignUp/SignIn, chatbot, forecasting), EO data processing, and IoT integration using Django REST Framework.
-  - **Frontend**: Displays interactive dashboards, chatbot UI, and forecasting visuals.
+![Architecture Diagram](Documents/images/GlobalArch.jpg)
+
+
+---
 
 ## Setup
 
-1. Clone the repositories: **AI**, **IoT**, **Web**.
 
-2. Configure `.env` with Copernicus and Groq API credentials.
 
-3. Run with Docker Compose:
+### 1. Clone the Repository
+
+```bash
+git clone https://github.com/zaydbf/GAIAthon.git
+cd GAIAthon
+```
+
+### 2. Environment Configuration
+
+Configure `.env` with Copernicus and Groq API credentials.
+
+
+### 3. Build and Run
+
 
    ```bash
    docker-compose build
@@ -61,3 +99,10 @@ The project is split into three GitHub repositories:
 
    - Frontend: `http://localhost:5173`
    - Backend: `http://localhost:8000`
+
+---
+
+## Changelog
+
+See [CHANGELOG.md](CHANGELOG.md) for detailed version history and updates.
+
