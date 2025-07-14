@@ -62,7 +62,7 @@ The system monitors  gas concentrations ( CO, NO2, CH4, CO2...) using Earth Obse
 - 7-day gas emission forecasts.
 - AI Assistant
 
-![Architecture Diagram](Documents/images/GlobalArch.gif)
+![Architecture Diagram](Documents/images/GlobalArch.jpeg)
 
 ### 2.1. EO System
 Earth Observation data, mainly from sentinel 5P imagery, is processed to compute gas concentrations for CO, CH4, NO2, O3 and  SO2
