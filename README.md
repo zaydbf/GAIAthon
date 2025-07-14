@@ -62,7 +62,7 @@ The system monitors  gas concentrations ( CO, NO2, CH4, CO2...) using Earth Obse
 - 7-day gas emission forecasts.
 - AI Assistant
 
-The following diagram provides a high-level overview of the complete system architecture, illustrating the interaction between the core components:
+![Architecture Diagram](Documents/images/GlobalArch.gif)
 
 ### 2.1. EO System
 Earth Observation data, mainly from sentinel 5P imagery, is processed to compute gas concentrations for CO, CH4, NO2, O3 and  SO2
@@ -71,7 +71,7 @@ Physical sensors deployed in the field collect environmental and gas concentrati
 ### 2.3. Web Application
 Serves as the interface for users to visualize real-time sensor data, EO insights, and analytics.  For a detailed view of the web application's internal architecture, see the [Web README](./Web/README.md)
 
-![Architecture Diagram](Documents/images/GlobalArch.gif)
+
 
 
 ---
