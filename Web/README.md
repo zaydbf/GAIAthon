@@ -48,7 +48,7 @@ The image below illustrates the high-level architecture connecting users, backen
 <p align="center"><img src="../Documents//images/MermaidGraph.png" alt="Architecture Diagram" width="800" /></p>
 
 
-For a full view of module-level interactions, see [Section 8 – Detailed Architecture](#8-detailed-architecture) or check [Explanatory_Diagram](../Documents/Explanatory_Diagram.jpeg) (Zoom for better visibility).
+For a full view of module-level interactions, see [Section 7 – Detailed Architecture](#7-detailed-architecture) or check [Explanatory_Diagram](../Documents/Explanatory_Diagram.jpeg) (Zoom for better visibility).
 
 
 ---
@@ -109,33 +109,10 @@ And everything  will run fine ( no need for further configurations )
 
 ---
 
-## 4. Teck Stack 
- 
 
-| Layer / Component     | Technology / Tool                            | 
-|:--------------------- |:---------------------------------------------| 
-| **Frontend**          | React.js                                     |  
-|                       | Tailwind CSS                                 |  
-|                       | Vite                                         | 
-| **Backend**           | Django                                       | 
-|                       | Django REST Framework                        |
-|                       | Object-Relational Mapping (ORM)              |
-| **Docker**            | Dockerfile                                   |  
-|                       | mqtt.Dockerfile                              |
-|                       | cron.Dockerfile                              |
-|                       | Docker-compose                               |
-| **IoT Data Pipeline** | Arduino                                      |  
-|                       | LoRa / LoRaWAN (Dragino devices)             |  
-|                       | Sensors                                      |
-|                       | MQTT (Mosquitto)                             |  
-| **AI/ML**             | Python (scikit-learn RandomForest)           |
-|                       | Time series forecasting with feature engineering (sin/cos transforms)                                             |                    
-|                       | Groq API (LLM with custom prompt engineering for chatbot)                                             |
+## 4. Backend Overview  
 
----
-## 5. Backend Overview  
-
-### 5.1. API
+### 4.1. API
 The api app serves the Singup, Signin Logic, the Chat Bot logic and the AI prediction logic:
 
 #####  ChatBot
@@ -159,7 +136,7 @@ This endpoint predicts gas concentration levels for the next 7 days based on rec
 
 - **Response:**  
 A JSON object with an array of predicted gas levels for the upcoming week.
-### 5.2. data
+### 4.2. data
 The Data app serves the integration of Earth Observation (EO) data
 #####  run_data.py script:
 This script handles all the data logic as follows :
@@ -188,7 +165,7 @@ All of these functionalities are handled by run_data.py script. The script delet
      and everything will be handled automatically
 - **Web integration:**
   For web intergration every function is imported to views.py to handle requests using Django Rest FrameWork (DRF)
-### 5.3. IoT
+### 4.3. IoT
 - **mqtt_listener Function:**
 This script connects to an MQTT broker to receive IoT sensor data in real-time:
   - Connects and subscribes to a configured MQTT topic.
@@ -198,7 +175,7 @@ This script connects to an MQTT broker to receive IoT sensor data in real-time:
   - **Web integration:**
   Then for web intergration the mqqt_listener function is imported to views.py to handle requests using DRF.
 
-### 5.4. Dockerfile overview
+### 4.4. Dockerfile overview
 Usage of multiple Dockerfile to run different components independently, all orchestrated using **Docker Compose** for seamless multi-container management.
 - **Dockerfile:**
   - This Dockerfile handles the installation of dependencies, migrating the database, and starting the Django server on port 8000
@@ -208,18 +185,18 @@ Usage of multiple Dockerfile to run different components independently, all orch
   - This Dockerfile runs the script mqtt_listener.py to keep getting realtime values and store them in the Database ~ Every 2 minutes
 
 ---
-## 6. Frontend Overview  
+## 5. Frontend Overview  
 
 The frontend provides a user-friendly interface featuring a data dashboard, AI-powered chatbot, and forecasting services. It combines clean UI and intuitive UX to help users easily interact with environmental data and insights.
 
-### 6.1. How it works
+### 5.1. How it works
   - Each backend service is accessed by the frontend through Django REST Framework (DRF), which manages JSON requests and responses. This enables the frontend to retrieve data and computations seamlessly, ensuring a user-friendly and intuitive experience.
-### 6.2. SignIn & SignUp page
+### 5.2. SignIn & SignUp page
   - the user can only use the Services if he has an account.
 
   <img src="../Documents//images/Dashboard/SignUp.png" alt="Image 4" width="300"/>
 
-### 6.3. Interactive Dashboard page
+### 5.3. Interactive Dashboard page
   - The dashboard features two gas emission services, EO and IoT, which users can switch between using the integrated button on the page.
 
    ![Alt text](../Documents/images/Dashboard/EO_Dashboard.jpeg)
@@ -257,12 +234,12 @@ The frontend provides a user-friendly interface featuring a data dashboard, AI-p
 
   ![Alt text](../Documents/images/Dashboard/Table.png)
   
-### 6.4. AI Assistance page
+### 5.4. AI Assistance page
   -  The UI for the user to interact with the chatbot getting various information and getting help or analysis about a given data
   
    ![Alt text](../Documents/images/ChatBot/Chatbot_detailed.png)
    
-### 6.5. Carbon Forcasting page
+### 5.5. Carbon Forcasting page
   -  A map to indicate if a region is predicted to be in danger or not
         
   ![Alt text](../Documents/images/AI_Forecasting/World_Map.png)
@@ -272,16 +249,16 @@ The frontend provides a user-friendly interface featuring a data dashboard, AI-p
     
   ![Alt text](../Documents//images/AI_Forecasting/Prediction_Chart.png)
   
-### 6.6. Dockerfile
+### 5.6. Dockerfile
   - This Dockerfile handles the installation of dependencies, and starting the Web server on port 5173
 
-## 7. Service orchestration with docker-compose
+## 6. Service orchestration with docker-compose
 
   - Docker Compose manages the build and execution of multiple services based on their respective Dockerfiles, including the backend, the frontend , mqtt_listener and a cronjob service that runs daily to collect data.
   - Manages networking, environment variables, and shared volumes across services.  
   - Simplifies startup with a single command: `docker-compose up --build`
 ---
-## 8. Detailed Architecture
+## 7. Detailed Architecture
  
 To complement the high-level overview above, the diagram below illustrates the internal modules, services, and communication between the frontend, backend, and data sources.
 

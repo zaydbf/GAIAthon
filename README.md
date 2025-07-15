@@ -71,30 +71,56 @@ Physical sensors deployed in the field collect environmental and gas concentrati
 ### 2.3. Web Application
 Serves as the interface for users to visualize real-time sensor data, EO insights, and analytics.  For a detailed view of the web application's internal architecture, see the [Web README](./Web/README.md)
 
+---
 
+## 3. Tech Stack 
+ 
+
+| Layer / Component     | Technology / Tool                            | 
+|:--------------------- |:---------------------------------------------| 
+| **Frontend**          | React.js                                     |  
+|                       | Tailwind CSS                                 |  
+|                       | Vite                                         | 
+| **Backend**           | Django                                       | 
+|                       | Django REST Framework                        |
+|                       | Object-Relational Mapping (ORM)              |
+| **Docker**            | Dockerfile                                   |  
+|                       | Docker+ MQTT Broker                          |
+|                       | Docker+Cron                                  |
+|                       | Docker-compose                               |
+| **IoT Data Pipeline** | Arduino C++                                  |  
+|                       | LoRa / LoRaWAN, ChirpStack                   |  
+|                       | Devices : Arduino Mega 2560, BME680, MG-811, MQ-4, TSL 2591, LoRa/GPS Shield                                      |
+|                       | CayenneLPP                                   | 
+|                       | MQTT (Mosquitto)                             |  
+| **AI/ML**             | Python (scikit-learn RandomForest)           |
+|                       | Time series forecasting with feature engineering (sin/cos transforms)                                             |                    
+|                       | Groq API (LLM with custom prompt engineering for chatbot)                                             |
+
+---
 
 
 ---
 
-## 3. Setup
+## 4. Setup
 
-### 3.1. Clone the Repository
+### 4.1. Clone the Repository
 
 ```bash
 git clone https://github.com/zaydbf/GAIAthon.git
 cd GAIAthon
 ```
 
-### 3.2. Environment Configuration
+### 4.2. Environment Configuration
 
 Create & Configure `.env` with Copernicus, Groq API credentials and VM vAriables. (in Web/backend/.env)
 
 Check `.env.exemple` for more details [.env.exemple](./Web/backend/.env.exemple)
 
-### 3.3.  Build and Run
-
+### 4.3.  Build and Run
 
    ```bash
+   cd Web
    docker-compose build
    docker-compose up
    ```
@@ -104,7 +130,7 @@ Check `.env.exemple` for more details [.env.exemple](./Web/backend/.env.exemple)
 
 ---
 
-## 4. Changelog
+## 5. Changelog
 
 See [CHANGELOG.md](CHANGELOG.md) for detailed version history and updates.
 
