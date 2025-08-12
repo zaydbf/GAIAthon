@@ -4,6 +4,7 @@ from rest_framework.response import Response
 from django.http import HttpResponseBadRequest
 from .models import IotData
 from django.db.models import Avg
+from django.utils.timezone import localtime
 # Create your views here.
 
 # @api_view(['GET'])
@@ -38,18 +39,33 @@ def get_iot_data(request, gas):
     queryset = IotData.objects.order_by('-timestamp')
 
     # Get previous 6 values (skip latest) and latest one
-    previous = list(queryset.values_list(field_name, flat=True)[1:7])
-    previous = [v for v in reversed(previous) if v is not None] 
+    previous_data = list(
+        queryset.values(field_name, 'timestamp')[1:7]
+    )
+    previous_data = [
+        {
+            "value": item[field_name],
+            "timestamp": localtime(item["timestamp"]).strftime("%Y-%m-%d %H:%M:%S")
+        }
+        for item in reversed(previous_data)
+        if item[field_name] is not None
+    ]
 
-    latest = queryset.values_list(field_name, flat=True).first()
-    if latest is None:
+    latest_item = queryset.values(field_name, 'timestamp').first()
+    if not latest_item or latest_item[field_name] is None:
         return HttpResponseBadRequest("No data found")
 
-    values = previous + [latest]
+    latest_data = {
+        "value": latest_item[field_name],
+        "timestamp": localtime(latest_item["timestamp"]).strftime("%Y-%m-%d %H:%M:%S")
+    }
+
+    # Merge previous + latest
+    values_with_dates = previous_data + [latest_data]
 
     return Response({
         "gas": gas,
-        "values": values,
+        "data": values_with_dates,
         "unit": {
             "CO2": "ppm",
             "Light": "lux",

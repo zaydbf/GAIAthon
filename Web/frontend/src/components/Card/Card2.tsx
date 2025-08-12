@@ -22,7 +22,6 @@ export interface CardProps {
     data: number[];
   }[];
   value: string;
-  timestamps: string[];
 }
 
 // parent Card
@@ -73,6 +72,18 @@ function CompactCard({
   );
 }
 
+function getLast7Days(): string[] {
+  const dates: string[] = [];
+  const today = new Date();
+
+  for (let i = 6; i >= 0; i--) {
+    const d = new Date(today);
+    d.setDate(today.getDate() - i);
+    dates.push(d.toISOString().split("T")[0]);
+  }
+
+  return dates;
+}
 
 function ExpandedCard({
   param,
@@ -94,7 +105,7 @@ function ExpandedCard({
     grid: { show: true },
     xaxis: {
       type: "datetime",
-      categories: param.timestamps,
+      categories: getLast7Days(),
     },
     yaxis: {
     max: Math.max(param.threshold, Math.max(...param.series[0].data)) * 1.001, // add 10% padding

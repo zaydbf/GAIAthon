@@ -19,7 +19,7 @@ const PieChart = () => {
       </p>
       <p>
         CO and NO₂ values are multiplied by 10, CH₄ is divided by 10, and O₃ is
-        divided by 1000.
+        multiplied by 1000.
       </p>
       <p>
         Hover over each slice to view the adjusted values and compare the gases

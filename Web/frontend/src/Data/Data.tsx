@@ -21,11 +21,12 @@ interface CardData {
     name: string;
     data: number[];
   }[];
+  timestamps: string[];
 }
 
 const gasConfig: Record<
   string,
-  Omit<CardData, "barValue" | "value" | "series">
+  Omit<CardData, "barValue" | "value" | "series" | "timestamps">
 > = {
   CO2: {
     title: "CO2 (ppm)",
@@ -67,7 +68,7 @@ export const useCardsData = (region: string) => {
         fetch(`http://localhost:8000/iot/get-iot-data/${gas}/`)
           .then((res) => res.json())
           .then((res) => {
-            const values = res.values;
+            const values = res.data.map((item: { value: number }) => item.value);
             const max = values.length ? Math.max(...values) : 0;
             const latest = values.length ? values[values.length - 1] : 0;
             const config = gasConfig[res.gas];
@@ -81,6 +82,7 @@ export const useCardsData = (region: string) => {
               barValue,
               value: max.toFixed(2),
               series: [{ name: config.title, data: values }],
+              timestamps: res.data.map((item: { timestamp: string }) => item.timestamp)
             };
           })
       )

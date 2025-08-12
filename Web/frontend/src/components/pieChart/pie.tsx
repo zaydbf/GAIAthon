@@ -38,7 +38,7 @@ const Pie = ({ region = "default" }: PieProps) => {
     } else if (gas === "CH4") {
       value /= 10;
     } else if (gas === "O3") {
-      value /= 1000;
+      value *= 1000;
     }
 
     // Keep only one digit after the decimal point

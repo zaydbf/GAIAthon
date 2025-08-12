@@ -1,6 +1,6 @@
 import "./Cards.css";
 import { useCardsData } from "../../Data/Data2.tsx";
-import Card from "../Card/Card";
+import Card2 from "../Card/Card2";
 
 const Cards = () => {
   const cardsData = useCardsData("Africa"); // Change africa later
@@ -13,7 +13,7 @@ const Cards = () => {
     <div className="Cards">
       {cardsData.map((card, id) => (
         <div className="parentContainer" key={id}>
-          <Card
+          <Card2
             title={card.title}
             color={card.color}
             threshold={card.threshold}
